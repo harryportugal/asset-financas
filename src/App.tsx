@@ -792,62 +792,13 @@ function App() {
                       }
                 }
                 transition={{
-                  x: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
-                  y: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
-                  scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                  x: { duration: 1.2, ease: [0.76, 0, 0.24, 1] }, // easeInOutQuart
+                  y: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
+                  scale: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
                   opacity: { duration: 1.2, times: [0, 0.916, 1], ease: 'linear' } // fades out in the last 100ms
                 }}
                 className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48"
               >
-                {/* Minimalist, Premium Liquid Loading Ring - Fades out instantly when flying */}
-                <motion.div
-                  initial={{ opacity: 1, scale: 1 }}
-                  animate={
-                    preloaderState === 'flying'
-                      ? { opacity: 0, scale: 0.8, transition: { duration: 0.2, ease: 'easeOut' } }
-                      : { opacity: 1, scale: 1 }
-                  }
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <svg className="w-52 h-52 sm:w-60 sm:h-60 pointer-events-none select-none" viewBox="0 0 100 100">
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="44"
-                      stroke="rgba(0,0,0,0.03)"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                    <motion.circle
-                      cx="50"
-                      cy="50"
-                      r="44"
-                      stroke="rgba(0,0,0,0.35)"
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                      initial={{ strokeDasharray: "20 300", rotate: 0 }}
-                      animate={{
-                        strokeDasharray: ["20 300", "140 300", "20 300"],
-                        rotate: 360
-                      }}
-                      transition={{
-                        strokeDasharray: {
-                          duration: 2.8,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        },
-                        rotate: {
-                          duration: 2.2,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }
-                      }}
-                      style={{ transformOrigin: "50px 50px" }}
-                    />
-                  </svg>
-                </motion.div>
-
                 {/* Inner container for Fluid Float Loop - Returns to center during flight */}
                 <motion.div
                   initial={{ y: 0, scale: 1, rotate: 0 }}
@@ -857,7 +808,7 @@ function App() {
                           y: 0,
                           scale: 1,
                           rotate: 0,
-                          transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                          transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
                         }
                       : { 
                           y: [0, -7, 0, 7, 0],
