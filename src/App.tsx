@@ -799,7 +799,7 @@ function App() {
                         transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
                       }
                 }
-                className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28"
+                className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48"
               >
                 {/* Outline/Faint Logo */}
                 <img 
@@ -819,29 +819,6 @@ function App() {
                     clipPath: `inset(${100 - loadingProgress}% 0px 0px 0px)`
                   }}
                 />
-              </motion.div>
-
-              {/* Progress Text & Loading Bar (fades out when state is flying) */}
-              <motion.div 
-                animate={preloaderState === 'flying' ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="flex flex-col items-center gap-3 w-64"
-              >
-                <div className="text-[12px] font-bold tracking-[0.2em] text-black/40 uppercase">
-                  Carregando...
-                </div>
-                {/* Progress bar */}
-                <div className="w-full h-[2px] bg-black/5 rounded-full overflow-hidden relative">
-                  <motion.div 
-                    className="absolute left-0 top-0 bottom-0 bg-[#002b8a]"
-                    initial={{ width: '0%' }}
-                    animate={{ width: `${loadingProgress}%` }}
-                    transition={{ duration: 0.1, ease: 'easeOut' }}
-                  />
-                </div>
-                <div className="text-[14px] font-bold text-[#002b8a] tracking-tight">
-                  {loadingProgress}%
-                </div>
               </motion.div>
 
             </div>
