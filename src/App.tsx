@@ -300,7 +300,12 @@ function App() {
             {/* Centered, pill-style, morphs smoothly into a single pill on scroll */}
             <nav 
               ref={navRef}
-              style={{'--nav-progress': '0'} as React.CSSProperties} className="morphing-nav flex items-center justify-center rounded-full"
+              style={{
+                '--nav-progress': '0',
+                backdropFilter: 'blur(24px) saturate(160%)',
+                WebkitBackdropFilter: 'blur(24px) saturate(160%)'
+              } as React.CSSProperties}
+              className="morphing-nav flex items-center justify-center rounded-full"
             >
               {/* Left circular logo container: static Y coordinates for perfect flying morph landing, fades in */}
               <motion.div
