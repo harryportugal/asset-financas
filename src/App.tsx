@@ -769,7 +769,7 @@ function App() {
           </div>
 
           {/* Centered Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-[10000] pointer-events-none">
             <div className="flex flex-col items-center justify-center gap-8">
               
               {/* Center Logo with Morph */}
