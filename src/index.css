@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-caveat: "Caveat", cursive;
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera and all Chromium-based browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Internet Explorer, Edge, and Firefox */
+html {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  scroll-behavior: auto;
+  /* Prevent conflict with Lenis smooth-scroll */
+}
+
+/* Global anti-aliasing and rendering optimization for text and interactive controls */
+html,
+body,
+button,
+a,
+input,
+textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Morphing Navbar Continuous 60 FPS Layout */
+.morphing-nav {
+  padding: calc(var(--nav-progress, 0) * 8px) calc(var(--nav-progress, 0) * 12px);
+  gap: calc((1 - var(--nav-progress, 0)) * 12px);
+  background-color: rgba(255, 255, 255, calc(var(--nav-progress, 0) * 0.6));
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-color: rgba(255, 255, 255, calc(var(--nav-progress, 0) * 0.45));
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 calc(var(--nav-progress, 0) * 8px) calc(var(--nav-progress, 0) * 32px) 0 rgba(0, 0, 0, calc(var(--nav-progress, 0) * 0.03)), 
+              inset 0 1px 0 0 rgba(255, 255, 255, calc(var(--nav-progress, 0) * 0.25));
+}
+
+.morphing-nav-child {
+  background-color: rgba(255, 255, 255, calc((1 - var(--nav-progress, 0)) * 0.6));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: rgba(255, 255, 255, calc((1 - var(--nav-progress, 0)) * 0.45));
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 calc((1 - var(--nav-progress, 0)) * 4px) calc((1 - var(--nav-progress, 0)) * 16px) 0 rgba(0, 0, 0, calc((1 - var(--nav-progress, 0)) * 0.015)), 
+              inset 0 1px 0 0 rgba(255, 255, 255, calc((1 - var(--nav-progress, 0)) * 0.25));
+  transition: none;
+}
+
+.morphing-nav-links {
+  padding: calc(12px - var(--nav-progress, 0) * 6px) calc(32px - var(--nav-progress, 0) * 16px);
+  gap: calc(40px - var(--nav-progress, 0) * 16px);
+}
+
+@media (max-width: 640px) {
+  .morphing-nav {
+    gap: calc((1 - var(--nav-progress, 0)) * 8px);
+  }
+
+  .morphing-nav-links {
+    padding: calc(10px - var(--nav-progress, 0) * 6px) calc(16px - var(--nav-progress, 0) * 8px);
+    gap: calc(16px - var(--nav-progress, 0) * 4px);
+  }
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-container {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, white 12%, white 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 12%, white 88%, transparent);
+}
+
+/* Grid Reveal Preloader */
+.loader-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+  pointer-events: none;
+}
+.grid-block {
+  background-color: #f0f0ee;
+  transform-origin: top;
+}
+
+/* Mobile Block Screen Overlay */
+.mobile-block-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000000; /* Higher than preloader */
+  background-color: #f0f0ee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+}
+.mobile-block-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: mobileBlockFadeIn 0.8s ease-out;
+}
+@keyframes mobileBlockFadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide on desktop/laptops (screens >= 1024px) */
+@media (min-width: 1024px) {
+  .mobile-block-screen {
+    display: none;
+  }
+}
