@@ -49,6 +49,9 @@ function App() {
   
   // Keep preloaded image objects in memory to prevent browser garbage collection
   const preloadedImagesRef = useRef<HTMLImageElement[]>([]);
+  
+  // Timestamp to guarantee a minimum loading screen duration (e.g. 3 seconds)
+  const preloaderStartTimeRef = useRef<number>(Date.now());
 
   // Fade out and remove static initial loader once React is mounted and ready
   useEffect(() => {
@@ -63,6 +66,7 @@ function App() {
 
   // Background frame preloader with progress tracking
   useEffect(() => {
+    let isMounted = true;
     const imagesToPreload = [
       "hero.webp",
       "logo%20asset.png",
@@ -84,8 +88,13 @@ function App() {
     let loadedCount = 0;
     const totalAssets = imagesToPreload.length;
     const preloadedImages: HTMLImageElement[] = [];
+    const completedAssets = new Set<string>();
 
-    const handleAssetLoad = () => {
+    const handleAssetLoad = (resolvedSrc: string) => {
+      if (!isMounted) return;
+      if (completedAssets.has(resolvedSrc)) return;
+      completedAssets.add(resolvedSrc);
+      
       loadedCount++;
       const progress = Math.round((loadedCount / totalAssets) * 100);
       setLoadingProgress(progress);
@@ -93,18 +102,45 @@ function App() {
 
     imagesToPreload.forEach((src) => {
       const img = new Image();
-      img.onload = handleAssetLoad;
-      img.onerror = handleAssetLoad; // prevent getting stuck
+      
+      // Setup load/error handlers before setting src
+      const onImageLoad = () => handleAssetLoad(src);
+      
+      img.onload = onImageLoad;
+      img.onerror = onImageLoad; // prevent getting stuck if any frame fails
       img.src = src;
+
+      // Check if already complete from cache
+      if (img.complete) {
+        onImageLoad();
+      } else if (typeof img.decode === 'function') {
+        // Use modern decode API to guarantee GPU readiness
+        img.decode()
+          .then(() => {
+            handleAssetLoad(src);
+          })
+          .catch(() => {
+            // fallback handled by onload/onerror
+          });
+      }
+
       preloadedImages.push(img);
     });
 
     preloadedImagesRef.current = preloadedImages;
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Morph transition calculation when progress reaches 100%
   useEffect(() => {
     if (loadingProgress === 100 && preloaderState === 'loading') {
+      const elapsed = Date.now() - preloaderStartTimeRef.current;
+      const minDuration = 3000; // Enforce minimum 3 seconds loading duration
+      const delay = Math.max(0, minDuration - elapsed);
+
       const timer = setTimeout(() => {
         if (headerLogoRef.current && preloaderLogoRef.current) {
           const headerRect = headerLogoRef.current.getBoundingClientRect();
@@ -134,7 +170,7 @@ function App() {
           setPreloaderState('done');
           setStartHeroIntro(true);
         }
-      }, 500); // Small pause at 100% for visual satisfaction
+      }, delay);
 
       return () => clearTimeout(timer);
     }
