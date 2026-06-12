@@ -350,7 +350,7 @@ function App() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={startHeroIntro ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.8, ease: 'easeOut' }}
+                  transition={{ duration: 0.1, delay: 1.1, ease: 'linear' }}
                   className="w-full h-full flex items-center justify-center"
                 >
                   <Logo logoRef={headerLogoRef} opacity={1} />
@@ -772,37 +772,113 @@ function App() {
           <div className="absolute inset-0 flex flex-col items-center justify-center z-[10000] pointer-events-none">
             <div className="flex flex-col items-center justify-center gap-8">
               
-              {/* Center Logo with Morph */}
+              {/* Outer container for Flying Morph - Static rect position, no transforms during loading */}
               <motion.div
                 ref={preloaderLogoRef}
-                initial={{ scale: 1, opacity: 1 }}
+                initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
                 animate={
                   preloaderState === 'flying' 
                     ? { 
                         x: logoTransform.x, 
                         y: logoTransform.y, 
                         scale: logoTransform.scale,
-                        opacity: 0,
-                        transition: { 
-                          x: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
-                          y: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
-                          scale: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.3, delay: 0.8, ease: 'easeOut' } // fade out near the end
-                        }
+                        opacity: [1, 1, 0],
                       }
                     : { 
-                        scale: 1, 
-                        opacity: 1
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        opacity: 1,
                       }
                 }
+                transition={{
+                  x: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                  y: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                  scale: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+                  opacity: { duration: 1.2, times: [0, 0.916, 1], ease: 'linear' } // fades out in the last 100ms
+                }}
                 className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48"
               >
-                <img 
-                  src="logo%20asset.png" 
-                  alt="Asset Logo" 
-                  className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
-                  style={{ filter: 'brightness(0)' }}
-                />
+                {/* Minimalist, Premium Liquid Loading Ring - Fades out instantly when flying */}
+                <motion.div
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={
+                    preloaderState === 'flying'
+                      ? { opacity: 0, scale: 0.8, transition: { duration: 0.2, ease: 'easeOut' } }
+                      : { opacity: 1, scale: 1 }
+                  }
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <svg className="w-52 h-52 sm:w-60 sm:h-60 pointer-events-none select-none" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      stroke="rgba(0,0,0,0.03)"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                    <motion.circle
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      stroke="rgba(0,0,0,0.35)"
+                      strokeWidth="1.5"
+                      fill="none"
+                      strokeLinecap="round"
+                      initial={{ strokeDasharray: "20 300", rotate: 0 }}
+                      animate={{
+                        strokeDasharray: ["20 300", "140 300", "20 300"],
+                        rotate: 360
+                      }}
+                      transition={{
+                        strokeDasharray: {
+                          duration: 2.8,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        },
+                        rotate: {
+                          duration: 2.2,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }
+                      }}
+                      style={{ transformOrigin: "50px 50px" }}
+                    />
+                  </svg>
+                </motion.div>
+
+                {/* Inner container for Fluid Float Loop - Returns to center during flight */}
+                <motion.div
+                  initial={{ y: 0, scale: 1, rotate: 0 }}
+                  animate={
+                    preloaderState === 'flying'
+                      ? { 
+                          y: 0,
+                          scale: 1,
+                          rotate: 0,
+                          transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                        }
+                      : { 
+                          y: [0, -7, 0, 7, 0],
+                          scale: [1, 1.03, 1, 0.97, 1],
+                          rotate: [0, -2.5, 0, 2.5, 0],
+                          transition: {
+                            y: { duration: 4.0, repeat: Infinity, ease: "easeInOut" },
+                            scale: { duration: 4.8, repeat: Infinity, ease: "easeInOut" },
+                            rotate: { duration: 5.6, repeat: Infinity, ease: "easeInOut" }
+                          }
+                        }
+                  }
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <img 
+                    src="logo%20asset.png" 
+                    alt="Asset Logo" 
+                    className="w-full h-full object-contain select-none pointer-events-none"
+                    style={{ filter: 'brightness(0)' }}
+                  />
+                </motion.div>
               </motion.div>
 
             </div>
