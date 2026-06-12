@@ -52,14 +52,11 @@ function App() {
   // Timestamp to guarantee a minimum loading screen duration (e.g. 3 seconds)
   const preloaderStartTimeRef = useRef<number>(Date.now());
 
-  // Fade out and remove static initial loader once React is mounted and ready
+  // Remove static initial loader instantly once React is mounted and ready
   useEffect(() => {
     const loader = document.getElementById('initial-loader');
     if (loader) {
-      loader.style.opacity = '0';
-      loader.style.transition = 'opacity 0.3s ease-out';
-      const timer = setTimeout(() => loader.remove(), 300);
-      return () => clearTimeout(timer);
+      loader.remove();
     }
   }, []);
 
@@ -775,10 +772,10 @@ function App() {
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
             <div className="flex flex-col items-center justify-center gap-8">
               
-              {/* Center Logo with Morph and Liquid-Fill */}
+              {/* Center Logo with Morph */}
               <motion.div
                 ref={preloaderLogoRef}
-                initial={{ scale: 0.85, opacity: 0 }}
+                initial={{ scale: 1, opacity: 1 }}
                 animate={
                   preloaderState === 'flying' 
                     ? { 
@@ -795,29 +792,16 @@ function App() {
                       }
                     : { 
                         scale: 1, 
-                        opacity: 1,
-                        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+                        opacity: 1
                       }
                 }
                 className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48"
               >
-                {/* Outline/Faint Logo */}
                 <img 
                   src="logo%20asset.png" 
-                  alt="Asset Logo Faint" 
-                  className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none opacity-[0.12]"
-                  style={{ filter: 'brightness(0)' }}
-                />
-
-                {/* Filled Logo (Liquid Fill using clipPath) */}
-                <img 
-                  src="logo%20asset.png" 
-                  alt="Asset Logo Filled" 
+                  alt="Asset Logo" 
                   className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
-                  style={{ 
-                    filter: 'brightness(0)',
-                    clipPath: `inset(${100 - loadingProgress}% 0px 0px 0px)`
-                  }}
+                  style={{ filter: 'brightness(0)' }}
                 />
               </motion.div>
 

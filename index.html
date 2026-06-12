@@ -11,13 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-      @keyframes pulseScale {
-        0%, 100% { transform: scale(0.97); opacity: 0.85; }
-        50% { transform: scale(1.03); opacity: 1; }
-      }
-      .pulse-anim {
-        animation: pulseScale 1.8s infinite ease-in-out;
-      }
       .static-logo {
         width: 160px;
         height: 160px;
@@ -33,7 +26,7 @@
   <body>
     <!-- Static Initial Loader to prevent blank white screen flash before React mounts -->
     <div id="initial-loader" style="position: fixed; inset: 0; z-index: 10000000; background-color: #f0f0ee; display: flex; align-items: center; justify-content: center;">
-      <img class="pulse-anim static-logo" src="logo asset.png" alt="Asset Logo" style="object-fit: contain; filter: brightness(0); opacity: 0.12; user-select: none; pointer-events: none;" />
+      <img class="static-logo" src="logo asset.png" alt="Asset Logo" style="object-fit: contain; filter: brightness(0); opacity: 1; user-select: none; pointer-events: none;" />
     </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
