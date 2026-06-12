@@ -21,12 +21,11 @@ const Logo = ({ logoRef, opacity }: { logoRef?: React.RefObject<HTMLImageElement
 );
 
 const bentoCardVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 30, filter: "blur(10px)" },
+  hidden: { opacity: 0, scale: 0.96, y: 30 },
   visible: (delay: number) => ({
     opacity: 1,
     scale: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       duration: 0.8,
       delay,
@@ -519,10 +518,11 @@ function App() {
 
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 25, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ willChange: "transform, opacity" }}
             className="mb-14 text-center"
           >
             <ScrollFloat
@@ -557,6 +557,7 @@ function App() {
               style={{ 
                 gridColumn: '1 / span 4', 
                 gridRow: '1',
+                willChange: 'transform, opacity',
               }}
               className="rounded-3xl p-7 flex flex-col overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -605,6 +606,7 @@ function App() {
               style={{ 
                 gridColumn: '5 / span 4', 
                 gridRow: '1',
+                willChange: 'transform, opacity',
               }}
               className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -637,6 +639,7 @@ function App() {
               style={{ 
                 gridColumn: '9 / span 4', 
                 gridRow: '1 / span 2',
+                willChange: 'transform, opacity',
               }}
               className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -681,6 +684,7 @@ function App() {
                 backgroundImage: 'url("cards bento/card-d-baas.webp")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                willChange: 'transform, opacity',
               }}
               className="rounded-3xl p-9 flex flex-col justify-between overflow-hidden relative"
             >
@@ -715,10 +719,11 @@ function App() {
       <section className="relative z-20 w-full bg-[#efefed] px-8 pt-8 pb-10 sm:pt-10 sm:pb-14 border-t border-gray-200/50 -mt-px">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 25, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ willChange: "transform, opacity" }}
             className="text-center mb-12"
           >
             <ScrollFloat

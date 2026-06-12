@@ -205,10 +205,11 @@ export function Testimonials() {
 			{/* Top Header Row aligned with max-w-6xl mx-auto px-8 */}
 			<div className="max-w-6xl mx-auto px-8 mb-10 w-full flex flex-col md:flex-row md:items-end md:justify-between">
 				<motion.div 
-					initial={{ opacity: 0, y: 25, filter: "blur(8px)" }}
-					whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+					initial={{ opacity: 0, y: 25 }}
+					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+					style={{ willChange: "transform, opacity" }}
 					className="flex-1"
 				>
 					{/* Small uppercase label matching layout dot and text spacing */}
@@ -229,10 +230,11 @@ export function Testimonials() {
 
 				{/* Arrow buttons on the right side */}
 				<motion.div 
-					initial={{ opacity: 0, scale: 0.9, filter: "blur(6px)" }}
-					whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+					initial={{ opacity: 0, scale: 0.9 }}
+					whileInView={{ opacity: 1, scale: 1 }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+					style={{ willChange: "transform, opacity" }}
 					className="flex items-center gap-3 mt-6 md:mt-0"
 				>
 					<button

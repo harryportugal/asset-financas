@@ -38,14 +38,15 @@ export function FeatureSection() {
 		<div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6 px-4">
 			{features.map((feature, index) => (
 				<motion.div
-					initial={{ opacity: 0, y: 30, filter: "blur(10px)", scale: 0.98 }}
-					whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+					initial={{ opacity: 0, y: 30, scale: 0.98 }}
+					whileInView={{ opacity: 1, y: 0, scale: 1 }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{
 						duration: 0.8,
 						delay: index * 0.08,
 						ease: [0.16, 1, 0.3, 1]
 					}}
+					style={{ willChange: "transform, opacity" }}
 					className={feature.className}
 					key={feature.id}
 				>
