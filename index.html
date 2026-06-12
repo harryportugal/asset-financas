@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asset Finanças | Plataforma Banking As A Service</title>
     <meta name="description" content="Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio." />
@@ -10,8 +10,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      @keyframes pulseScale {
+        0%, 100% { transform: scale(0.97); opacity: 0.85; }
+        50% { transform: scale(1.03); opacity: 1; }
+      }
+      .pulse-anim {
+        animation: pulseScale 1.8s infinite ease-in-out;
+      }
+    </style>
   </head>
   <body>
+    <!-- Static Initial Loader to prevent blank white screen flash before React mounts -->
+    <div id="initial-loader" style="position: fixed; inset: 0; z-index: 10000000; background-color: #f0f0ee; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif;">
+      <div class="pulse-anim" style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+        <img src="logo asset.png" alt="Asset Logo" style="width: 72px; height: 72px; object-fit: contain; filter: brightness(0); opacity: 0.15; user-select: none; pointer-events: none;" />
+        <div style="font-size: 11px; font-weight: bold; letter-spacing: 0.2em; color: rgba(0, 0, 0, 0.4); text-transform: uppercase;">
+          Carregando...
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

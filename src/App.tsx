@@ -46,6 +46,20 @@ function App() {
 
   const headerLogoRef = useRef<HTMLImageElement>(null);
   const preloaderLogoRef = useRef<HTMLDivElement>(null);
+  
+  // Keep preloaded image objects in memory to prevent browser garbage collection
+  const preloadedImagesRef = useRef<HTMLImageElement[]>([]);
+
+  // Fade out and remove static initial loader once React is mounted and ready
+  useEffect(() => {
+    const loader = document.getElementById('initial-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      loader.style.transition = 'opacity 0.3s ease-out';
+      const timer = setTimeout(() => loader.remove(), 300);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   // Background frame preloader with progress tracking
   useEffect(() => {
@@ -69,6 +83,7 @@ function App() {
 
     let loadedCount = 0;
     const totalAssets = imagesToPreload.length;
+    const preloadedImages: HTMLImageElement[] = [];
 
     const handleAssetLoad = () => {
       loadedCount++;
@@ -78,10 +93,13 @@ function App() {
 
     imagesToPreload.forEach((src) => {
       const img = new Image();
-      img.src = src;
       img.onload = handleAssetLoad;
       img.onerror = handleAssetLoad; // prevent getting stuck
+      img.src = src;
+      preloadedImages.push(img);
     });
+
+    preloadedImagesRef.current = preloadedImages;
   }, []);
 
   // Morph transition calculation when progress reaches 100%
