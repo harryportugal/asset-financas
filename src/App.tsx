@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 const Logo = ({ logoRef, opacity }: { logoRef?: React.RefObject<HTMLImageElement | null>, opacity?: number }) => (
   <img 
     ref={logoRef}
-    src="/logo%20asset.png" 
+    src="logo%20asset.png" 
     alt="Asset Finanças Logo" 
     className="w-10 h-10 sm:w-12 sm:h-12 object-contain select-none pointer-events-none"
     style={{ filter: 'brightness(0)', opacity: opacity ?? 1, transition: 'opacity 0.2s ease-out' }}
@@ -50,21 +50,21 @@ function App() {
   // Background frame preloader with progress tracking
   useEffect(() => {
     const imagesToPreload = [
-      "/hero.webp",
-      "/logo%20asset.png",
-      "/avatar-1.webp",
-      "/avatar-2.webp",
-      "/avatar-3.webp",
-      "/avatar-4.webp",
-      "/cards%20bento/1780313376294.webp",
-      "/cards%20bento/card%20b.webp",
-      "/cards%20bento/card-c-plataforma.webp",
-      "/cards%20bento/card-d-baas.webp",
+      "hero.webp",
+      "logo%20asset.png",
+      "avatar-1.webp",
+      "avatar-2.webp",
+      "avatar-3.webp",
+      "avatar-4.webp",
+      "cards%20bento/1780313376294.webp",
+      "cards%20bento/card%20b.webp",
+      "cards%20bento/card-c-plataforma.webp",
+      "cards%20bento/card-d-baas.webp",
     ];
 
     // Add all 122 animation frames (starting from frame 2 because frame 1 is hero.webp)
     for (let i = 2; i <= totalFrames; i++) {
-      imagesToPreload.push(`/frames/frame_${String(i).padStart(4, '0')}.webp`);
+      imagesToPreload.push(`frames/frame_${String(i).padStart(4, '0')}.webp`);
     }
 
     let loadedCount = 0;
@@ -209,7 +209,7 @@ function App() {
 
         // Direct DOM update: Bypassing React rendering entirely for smooth 60/120fps scrolling
         if (heroImageRef.current) {
-          heroImageRef.current.src = newFrame === 1 ? "/hero.webp" : `/frames/frame_${String(newFrame).padStart(4, '0')}.webp`;
+          heroImageRef.current.src = newFrame === 1 ? "hero.webp" : `frames/frame_${String(newFrame).padStart(4, '0')}.webp`;
         }
 
         // Direct DOM update: CSS custom property for morphing nav
@@ -242,7 +242,7 @@ function App() {
       <div className="mobile-block-screen">
         <div className="mobile-block-content px-6">
           <img 
-            src="/logo%20asset.png" 
+            src="logo%20asset.png" 
             alt="Asset Logo" 
             className="w-16 h-16 object-contain mb-8 opacity-90 select-none pointer-events-none"
             style={{ filter: 'brightness(0)' }}
@@ -264,7 +264,7 @@ function App() {
         {/* Fullscreen background image / 3D frame */}
         <motion.img
           ref={heroImageRef}
-          src="/hero.webp"
+          src="hero.webp"
           alt="3D Animation / Hero Background"
           initial={{ scale: 1.08 }}
           animate={startHeroIntro ? { scale: 1 } : {}}
@@ -282,7 +282,7 @@ function App() {
             {/* Centered, pill-style, morphs smoothly into a single pill on scroll */}
             <nav 
               ref={navRef}
-              className="morphing-nav flex items-center justify-center rounded-full"
+              style={{'--nav-progress': '0'} as React.CSSProperties} className="morphing-nav flex items-center justify-center rounded-full"
             >
               {/* Left circular logo container: static Y coordinates for perfect flying morph landing, fades in */}
               <motion.div
@@ -367,22 +367,22 @@ function App() {
                 <div className="flex -space-x-2">
                   <img
                     className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="/avatar-1.webp"
+                    src="avatar-1.webp"
                     alt="Usuário 1"
                   />
                   <img
                     className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="/avatar-2.webp"
+                    src="avatar-2.webp"
                     alt="Usuário 2"
                   />
                   <img
                     className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="/avatar-3.webp"
+                    src="avatar-3.webp"
                     alt="Usuário 3"
                   />
                   <img
                     className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="/avatar-4.webp"
+                    src="avatar-4.webp"
                     alt="Usuário 4"
                   />
                   <div className="w-9 h-9 rounded-full border-2 border-blue-500 bg-white flex items-center justify-center text-[11px] font-bold text-gray-900">
@@ -503,7 +503,7 @@ function App() {
             >
               {/* Background Image scaled 5% to clip out top screenshot border while keeping original center 12px crop */}
               <img 
-                src="/cards bento/1780313376294.webp" 
+                src="cards bento/1780313376294.webp" 
                 alt="Soluções Background" 
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.05]"
                 style={{ objectPosition: 'center 12px' }}
@@ -551,7 +551,7 @@ function App() {
             >
               {/* Background Image for Card B */}
               <img 
-                src="/cards bento/card b.webp" 
+                src="cards bento/card b.webp" 
                 alt="Pagamentos Background" 
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.05]"
                 style={{ objectPosition: 'center 20px', filter: 'saturate(0.85)' }}
@@ -583,7 +583,7 @@ function App() {
             >
               {/* Background Image zoomed to clip out leak lines */}
               <img 
-                src="/cards bento/card-c-plataforma.webp" 
+                src="cards bento/card-c-plataforma.webp" 
                 alt="Plataforma Background" 
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.06]"
                 style={{ objectPosition: 'center top' }}
@@ -619,7 +619,7 @@ function App() {
               style={{
                 gridColumn: '1 / span 8',
                 gridRow: '2',
-                backgroundImage: 'url("/cards bento/card-d-baas.webp")',
+                backgroundImage: 'url("cards bento/card-d-baas.webp")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -739,7 +739,7 @@ function App() {
               >
                 {/* Outline/Faint Logo */}
                 <img 
-                  src="/logo%20asset.png" 
+                  src="logo%20asset.png" 
                   alt="Asset Logo Faint" 
                   className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none opacity-[0.12]"
                   style={{ filter: 'brightness(0)' }}
@@ -747,7 +747,7 @@ function App() {
 
                 {/* Filled Logo (Liquid Fill using clipPath) */}
                 <img 
-                  src="/logo%20asset.png" 
+                  src="logo%20asset.png" 
                   alt="Asset Logo Filled" 
                   className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none"
                   style={{ 
