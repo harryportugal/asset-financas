@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import { CobeGlobe } from "./cobe-globe";
-import { TrendingUp, MousePointerClick, Globe, RefreshCw, QrCode, CheckCircle2 } from "lucide-react";
+import { Globe, RefreshCw, QrCode, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const features = [
