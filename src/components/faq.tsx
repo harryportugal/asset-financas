@@ -15,10 +15,6 @@ const faqData: FAQItem[] = [
 		answer: "O Banking as a Service (BaaS) permite que qualquer empresa (como SaaS, ERPs e marketplaces) integre serviços bancários de forma simples via API. Isso cria novas fontes de receita e aumenta a fidelização de clientes sem que sua empresa precise se preocupar com licenças bancárias.",
 	},
 	{
-		question: "Como funciona o Split de Pagamentos da Asset?",
-		answer: "Nosso motor de split divide automaticamente os recebíveis de uma venda entre o marketplace (sua comissão) e os parceiros/vendedores (sellers) de forma instantânea. Essa automação elimina a bitributação (sua empresa emite nota fiscal apenas sobre a taxa de comissão) e simplifica drasticamente a conciliação.",
-	},
-	{
 		question: "A Asset Pagamentos é regulada pelo Banco Central?",
 		answer: "Sim, atuamos em total conformidade com as regulamentações do Banco Central do Brasil. Operamos como correspondente bancário e adotamos rígidos procedimentos de KYC (Know Your Customer), prevenção de fraudes e proteção de dados em conformidade com a LGPD, garantindo segurança jurídica total.",
 	},
@@ -28,7 +24,7 @@ const faqData: FAQItem[] = [
 	},
 	{
 		question: "Quais meios de pagamento são suportados pela plataforma?",
-		answer: "Suportamos as principais formas de pagamento nacionais: Pix (com confirmação e liquidação em milissegundos e QR Code estático ou dinâmico), boletos registrados (com liquidação rápida) e processamento completo de cartões de crédito e débito. Todos aceitam split automatizado.",
+		answer: "Suportamos as principais formas de pagamento nacionais: Pix (com confirmação e liquidação em milissegundos e QR Code estático ou dinâmico) e boletos registrados (com liquidação rápida).",
 	},
 ];
 
@@ -43,8 +39,8 @@ export function FAQ() {
 		<div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 w-full pt-4">
 			{/* Left Column - Heading */}
 			<motion.div 
-				initial={{ opacity: 0, y: 25 }}
-				whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+				whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 				viewport={{ once: true, margin: "-80px" }}
 				transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 				style={{ willChange: "transform, opacity" }}
@@ -72,8 +68,8 @@ export function FAQ() {
 					return (
 						<motion.div
 							key={index}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
+							initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+							whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 							viewport={{ once: true, margin: "-80px" }}
 							transition={{
 								duration: 0.6,

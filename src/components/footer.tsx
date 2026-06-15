@@ -80,7 +80,7 @@ const childVariants = {
 
 export function Footer() {
 	return (
-		<div className="relative z-20 w-full bg-[#efefed] pt-4 -mt-px select-none overflow-hidden">
+		<div className="relative z-20 w-full bg-white pt-4 -mt-px select-none overflow-hidden">
 			<div className="max-w-[1480px] mx-auto flex flex-col gap-6 w-full px-8">
 				{/* ─── CTA Card ─── */}
 				<motion.div 
@@ -138,7 +138,7 @@ export function Footer() {
 
 						{/* Subtext */}
 						<p className="text-white text-[14px] sm:text-[15.5px] leading-relaxed font-normal">
-							Fale com um de nossos especialistas e saiba como integrar Pix, boletos, cartões e contas digitais diretamente no seu produto ou plataforma.
+							Fale com um de nossos especialistas e saiba como integrar Pix, boletos e contas digitais diretamente no seu produto ou plataforma.
 						</p>
 					</div>
 

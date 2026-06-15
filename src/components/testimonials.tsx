@@ -135,8 +135,6 @@ export function Testimonials() {
 
 		// Start autoplay loop and set up hover/touch pause triggers
 		startAutoPlay();
-		container.addEventListener("mouseenter", stopAutoPlay);
-		container.addEventListener("mouseleave", startAutoPlay);
 		container.addEventListener("touchstart", stopAutoPlay, { passive: true });
 		container.addEventListener("touchend", startAutoPlay, { passive: true });
 
@@ -145,8 +143,6 @@ export function Testimonials() {
 			container.removeEventListener("scrollend", handleScrollEnd);
 			clearTimeout(timeoutId);
 			stopAutoPlay();
-			container.removeEventListener("mouseenter", stopAutoPlay);
-			container.removeEventListener("mouseleave", startAutoPlay);
 			container.removeEventListener("touchstart", stopAutoPlay);
 			container.removeEventListener("touchend", startAutoPlay);
 		};
@@ -201,22 +197,18 @@ export function Testimonials() {
 	};
 
 	return (
-		<div className="w-full py-10 sm:py-14 bg-[#efefed] select-none">
+		<div className="w-full py-12 sm:py-16 bg-white select-none">
 			{/* Top Header Row aligned with max-w-6xl mx-auto px-8 */}
 			<div className="max-w-6xl mx-auto px-8 mb-10 w-full flex flex-col md:flex-row md:items-end md:justify-between">
 				<motion.div 
-					initial={{ opacity: 0, y: 25 }}
-					whileInView={{ opacity: 1, y: 0 }}
+					initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+					whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 					style={{ willChange: "transform, opacity" }}
 					className="flex-1"
 				>
-					{/* Small uppercase label matching layout dot and text spacing */}
-					<div className="text-gray-900 text-[11.5px] font-bold tracking-[0.2em] uppercase mb-4 flex items-center gap-1.5 select-none">
-						<span className="text-gray-500">•</span> <span>DEPOIMENTOS</span>
-					</div>
-					
+
 					{/* Main Title */}
 					<h2 className="text-[2.2rem] sm:text-[2.5rem] font-normal text-gray-900 tracking-tight leading-[1.15] mb-4">
 						O que <span className="font-bold">dizem</span> sobre <span className="font-bold">nós</span>?
@@ -230,8 +222,8 @@ export function Testimonials() {
 
 				{/* Arrow buttons on the right side */}
 				<motion.div 
-					initial={{ opacity: 0, scale: 0.9 }}
-					whileInView={{ opacity: 1, scale: 1 }}
+					initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+					whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
 					viewport={{ once: true, margin: "-80px" }}
 					transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
 					style={{ willChange: "transform, opacity" }}
@@ -255,8 +247,12 @@ export function Testimonials() {
 			</div>
 
 			{/* Horizontally scrollable cards container with dynamic page-edge padding */}
-			<div
+			<motion.div
 				ref={scrollContainerRef}
+				initial={{ opacity: 0, y: 45, filter: "blur(12px)" }}
+				whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+				viewport={{ once: true, margin: "-80px" }}
+				transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
 				onMouseDown={handleMouseDown}
 				onMouseLeave={handleMouseLeave}
 				onMouseUp={handleMouseUp}
@@ -273,7 +269,7 @@ export function Testimonials() {
 				{infiniteTestimonials.map((item, index) => (
 					<div
 						key={`${item.id}-${index}`}
-						className="relative flex flex-col justify-between w-[360px] sm:w-[420px] md:w-[460px] h-[360px] sm:h-[410px] md:h-[440px] rounded-[32px] overflow-hidden border border-gray-200/20 shadow-sm shrink-0 select-none group snap-center bg-gray-100"
+						className="relative flex flex-col justify-between w-[360px] sm:w-[420px] md:w-[460px] h-[360px] sm:h-[410px] md:h-[440px] rounded-[32px] overflow-hidden border border-gray-200/20 shrink-0 select-none group snap-center bg-gray-100"
 					>
 						{/* Background image */}
 						<img
@@ -315,7 +311,7 @@ export function Testimonials() {
 						</div>
 					</div>
 				))}
-			</div>
+			</motion.div>
 		</div>
 	);
 }

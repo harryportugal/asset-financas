@@ -7,6 +7,7 @@ import { FAQ } from './components/faq';
 import { Testimonials } from './components/testimonials';
 import { Footer } from './components/footer';
 import { motion } from 'framer-motion';
+import { DashboardSection } from './components/dashboard-section';
 
 
 // Logo component loading the custom PNG from public directory, styled in pure black, sized significantly larger
@@ -21,11 +22,12 @@ const Logo = ({ logoRef, opacity }: { logoRef?: React.RefObject<HTMLImageElement
 );
 
 const bentoCardVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 30 },
+  hidden: { opacity: 0, scale: 0.96, y: 30, filter: "blur(10px)" },
   visible: (delay: number) => ({
     opacity: 1,
     scale: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
       duration: 0.8,
       delay,
@@ -36,7 +38,7 @@ const bentoCardVariants = {
 
 function App() {
   const navLinks = ['Início', 'Infraestrutura', 'Soluções', 'Pagamentos', 'Recursos'];
-  const totalFrames = 122;
+  const totalFrames = 60;
 
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [preloaderState, setPreloaderState] = useState<'loading' | 'flying' | 'done'>('loading');
@@ -213,8 +215,8 @@ function App() {
       const scrollTop = window.scrollY;
       const viewHeight = window.innerHeight;
       
-      // 1. Calculate target frame index (1 to 122) based on the 300vh scroll animation height of the hero
-      const animationHeight = viewHeight * 3;
+      // 1. Calculate target frame index (1 to 60) based on the 140vh scroll animation height of the hero
+      const animationHeight = viewHeight * 1.4;
       const scrollFraction = animationHeight > 0 ? Math.min(1, scrollTop / animationHeight) : 0;
       
       const frameIndex = Math.min(
@@ -307,7 +309,7 @@ function App() {
       </div>
 
       {/* ─── 3D Scroll Hero ─── */}
-      <div className="relative min-h-[400vh] bg-[#f0f0ee]">
+      <div className="relative min-h-[180vh] bg-white">
       {/* Sticky wrapper that remains fixed in viewport while user scrolls */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
         
@@ -509,14 +511,14 @@ function App() {
       {/* ─── Bento Grid Section — Stacking Overlay ─── */}
       <section 
         ref={bentoSectionRef}
-        className="relative z-20 w-full min-h-screen bg-[#efefed] px-8 pt-16 pb-8 sm:pt-24 sm:pb-12 shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] border-t border-gray-200/50 mt-[200vh] flex flex-col justify-center"
+        className="relative z-20 w-full min-h-screen bg-white px-8 pt-12 pb-12 sm:pt-16 sm:pb-16 shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] border-t border-gray-200/50 mt-[80vh] flex flex-col justify-center"
       >
         <div className="max-w-6xl mx-auto w-full">
 
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ willChange: "transform, opacity" }}
@@ -556,7 +558,7 @@ function App() {
                 gridRow: '1',
                 willChange: 'transform, opacity',
               }}
-              className="rounded-3xl p-7 flex flex-col overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
+              className="rounded-3xl p-7 flex flex-col overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
               {/* Background Image scaled 5% to clip out top screenshot border while keeping original center 12px crop */}
               <img 
@@ -577,7 +579,7 @@ function App() {
                 
                 {/* Vertical features list with blue icons */}
                 <div className="flex flex-col gap-2.5 mt-4">
-                  {['Pix', 'TED / DOC', 'Boleto', 'Cartão'].map(tag => (
+                  {['Pix', 'TED / DOC', 'Boleto'].map(tag => (
                     <div key={tag} className="flex items-center gap-2.5">
                       <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
                         <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
@@ -605,7 +607,7 @@ function App() {
                 gridRow: '1',
                 willChange: 'transform, opacity',
               }}
-              className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
+              className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
               {/* Background Image for Card B */}
               <img 
@@ -638,7 +640,7 @@ function App() {
                 gridRow: '1 / span 2',
                 willChange: 'transform, opacity',
               }}
-              className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden shadow-sm border border-gray-200/40 relative bg-[#f6f6f4]"
+              className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
               {/* Background Image zoomed to clip out leak lines */}
               <img 
@@ -712,12 +714,427 @@ function App() {
         </div>
       </section>
 
-      {/* ─── Why Choose Us Section ─── */}
-      <section className="relative z-20 w-full bg-[#efefed] px-8 pt-8 pb-10 sm:pt-10 sm:pb-14 border-t border-gray-200/50 -mt-px">
-        <div className="max-w-6xl mx-auto">
+      {/* ─── Dashboard Showcase Section ─── */}
+      <DashboardSection />
+
+      {/* ─── Banking & Pix Features Section ─── */}
+      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
+        <div className="max-w-[1440px] mx-auto w-full">
+          {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ willChange: "transform, opacity" }}
+            className="mb-24 text-center"
+          >
+            <ScrollFloat
+              animationDuration={1}
+              ease="power3.out"
+              scrollStart="top bottom"
+              scrollEnd="bottom center-=15%"
+              stagger={0.015}
+              style={{ fontSize: isLargeScreen ? '4.0rem' : '3.3rem' }}
+              containerClassName="leading-[1.15] font-normal text-gray-900 tracking-tight"
+            >
+              Conectando <span className="font-bold">tecnologia inteligente</span><br />à sua <span className="font-bold">operação financeira</span>
+            </ScrollFloat>
+            <p className="text-[19px] text-gray-900/60 max-w-3xl mx-auto mt-6 leading-relaxed font-normal">
+              Simplificamos o dia a dia do seu negócio com ferramentas integradas de Banking, automação de Pix, cobranças eficientes e fluxos de aprovação seguros.
+            </p>
+          </motion.div>
+
+          {/* Unified 2x2 Grid Container */}
+          <div className="bg-gray-100 rounded-[36px] p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            {/* Card 1: Conta Digital */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
+            >
+              {/* Graphic Mockup */}
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+                {/* Black Card */}
+                <motion.div
+                  animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
+                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                  className="absolute left-[10%] top-[18%] w-[240px] h-[170px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                >
+                  <div className="flex justify-between items-start">
+                    <span className="text-[11px] text-zinc-400 font-medium">Performance</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
+                  </div>
+                  <div>
+                    <span className="text-[12px] text-zinc-400 block">Crescimento</span>
+                    <span className="text-3xl text-white font-bold block mt-0.5">50%</span>
+                  </div>
+                  {/* Sparkline SVG */}
+                  <svg className="w-full h-11 mt-1 text-blue-600" viewBox="0 0 100 30" fill="none">
+                    <motion.path 
+                      d="M0 25 C 20 20, 40 5, 60 15 C 80 25, 90 2, 100 10" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                    />
+                  </svg>
+                </motion.div>
+
+                {/* White Card */}
+                <motion.div
+                  animate={{ y: [0, 6, 0], rotate: [0, 1.5, 0] }}
+                  transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                  className="absolute right-[10%] top-[4%] w-[285px] h-[250px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                >
+                  <div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Meta Mensal</span>
+                    <span className="text-[15px] font-bold text-zinc-800 block mt-0.5">R$ 49.300 / R$ 100k</span>
+                    {/* Progress Bar */}
+                    <div className="h-2.5 w-full bg-zinc-100 rounded-full overflow-hidden mt-2.5">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "49%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+                        className="h-full bg-blue-600 rounded-full" 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-3.5 mt-4">
+                    <motion.div 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.7 }}
+                      className="flex justify-between items-center text-[12px]"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-blue-600" />
+                        <span className="text-zinc-500 font-medium">TED Recebida</span>
+                      </div>
+                      <span className="text-zinc-800 font-bold">+R$ 1.200</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.8 }}
+                      className="flex justify-between items-center text-[12px]"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-zinc-300" />
+                        <span className="text-zinc-500 font-medium">Pix Pago</span>
+                      </div>
+                      <span className="text-zinc-800 font-bold">-R$ 350</span>
+                    </motion.div>
+
+                    <motion.div 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.9 }}
+                      className="flex justify-between items-center text-[12px]"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-zinc-300" />
+                        <span className="text-zinc-500 font-medium">Tarifa Zero</span>
+                      </div>
+                      <span className="text-zinc-800 font-bold">R$ 0</span>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="text-center">
+                <h3 className="text-[21px] font-bold text-zinc-900 mb-4">Conta Digital & Conciliação</h3>
+                <p className="text-[15.5px] text-zinc-500 max-w-[360px] leading-relaxed mx-auto">
+                  Acompanhe recebimentos, pague fornecedores e controle seus saldos e extratos em um único ambiente integrado.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Todos os tipos de Pix */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
+            >
+              {/* Graphic Mockup */}
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+                {/* Black Card */}
+                <motion.div
+                  animate={{ y: [0, -8, 0], rotate: [-6, -4.5, -6] }}
+                  transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
+                  className="absolute left-[10%] top-[18%] w-[250px] h-[175px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
+                    <span className="text-[11px] text-white font-semibold uppercase tracking-wider">Expertise</span>
+                  </div>
+                  <p className="text-[14px] text-zinc-300 leading-relaxed font-medium">
+                    Cobrar, pagar ou automatizar: tudo via Pix de forma simples.
+                  </p>
+                  <span className="text-[10px] text-zinc-500">Asset Engine</span>
+                </motion.div>
+
+                {/* White Card */}
+                <motion.div
+                  animate={{ y: [0, 6, 0], rotate: [6, 4.5, 6] }}
+                  transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
+                  className="absolute right-[10%] top-[6%] w-[265px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                >
+                  <div>
+                    <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">Inteligência</span>
+                    <span className="text-[14px] font-bold text-zinc-800 block mt-0.5">Gestão de Chaves Pix</span>
+                  </div>
+                  
+                  {/* Miniature Bar Chart */}
+                  <div className="flex items-end justify-between h-32 gap-3 px-2">
+                    {[35, 45, 30, 60, 50, 85].map((val, idx) => (
+                      <motion.div 
+                        key={idx} 
+                        initial={{ scaleY: 0, originY: 1 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 + idx * 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={`w-full rounded-t-sm transition-all duration-300 ${idx === 5 ? 'bg-blue-600' : 'bg-zinc-100'}`} 
+                        style={{ height: `${val}%` }} 
+                      />
+                    ))}
+                  </div>
+
+                  <span className="text-[10px] text-zinc-400 text-center block mt-2">Histórico de Transações</span>
+                </motion.div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="text-center">
+                <h3 className="text-[21px] font-bold text-zinc-900 mb-4">Todos os tipos de Pix</h3>
+                <p className="text-[15.5px] text-zinc-500 max-w-[360px] leading-relaxed mx-auto">
+                  Pague, receba ou automatize via Pix com transferências instantâneas, QR codes estáticos/dinâmicos e gestão de chaves.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Pix Automático & Recorrente */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
+            >
+              {/* Graphic Mockup */}
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+                {/* Black Card */}
+                <motion.div
+                  animate={{ y: [0, 6, 0], rotate: [12, 10.5, 12] }}
+                  transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
+                  className="absolute right-[10%] top-[4%] w-[230px] h-[165px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                >
+                  <div className="flex -space-x-2">
+                    {[
+                      { letter: 'A', bg: 'bg-zinc-700' },
+                      { letter: 'B', bg: 'bg-zinc-600' },
+                      { letter: 'C', bg: 'bg-zinc-500' }
+                    ].map((item, idx) => (
+                      <motion.span 
+                        key={idx}
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.55 + idx * 0.1, type: "spring", stiffness: 150 }}
+                        className={`w-7 h-7 rounded-full ${item.bg} border border-zinc-950 flex items-center justify-center text-[9.5px] text-white`}
+                      >
+                        {item.letter}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <div>
+                    <h4 className="text-[13px] text-white font-semibold">Simples e Inteligente</h4>
+                    <span className="text-[10px] text-zinc-500 block">Sua gestão automatizada</span>
+                  </div>
+                </motion.div>
+
+                {/* White Card */}
+                <motion.div
+                  animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
+                  transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+                  className="absolute left-[10%] top-[10%] w-[285px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20 -rotate-3"
+                >
+                  <div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Performance</span>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      <span className="text-2xl font-bold text-zinc-800">49%</span>
+                      <span className="text-[11px] font-semibold text-blue-600 bg-blue-50 px-1 rounded-sm">+2.4%</span>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 block mt-0.5">Crescimento de receita</span>
+                  </div>
+
+                  {/* Miniature Sparkline Chart */}
+                  <div className="h-8 my-1.5 text-blue-600 shrink-0">
+                    <svg className="w-full h-full" viewBox="0 0 100 30" fill="none">
+                      <defs>
+                        <linearGradient id="card3Grad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#2563eb" stopOpacity="0.15" />
+                          <stop offset="100%" stopColor="#2563eb" stopOpacity="0.0" />
+                        </linearGradient>
+                      </defs>
+                      <motion.path 
+                        d="M0 25 C 15 22, 30 28, 45 15 C 60 2, 75 18, 90 8 C 95 5, 100 2, 100 2" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+                      />
+                      <path 
+                        d="M0 25 C 15 22, 30 28, 45 15 C 60 2, 75 18, 90 8 C 95 5, 100 2, 100 2 L 100 30 L 0 30 Z" 
+                        fill="url(#card3Grad)"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Filter tags matching style */}
+                  <div className="grid grid-cols-2 gap-2.5 mt-2.5">
+                    {['Pix Automático', 'Recorrente', 'Agendamentos', 'Seguro'].map((tag, idx) => (
+                      <motion.span 
+                        key={tag} 
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.65 + idx * 0.08, type: "spring", stiffness: 120 }}
+                        whileHover={{ scale: 1.05, backgroundColor: "#f4f4f5" }}
+                        className="bg-zinc-50 border border-zinc-100 text-[10px] text-zinc-600 py-2 px-3 rounded-full text-center font-medium cursor-pointer transition-colors duration-200"
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="text-center">
+                <h3 className="text-[21px] font-bold text-zinc-900 mb-4">Pix Automático & Recorrente</h3>
+                <p className="text-[15.5px] text-zinc-500 max-w-[360px] leading-relaxed mx-auto">
+                  Cobrar ou pagar assinaturas e mensalidades de forma 100% automatizada e sem burocracias.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 4: Cobrança em lote & Aprovação */}
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
+            >
+              {/* Graphic Mockup */}
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+                {/* Concentric Circles Radar */}
+                <motion.div 
+                  animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                  <div className="w-[330px] h-[330px] rounded-full border border-zinc-100 flex items-center justify-center">
+                    <div className="w-[240px] h-[240px] rounded-full border border-zinc-100/80 flex items-center justify-center">
+                      <div className="w-[150px] h-[150px] rounded-full border border-zinc-100/50 flex items-center justify-center" />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Center Badge */}
+                <motion.div 
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                  className="absolute w-16 h-16 rounded-full bg-zinc-950 flex items-center justify-center shadow-lg border border-white/5 z-10"
+                >
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <motion.path 
+                      d="M9 12l2 2 4-4" 
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+                    />
+                    <motion.path
+                      d="M12 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.0, ease: "easeOut", delay: 0.6 }}
+                    />
+                  </svg>
+                </motion.div>
+
+                {/* Floating Orbit Users */}
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  className="absolute top-[14%] left-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                >
+                  <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8.5px] text-white">L</span>
+                  <span className="text-[11.5px] font-bold text-zinc-800">Livia C. <span className="text-blue-600 font-bold ml-1">+R$25k</span></span>
+                </motion.div>
+
+                <motion.div 
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
+                  className="absolute top-[12%] right-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                >
+                  <span className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8.5px] text-white">M</span>
+                  <span className="text-[11.5px] font-bold text-zinc-800">Mariana C. <span className="text-blue-600 font-bold ml-1">+R$10k</span></span>
+                </motion.div>
+
+                <motion.div 
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+                  className="absolute bottom-[14%] left-[30%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                >
+                  <span className="w-5 h-5 rounded-full bg-zinc-600 flex items-center justify-center text-[8.5px] text-white">A</span>
+                  <span className="text-[11.5px] font-bold text-zinc-800">Ana S. <span className="text-blue-600 font-bold ml-1">+R$15k</span></span>
+                </motion.div>
+              </div>
+
+              {/* Title & Description */}
+              <div className="text-center">
+                <h3 className="text-[19px] font-bold text-zinc-900 mb-4">Fluxos de Aprovação & Lotes</h3>
+                <p className="text-[14.5px] text-zinc-500 max-w-[330px] leading-relaxed mx-auto">
+                  Aprove transações com alçadas de segurança customizadas e envie faturamentos em lote com total controle.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Why Choose Us Section ─── */}
+      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
+        <div className="max-w-[1440px] mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ willChange: "transform, opacity" }}
@@ -748,8 +1165,8 @@ function App() {
       </div>
 
       {/* ─── FAQ Section ─── */}
-      <section className="relative z-20 w-full bg-[#efefed] px-8 pb-10 sm:pb-12 -mt-px">
-        <div className="max-w-6xl mx-auto border-t border-gray-200/50 pt-10 sm:pt-14">
+      <section className="relative z-20 w-full bg-white px-8 pb-12 sm:pb-16 -mt-px">
+        <div className="max-w-6xl mx-auto border-t border-gray-200/50 pt-12 sm:pt-16">
           <FAQ />
         </div>
       </section>

@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
-import type React from "react";
+import React, { useState, useEffect } from "react";
 import { CobeGlobe } from "./cobe-globe";
-import { TrendingUp, MousePointerClick, Globe } from "lucide-react";
+import { TrendingUp, MousePointerClick, Globe, RefreshCw, QrCode, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
 	{
@@ -15,13 +16,13 @@ const features = [
 		className: "md:col-span-2",
 	},
 	{
-		id: "reports",
-		children: <ReportsVisual />,
+		id: "pix-recurrent",
+		children: <PixRecurrentVisual />,
 		className: "sm:col-span-2 md:col-span-2",
 	},
 	{
-		id: "dashboard",
-		children: <DashboardVisual />,
+		id: "pix-checkout",
+		children: <CheckoutVisual />,
 		className: "sm:col-span-3 md:col-span-3 p-0",
 	},
 	{
@@ -31,30 +32,30 @@ const features = [
 	},
 ];
 
-import { motion } from "framer-motion";
-
 export function FeatureSection() {
 	return (
-		<div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6 px-4">
-			{features.map((feature, index) => (
-				<motion.div
-					initial={{ opacity: 0, y: 30, scale: 0.98 }}
-					whileInView={{ opacity: 1, y: 0, scale: 1 }}
-					viewport={{ once: true, margin: "-80px" }}
-					transition={{
-						duration: 0.8,
-						delay: index * 0.08,
-						ease: [0.16, 1, 0.3, 1]
-					}}
-					style={{ willChange: "transform, opacity" }}
-					className={feature.className}
-					key={feature.id}
-				>
-					<FeatureCard>
-						{feature.children}
-					</FeatureCard>
-				</motion.div>
-			))}
+		<div className="bg-gray-100 rounded-[36px] p-4">
+			<div className="relative mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6">
+				{features.map((feature, index) => (
+					<motion.div
+						initial={{ opacity: 0, y: 30, scale: 0.98, filter: "blur(10px)" }}
+						whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+						viewport={{ once: true, margin: "-80px" }}
+						transition={{
+							duration: 0.8,
+							delay: index * 0.08,
+							ease: [0.16, 1, 0.3, 1]
+						}}
+						style={{ willChange: "transform, opacity" }}
+						className={feature.className}
+						key={feature.id}
+					>
+						<FeatureCard>
+							{feature.children}
+						</FeatureCard>
+					</motion.div>
+				))}
+			</div>
 		</div>
 	);
 }
@@ -72,7 +73,7 @@ function FeatureCard({
 		<div
 			style={style}
 			className={cn(
-				"group relative overflow-hidden rounded-[32px] border border-gray-200/40 bg-[#f6f6f4]/60 px-8 pt-8 pb-6 shadow-sm hover:shadow-md hover:bg-white hover:border-gray-200/60 transition-all duration-300",
+				"group relative overflow-hidden rounded-[28px] bg-white px-8 pt-8 pb-6 transition-all duration-300 h-full",
 				className
 			)}
 		>
@@ -135,55 +136,186 @@ function UserBasedSecurity() {
 	);
 }
 
-function ReportsVisual() {
+function PixRecurrentVisual() {
 	return (
-		<div className="flex flex-col justify-between h-full min-h-[260px]">
-			<div className="relative min-h-24 w-full">
-				<div className="absolute top-0 left-0 flex items-center gap-2 z-10">
-					<div className="flex size-8 items-center justify-center rounded-full bg-blue-50 text-[#002b8a]">
-						<TrendingUp className="size-4" />
-					</div>
-					<div className="font-bold text-[14px] text-gray-800">100% automatizado</div>
-				</div>
-				<div className="absolute inset-0 top-6 overflow-hidden flex items-end">
-					<ReportsChartsSvg className="translate-x-[5%] -rotate-2 scale-150 text-[#002b8a] w-full" />
-				</div>
+		<div className="flex flex-col items-center justify-center h-full min-h-[260px]">
+			<div className="relative mx-auto flex size-28 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-4">
+				<div className="absolute inset-0 z-10 scale-120 bg-radial from-[#002b8a]/5 via-transparent to-transparent blur-xl" />
+				<motion.div
+					animate={{ rotate: 360 }}
+					transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+				>
+					<RefreshCw className="size-10 text-[#002b8a]" />
+				</motion.div>
 			</div>
-			<div className="relative z-10 mt-6 space-y-2 text-center">
-				<FeatureTitle>Split de Pagamentos Automático</FeatureTitle>
+
+			<div className="relative mt-6 space-y-2 text-center">
+				<FeatureTitle>Pix Recorrente e Automático</FeatureTitle>
 				<FeatureDescription>
-					Divisão inteligente de recebíveis e comissões entre múltiplos parceiros em tempo real, eliminando custos extras e bitributação no seu marketplace.
+					Automatize cobranças recorrentes, mensalidades e assinaturas de forma nativa no fluxo Pix do Banco Central, reduzindo a inadimplência.
 				</FeatureDescription>
 			</div>
 		</div>
 	);
 }
 
-function DashboardVisual() {
+const qrCodeData = [
+	// Row 0
+	[7,0], [9,0], [11,0], [12,0], [13,0],
+	// Row 1
+	[8,1], [10,1], [12,1],
+	// Row 2
+	[7,2], [8,2], [11,2], [13,2],
+	// Row 3
+	[9,3], [10,3], [11,3], [12,3],
+	// Row 4
+	[8,4], [11,4], [13,4],
+	// Row 5
+	[7,5], [9,5], [10,5], [12,5],
+	// Row 6
+	[7,6], [9,6], [11,6], [13,6],
+	// Row 7 (Timing line & middle data)
+	[0,7], [2,7], [4,7], [6,7], [8,7], [10,7], [12,7], [14,7], [16,7], [18,7], [20,7],
+	// Row 8
+	[1,8], [3,8], [5,8], [7,8], [9,8], [11,8], [13,8], [15,8], [17,8], [19,8],
+	// Row 9
+	[0,9], [2,9], [4,9], [6,9], [8,9], [10,9], [12,9], [14,9], [16,9], [18,9], [20,9],
+	// Row 10
+	[1,10], [3,10], [5,10], [7,10], [9,10], [11,10], [13,10], [15,10], [17,10], [19,10],
+	// Row 11
+	[0,11], [2,11], [4,11], [6,11], [8,11], [10,11], [12,11], [14,11], [16,11], [18,11], [20,11],
+	// Row 12
+	[1,12], [3,12], [5,12], [7,12], [9,12], [11,12], [13,12], [15,12], [17,12], [19,12],
+	// Row 13
+	[0,13], [2,13], [4,13], [6,13], [8,13], [10,13], [12,13], [14,13], [16,13], [18,13], [20,13],
+	// Row 14
+	[8,14], [10,14], [12,14], [13,14], [14,14], [16,14], [17,14], [19,14], [20,14],
+	// Row 15
+	[7,15], [9,15], [11,15], [15,15], [18,15], [20,15],
+	// Row 16
+	[8,16], [10,16], [12,16], [14,16], [16,16], [17,16], [19,16],
+	// Row 17
+	[7,17], [9,17], [11,17], [13,17], [15,17], [18,17], [20,17],
+	// Row 18
+	[8,18], [10,18], [12,18], [14,18], [16,18], [17,18], [19,18],
+	// Row 19
+	[7,19], [9,19], [11,19], [13,19], [15,19], [18,19], [20,19],
+	// Row 20
+	[8,20], [10,20], [12,20], [14,20], [16,20], [17,20], [19,20],
+];
+
+function CheckoutVisual() {
+	const [status, setStatus] = useState<'waiting' | 'paid'>('waiting');
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setStatus((prev) => (prev === 'waiting' ? 'paid' : 'waiting'));
+		}, 3000);
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<div className="grid h-full sm:grid-cols-2 min-h-[260px]">
 			<div className="relative z-10 flex flex-col justify-center space-y-5 py-8 ps-8 pe-4">
 				<div className="flex size-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-2">
-					<MousePointerClick className="size-5 text-[#002b8a]" />
+					<QrCode className="size-5 text-[#002b8a]" />
 				</div>
 				<div className="space-y-2">
 					<FeatureTitle className="text-base">
-						Contas White-Label e Cartões
+						QR Code Dinâmico e Checkout
 					</FeatureTitle>
 					<FeatureDescription>
-						Ofereça contas digitais completas e emita cartões personalizados sob a sua própria marca, aumentando o engajamento e a receita do seu ecossistema.
+						Gere cobranças via QR Code dinâmico com expiração parametrizada, webhooks automatizados e conciliação em tempo real.
 					</FeatureDescription>
 				</div>
 			</div>
-			{/* Dashboard Screen */}
-			<div className="relative flex items-end justify-end overflow-hidden pt-4 sm:pt-0">
-				<div className="relative w-[95%] aspect-video sm:aspect-auto sm:h-[90%] rounded-tl-2xl border border-gray-200 bg-white p-1 shadow-sm">
-					<div className="w-full h-full overflow-hidden rounded-tl-xl border border-gray-100">
-						<img
-							alt="Dashboard preview"
-							className="w-full h-full object-cover pointer-events-none select-none"
-							src="https://storage.efferd.com/screen/dashboard-light.webp"
-						/>
+			
+			<div className="relative flex items-center justify-center p-6 sm:p-4 overflow-hidden">
+				<div className="relative w-full max-w-[200px] h-[190px] rounded-2xl border border-gray-200 bg-white shadow-lg p-4 flex flex-col justify-between overflow-hidden">
+					<div className="flex justify-between items-center text-[10px] text-gray-400 font-semibold border-b border-gray-100 pb-2">
+						<span>CHECKOUT PIX</span>
+						<div className="flex items-center gap-1">
+							<span className={cn("w-1.5 h-1.5 rounded-full bg-[#002b8a]", status === 'waiting' && 'animate-pulse')} />
+							<span className="text-[#002b8a] font-bold">
+								{status === 'waiting' ? 'Aguardando' : 'Confirmado'}
+							</span>
+						</div>
+					</div>
+
+					<div className="flex-1 flex flex-col items-center justify-center my-3">
+						{status === 'waiting' ? (
+							<motion.div
+								key="qr"
+								initial={{ scale: 0.9, opacity: 0 }}
+								animate={{ scale: 1, opacity: 1 }}
+								className="flex flex-col items-center justify-center"
+							>
+								<div className="p-2.5 border border-gray-100 rounded-2xl bg-gray-50 shadow-inner flex items-center justify-center relative">
+									<svg className="w-16 h-16 text-gray-800" viewBox="0 0 21 21">
+										{/* Finder Patterns */}
+										<g fill="currentColor">
+											{/* Top-Left */}
+											<rect x={0} y={0} width={7} height={7} rx={1} />
+											<rect x={1} y={1} width={5} height={5} fill="white" rx={0.6} />
+											<rect x={2} y={2} width={3} height={3} rx={0.3} />
+
+											{/* Top-Right */}
+											<rect x={14} y={0} width={7} height={7} rx={1} />
+											<rect x={15} y={1} width={5} height={5} fill="white" rx={0.6} />
+											<rect x={16} y={2} width={3} height={3} rx={0.3} />
+
+											{/* Bottom-Left */}
+											<rect x={0} y={14} width={7} height={7} rx={1} />
+											<rect x={1} y={15} width={5} height={5} fill="white" rx={0.6} />
+											<rect x={2} y={16} width={3} height={3} rx={0.3} />
+										</g>
+
+										{/* Data Dots */}
+										<g fill="currentColor">
+											{qrCodeData
+												.filter(([x, y]) => !(x >= 8 && x <= 12 && y >= 8 && y <= 12))
+												.map(([x, y], idx) => (
+													<rect
+														key={idx}
+														x={x}
+														y={y}
+														width={0.8}
+														height={0.8}
+														rx={0.25}
+													/>
+												))}
+										</g>
+
+										{/* Center Logo Badge */}
+										<rect x={8} y={8} width={5} height={5} fill="white" rx={1.2} />
+										<rect x={8.5} y={8.5} width={4} height={4} fill="#002b8a" rx={0.8} />
+										{/* Mini logo line tick */}
+										<path d="M10 11.5l1-2" stroke="white" strokeWidth="1" strokeLinecap="round" />
+									</svg>
+								</div>
+							</motion.div>
+						) : (
+							<motion.div
+								key="success"
+								initial={{ scale: 0.8, opacity: 0 }}
+								animate={{ scale: 1, opacity: 1 }}
+								className="flex flex-col items-center justify-center text-center"
+							>
+								<motion.div
+									initial={{ scale: 0.6 }}
+									animate={{ scale: 1 }}
+									transition={{ type: "spring", stiffness: 200, damping: 10 }}
+								>
+									<CheckCircle2 className="size-12 text-[#002b8a]" />
+								</motion.div>
+								<span className="text-[12px] font-bold text-gray-800 mt-2 block">R$ 150,00 Recebido!</span>
+							</motion.div>
+						)}
+					</div>
+
+					<div className="bg-gray-50 rounded-xl p-2 flex justify-between items-center text-[11px]">
+						<span className="text-gray-500 font-medium">Total:</span>
+						<span className="text-gray-900 font-bold">R$ 150,00</span>
 					</div>
 				</div>
 			</div>
@@ -269,43 +401,3 @@ function CustomTimerIcon(props: React.ComponentProps<"svg">) {
 	);
 }
 
-function ReportsChartsSvg(props: React.ComponentProps<"svg">) {
-	return (
-		<svg
-			fill="none"
-			viewBox="0 0 300 128"
-			xmlns="http://www.w3.org/2000/svg"
-			{...props}
-		>
-			<path
-				clipRule="evenodd"
-				d="M3 123C3 123 14.3298 94.153 35.1282 88.0957C55.9266 82.0384 65.9333 80.5508 65.9333 80.5508C65.9333 80.5508 80.699 80.5508 92.1777 80.5508C103.656 80.5508 100.887 63.5348 109.06 63.5348C117.233 63.5348 117.217 91.9728 124.78 91.9728C132.343 91.9728 142.264 78.03 153.831 80.5508C165.398 83.0716 186.825 91.9728 193.761 91.9728C200.697 91.9728 206.296 63.5348 214.07 63.5348C221.844 63.5348 238.653 93.7771 244.234 91.9728C249.814 90.1684 258.8 60 266.19 60C272.075 60 284.1 88.057 286.678 88.0957C294.762 88.2171 300.192 72.9284 305.423 72.9284C312.323 72.9284 323.377 65.2437 335.553 63.5348C347.729 61.8259 348.218 82.07 363.639 80.5508C367.875 80.1335 372.949 82.2017 376.437 87.1008C379.446 91.3274 381.054 97.4325 382.521 104.647C383.479 109.364 382.521 123 382.521 123"
-				fill="url(#paint0_linear_0_106)"
-				fillRule="evenodd"
-			/>
-			<path
-				className="text-[#002b8a]"
-				d="M3 121.077C3 121.077 15.3041 93.6691 36.0195 87.756C56.7349 81.8429 66.6632 80.9723 66.6632 80.9723C66.6632 80.9723 80.0327 80.9723 91.4656 80.9723C102.898 80.9723 100.415 64.2824 108.556 64.2824C116.696 64.2824 117.693 92.1332 125.226 92.1332C132.759 92.1332 142.07 78.5115 153.591 80.9723C165.113 83.433 186.092 92.1332 193 92.1332C199.908 92.1332 205.274 64.2824 213.017 64.2824C220.76 64.2824 237.832 93.8946 243.39 92.1332C248.948 90.3718 257.923 60.5 265.284 60.5C271.145 60.5 283.204 87.7182 285.772 87.756C293.823 87.8746 299.2 73.0802 304.411 73.0802C311.283 73.0802 321.425 65.9506 333.552 64.2824C345.68 62.6141 346.91 82.4553 362.27 80.9723C377.629 79.4892 383 106.605 383 106.605"
-				stroke="currentColor"
-				strokeWidth="1.5"
-			/>
-			<defs>
-				<linearGradient
-					gradientUnits="userSpaceOnUse"
-					id="paint0_linear_0_106"
-					x1="3"
-					x2="3"
-					y1="60"
-					y2="123"
-				>
-					<stop stopColor="currentColor" stopOpacity="0.25" />
-					<stop
-						offset="1"
-						stopColor="currentColor"
-						stopOpacity="0.01"
-					/>
-				</linearGradient>
-			</defs>
-		</svg>
-	);
-}
