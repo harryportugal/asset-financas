@@ -22,7 +22,7 @@ const Logo = ({ logoRef, opacity }: { logoRef?: React.RefObject<HTMLImageElement
 );
 
 const bentoCardVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 30, filter: "blur(10px)" },
+  hidden: { opacity: 0, scale: 0.96, y: 30, filter: "blur(4px)" },
   visible: (delay: number) => ({
     opacity: 1,
     scale: 1,
@@ -556,7 +556,7 @@ function App() {
               style={{ 
                 gridColumn: '1 / span 4', 
                 gridRow: '1',
-                willChange: 'transform, opacity',
+                willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl p-7 flex flex-col overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -605,7 +605,7 @@ function App() {
               style={{ 
                 gridColumn: '5 / span 4', 
                 gridRow: '1',
-                willChange: 'transform, opacity',
+                willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -638,7 +638,7 @@ function App() {
               style={{ 
                 gridColumn: '9 / span 4', 
                 gridRow: '1 / span 2',
-                willChange: 'transform, opacity',
+                willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
             >
@@ -683,7 +683,7 @@ function App() {
                 backgroundImage: 'url("cards bento/card-d-baas.webp")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                willChange: 'transform, opacity',
+                willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl p-9 flex flex-col justify-between overflow-hidden relative"
             >
@@ -722,11 +722,11 @@ function App() {
         <div className="max-w-[1440px] mx-auto w-full">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+            initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ willChange: "transform, opacity" }}
+            style={{ willChange: "transform, opacity, filter" }}
             className="mb-24 text-center"
           >
             <ScrollFloat
@@ -750,10 +750,11 @@ function App() {
             
             {/* Card 1: Conta Digital */}
             <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: "transform, scale, opacity, filter" }}
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
@@ -865,10 +866,11 @@ function App() {
 
             {/* Card 2: Todos os tipos de Pix */}
             <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: "transform, scale, opacity, filter" }}
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
@@ -930,10 +932,11 @@ function App() {
 
             {/* Card 3: Pix Automático & Recorrente */}
             <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: "transform, scale, opacity, filter" }}
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
@@ -1039,10 +1042,11 @@ function App() {
 
             {/* Card 4: Cobrança em lote & Aprovação */}
             <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 40, scale: 0.97, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: "transform, scale, opacity, filter" }}
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
@@ -1133,11 +1137,11 @@ function App() {
       <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
         <div className="max-w-[1440px] mx-auto w-full">
           <motion.div
-            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+            initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ willChange: "transform, opacity" }}
+            style={{ willChange: "transform, opacity, filter" }}
             className="text-center mb-12"
           >
             <ScrollFloat

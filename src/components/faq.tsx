@@ -39,11 +39,11 @@ export function FAQ() {
 		<div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-16 w-full pt-4">
 			{/* Left Column - Heading */}
 			<motion.div 
-				initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+				initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
 				whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 				viewport={{ once: true, margin: "-80px" }}
 				transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-				style={{ willChange: "transform, opacity" }}
+				style={{ willChange: "transform, opacity, filter" }}
 				className="flex flex-col justify-start md:sticky md:top-24 h-fit"
 			>
 				<h2 className="text-[2.0rem] sm:text-[2.3rem] font-bold text-gray-900 tracking-tight leading-tight">
@@ -68,7 +68,7 @@ export function FAQ() {
 					return (
 						<motion.div
 							key={index}
-							initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+							initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
 							whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 							viewport={{ once: true, margin: "-80px" }}
 							transition={{
@@ -76,7 +76,7 @@ export function FAQ() {
 								delay: index * 0.06,
 								ease: [0.16, 1, 0.3, 1]
 							}}
-							style={{ willChange: "transform, opacity" }}
+							style={{ willChange: "transform, opacity, filter" }}
 							className={cn(
 								"group overflow-hidden rounded-[18px] transition-all duration-300 cursor-pointer select-none",
 								isOpen

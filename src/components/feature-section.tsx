@@ -38,7 +38,7 @@ export function FeatureSection() {
 			<div className="relative mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6">
 				{features.map((feature, index) => (
 					<motion.div
-						initial={{ opacity: 0, y: 30, scale: 0.98, filter: "blur(10px)" }}
+						initial={{ opacity: 0, y: 30, scale: 0.98, filter: "blur(4px)" }}
 						whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
 						viewport={{ once: true, margin: "-80px" }}
 						transition={{
@@ -46,7 +46,7 @@ export function FeatureSection() {
 							delay: index * 0.08,
 							ease: [0.16, 1, 0.3, 1]
 						}}
-						style={{ willChange: "transform, opacity" }}
+						style={{ willChange: "transform, opacity, filter" }}
 						className={feature.className}
 						key={feature.id}
 					>

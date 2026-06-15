@@ -9,10 +9,11 @@ export function DashboardSection() {
 				{/* Section Header */}
 				<div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 w-full">
 					<motion.div
-						initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
+						initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
 						whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+						style={{ willChange: "transform, opacity, filter" }}
 						className="max-w-2xl"
 					>
 						<h2 className="text-[2.2rem] sm:text-[2.5rem] font-normal text-gray-900 tracking-tight leading-[1.15] mb-4">
@@ -25,10 +26,11 @@ export function DashboardSection() {
 
 					{/* View Demo Pill Button on the Right */}
 					<motion.div
-						initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+						initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
 						whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+						style={{ willChange: "transform, scale, opacity, filter" }}
 						className="shrink-0"
 					>
 						<a
@@ -87,7 +89,7 @@ function DashboardCard({
 }) {
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+			initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
 			whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 			viewport={{ once: true, margin: "-80px" }}
 			transition={{
@@ -95,6 +97,7 @@ function DashboardCard({
 				delay: index * 0.12,
 				ease: [0.16, 1, 0.3, 1],
 			}}
+			style={{ willChange: "transform, opacity, filter" }}
 			className="relative w-full h-[400px] rounded-[28px] overflow-hidden border border-gray-200/50 bg-[#f9f9fb] group select-none flex flex-col justify-between"
 		>
 			{/* Simulated Dashboard content behind */}
