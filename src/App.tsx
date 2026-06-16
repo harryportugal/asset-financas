@@ -33,20 +33,6 @@ const Logo = ({
   />
 );
 
-const bentoCardVariants = {
-  hidden: { opacity: 0, scale: 0.96, y: 30, filter: "blur(4px)" },
-  visible: (delay: number) => ({
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.8,
-      delay,
-      ease: [0.16, 1, 0.3, 1] as const
-    }
-  })
-};
 
 interface MobileHeroProps {
   startHeroIntro: boolean;
@@ -57,7 +43,7 @@ interface MobileHeroProps {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="relative h-full w-full flex flex-col justify-between pt-6 pb-0 overflow-hidden bg-white font-sans text-zinc-900 border-b border-zinc-100">
+    <div className="relative min-h-[85vh] w-full flex flex-col justify-between pt-6 pb-12 overflow-hidden bg-white font-sans text-zinc-900">
       {/* Mobile Header */}
       <header className="relative z-50 flex items-center justify-between w-full px-6">
         {/* Logo Icon Only */}
@@ -186,43 +172,6 @@ interface MobileHeroProps {
           </a>
         </motion.div>
       </div>
-
-      {/* Dashboard Preview Mockup at the base */}
-      <motion.div 
-        initial={{ y: 50, opacity: 0 }}
-        animate={startHeroIntro ? { 
-          y: 0, 
-          opacity: 1,
-          transition: { duration: 1.0, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
-        } : {}}
-        className="w-full mt-10 select-none overflow-hidden relative flex flex-col rounded-t-2xl border-t border-x border-zinc-200/60 shadow-[0_-8px_32px_rgba(0,0,0,0.04)] bg-white max-w-sm mx-auto shrink-0"
-      >
-        {/* Browser Top Bar */}
-        <div className="bg-zinc-50 border-b border-zinc-200/50 px-4 py-2 flex items-center justify-between select-none">
-          {/* Window dots */}
-          <div className="flex gap-1 w-12">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-          </div>
-          
-          {/* Search Bar URL */}
-          <div className="bg-white border border-zinc-200/40 rounded px-2.5 py-0.5 flex items-center justify-center gap-1 shadow-xs">
-            <span className="text-[9px] text-zinc-400 font-medium">app.assetfinancas.com.br</span>
-          </div>
-
-          <div className="w-12" />
-        </div>
-
-        {/* Dashboard image content */}
-        <div className="bg-white p-1.5 h-[140px] overflow-hidden">
-          <img 
-            src="dash2.png" 
-            alt="Dashboard Preview" 
-            className="w-full h-auto object-cover object-left-top rounded-md shadow-xs"
-          />
-        </div>
-      </motion.div>
     </div>
   );
 }
@@ -384,7 +333,7 @@ function App() {
   const targetFrameRef = useRef(1);
   const currentFrameRef = useRef(1);
 
-  const bentoSectionRef = useRef<HTMLElement>(null);
+
 
 
 
@@ -489,13 +438,11 @@ function App() {
     <>
       <div className={isMobile ? "relative w-full bg-white" : "relative min-h-[180vh] bg-white"}>
         {isMobile ? (
-          <div className="sticky top-0 h-[75vh] w-full overflow-hidden flex flex-col justify-between bg-white z-0">
-            <MobileHero 
-              startHeroIntro={startHeroIntro} 
-              headerLogoRef={headerLogoRef} 
-              navLinks={navLinks} 
-            />
-          </div>
+          <MobileHero 
+            startHeroIntro={startHeroIntro} 
+            headerLogoRef={headerLogoRef} 
+            navLinks={navLinks} 
+          />
         ) : (
           /* Sticky wrapper that remains fixed in viewport while user scrolls */
           <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
@@ -696,252 +643,10 @@ function App() {
           </div>
         )}
 
-      {/* ─── Bento Grid Section — Stacking Overlay ─── */}
-      <section 
-        ref={bentoSectionRef}
-        className="relative z-20 w-full min-h-screen bg-white px-8 pt-12 pb-12 sm:pt-16 sm:pb-16 shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] mt-[calc(75vh-40px)] lg:mt-[80vh] flex flex-col justify-center"
-      >
-        <div className="max-w-6xl mx-auto w-full">
-
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 25, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            style={{ willChange: "transform, opacity" }}
-            className="mb-14 text-center"
-          >
-            <ScrollFloat
-              animationDuration={1}
-              ease="power3.out"
-              scrollStart="top bottom"
-              scrollEnd="bottom center-=15%"
-              stagger={0.015}
-              style={{ fontSize: isLargeScreen ? '2.4rem' : isMobile ? '1.65rem' : '2.0rem' }}
-              containerClassName="leading-[1.15] font-normal text-gray-900 tracking-tight"
-            >
-              Uma <span className="font-bold">infraestrutura</span> completa de<br className="hidden lg:inline" />
-              <span className="font-bold">serviços financeiros</span> para o seu <span className="font-bold">negócio</span>
-            </ScrollFloat>
-          </motion.div>
-
-          {/* Grid container — explicit CSS grid to guarantee row-span works */}
-          <div style={
-            isMobile ? {
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '14px',
-            } : {
-              display: 'grid',
-              gridTemplateColumns: 'repeat(12, 1fr)',
-              gridTemplateRows: '300px 300px',
-              gap: '14px',
-            }
-          }>
-
-            {/* ── Card A: top-left (4 cols, row 1) — Soluções ── */}
-            <motion.div
-              custom={0.1}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={bentoCardVariants}
-              style={{ 
-                gridColumn: isMobile ? undefined : '1 / span 4', 
-                gridRow: isMobile ? undefined : '1',
-                height: isMobile ? '300px' : undefined,
-                willChange: 'transform, scale, opacity, filter',
-              }}
-              className="rounded-3xl p-7 flex flex-col overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
-            >
-              {/* Background Image scaled 5% to clip out top screenshot border while keeping original center 12px crop */}
-              <img 
-                src="cards bento/1780313376294.webp" 
-                alt="Soluções Background" 
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.05]"
-                style={{ objectPosition: 'center 12px' }}
-              />
-
-              {/* Soft white gradient overlay at the top for premium text contrast */}
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/95 via-white/75 to-transparent pointer-events-none z-0" />
-
-              <div className="relative z-10">
-                <h3 className="text-[1.15rem] font-bold text-gray-900 mb-1">Soluções</h3>
-                <p className="text-[13.5px] text-gray-800 leading-relaxed mb-3">
-                  Portfólio completo para o seu ecossistema digital.
-                </p>
-                
-                {/* Vertical features list with blue icons */}
-                <div className="flex flex-col gap-2.5 mt-4">
-                  {['Pix', 'TED / DOC', 'Boleto'].map(tag => (
-                    <div key={tag} className="flex items-center gap-2.5">
-                      <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                        <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      </div>
-                      <span className="text-[13px] font-semibold text-gray-800 tracking-tight">
-                        {tag}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ── Card B: top-middle (4 cols, row 1) — Pagamentos ── */}
-            <motion.div
-              custom={0.2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={bentoCardVariants}
-              style={{ 
-                gridColumn: isMobile ? undefined : '5 / span 4', 
-                gridRow: isMobile ? undefined : '1',
-                height: isMobile ? '300px' : undefined,
-                willChange: 'transform, scale, opacity, filter',
-              }}
-              className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
-            >
-              {/* Background Image for Card B */}
-              <img 
-                src="cards bento/card b.webp" 
-                alt="Pagamentos Background" 
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.05]"
-                style={{ objectPosition: 'center 20px', filter: 'saturate(0.85)' }}
-              />
-
-              {/* Soft white gradient overlay at the top for premium text contrast */}
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/95 via-white/75 to-transparent pointer-events-none z-0" />
-
-              <div className="relative z-10">
-                <h3 className="text-[1.15rem] font-bold text-gray-900 mb-1">Pagamentos</h3>
-                <p className="text-[13.5px] text-gray-800 leading-relaxed">
-                  Infraestrutura em tempo real para o seu negócio.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ── Card C: right tall (4 cols, rows 1-2) — Plataforma ── */}
-            <motion.div
-              custom={0.3}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={bentoCardVariants}
-              style={{ 
-                gridColumn: isMobile ? undefined : '9 / span 4', 
-                gridRow: isMobile ? undefined : '1 / span 2',
-                height: isMobile ? '400px' : undefined,
-                willChange: 'transform, scale, opacity, filter',
-              }}
-              className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
-            >
-              {/* Background Image zoomed to clip out leak lines */}
-              <img 
-                src="cards bento/card-c-plataforma.webp" 
-                alt="Plataforma Background" 
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.06]"
-                style={{ objectPosition: 'center top' }}
-              />
-              <div className="flex flex-col items-center text-center relative z-10">
-                {/* Title */}
-                <h3 className="text-[1.65rem] font-bold text-gray-900 leading-[1.2] tracking-tight mb-2 max-w-xs">
-                  Transforme seu Produto
-                </h3>
-
-                {/* Subtitle */}
-                <p className="text-[13px] text-gray-800 font-normal leading-relaxed max-w-xs mb-4">
-                  Integre serviços bancários ao seu negócio e crie novas fontes de receita.
-                </p>
-
-                {/* Search Bar - matching 'Search for education desire...' */}
-                <div className="w-full max-w-xs bg-white border border-gray-100 rounded-full p-1 pl-4 pr-1.5 flex items-center justify-between shadow-sm">
-                  <span className="text-[12px] text-gray-800 font-medium">Buscar recursos...</span>
-                  <button className="w-8 h-8 rounded-full bg-[#002b8a] hover:bg-[#00227c] flex items-center justify-center text-white transition-colors duration-200">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ── Card D: bottom-left wide (8 cols, row 2) — BaaS CTA ── */}
-            <motion.div
-              custom={0.2}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={bentoCardVariants}
-              style={{
-                gridColumn: isMobile ? undefined : '1 / span 8',
-                gridRow: isMobile ? undefined : '2',
-                minHeight: isMobile ? '350px' : undefined,
-                backgroundImage: isMobile ? 'none' : 'url("cards bento/card-d-baas.webp")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                willChange: 'transform, scale, opacity, filter',
-              }}
-              className={`rounded-3xl p-9 flex flex-col justify-between overflow-hidden relative ${isMobile ? 'bg-[#f6f6f4] border border-gray-200/40' : ''}`}
-            >
- 
-              <div className="relative z-10">
-                <h2 className={`text-[1.45rem] sm:text-[1.6rem] font-bold leading-tight mb-2 max-w-md ${isMobile ? 'text-gray-900' : 'text-white'}`}>
-                  Infraestrutura Financeira<br />
-                  <span className="italic font-light">para Empresas em Escala</span>
-                </h2>
-                <p className={`text-[13.5px] max-w-sm leading-relaxed ${isMobile ? 'text-gray-600 font-normal' : 'text-white'}`}>
-                  Sua plataforma financeira completa.<br />
-                  Fidelize clientes e crie novas receitas<br />
-                  com infraestrutura bancária integrada.
-                </p>
-              </div>
- 
-              {isMobile && (
-                <div className="w-full mt-4 p-4 rounded-2xl bg-white border border-gray-200/50 flex items-center justify-between shadow-xs z-10">
-                  <div className="flex flex-col">
-                    <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Transações em Escala</span>
-                    <span className="text-[14px] font-bold text-zinc-900 mt-0.5">R$ 2.4M/mês</span>
-                  </div>
-                  {/* Mini-chart Sparkline */}
-                  <svg className="w-20 h-8 text-blue-600" viewBox="0 0 100 30" fill="none">
-                    <path 
-                      d="M0 25 C 15 20, 30 25, 45 12 C 60 2, 75 18, 90 5 L 100 8" 
-                      stroke="currentColor" 
-                      strokeWidth="2.5" 
-                      strokeLinecap="round" 
-                    />
-                  </svg>
-                </div>
-              )}
- 
-              <div className="relative z-10 flex items-center gap-3 mt-6">
-                <a 
-                  href="#produtos" 
-                  className={`inline-flex items-center px-5 py-2.5 text-[13px] font-semibold rounded-full transition-colors duration-200 ${
-                    isMobile ? 'bg-zinc-900 text-white hover:bg-black' : 'bg-white text-gray-900 hover:bg-white/90'
-                  }`}
-                >
-                  Ver produtos
-                </a>
-                <a 
-                  href="#contato" 
-                  className={`inline-flex items-center px-5 py-2.5 text-[13px] font-semibold rounded-full border transition-colors duration-200 ${
-                    isMobile ? 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-white/15 hover:bg-white/25'
-                  }`}
-                >
-                  Falar com especialista
-                </a>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
       {/* ─── Dashboard Showcase Section ─── */}
-      <DashboardShowcase />
+      <div className={isMobile ? "relative z-20 w-full bg-white mt-0" : "relative z-20 w-full bg-white shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] mt-[-40px] lg:mt-[80vh]"}>
+        <DashboardShowcase />
+      </div>
 
       {/* ─── Banking & Pix Features Section ─── */}
       <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16">
@@ -964,7 +669,7 @@ function App() {
               style={{ fontSize: isLargeScreen ? '4.0rem' : isMobile ? '1.9rem' : '3.3rem' }}
               containerClassName="leading-[1.15] font-normal text-gray-900 tracking-tight"
             >
-              Conectando <span className="font-bold">tecnologia inteligente</span><br className="hidden lg:inline" />à sua <span className="font-bold">operação financeira</span>
+              Conectando <span className="font-bold">tecnologia inteligente</span> <br className="hidden lg:inline" /> à sua <span className="font-bold">operação financeira</span>
             </ScrollFloat>
             <p className="text-[19px] text-gray-900/60 max-w-3xl mx-auto mt-6 leading-relaxed font-normal">
               Simplificamos o dia a dia do seu negócio com ferramentas integradas de Banking, automação de Pix, cobranças eficientes e fluxos de aprovação seguros.

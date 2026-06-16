@@ -53,7 +53,7 @@ export function DigitalAccountFeatures() {
 							containerClassName="text-center mb-4"
 							textClassName="text-[1.8rem] sm:text-[2.5rem] lg:text-[2.8rem] font-normal text-gray-900 tracking-tight leading-[1.15]"
 						>
-							Tudo que você precisa de<br className="hidden sm:inline" /><span className="font-bold">uma conta digital.</span>
+							Tudo que você precisa de <br className="hidden sm:inline" /> <span className="font-bold">uma conta digital.</span>
 						</ScrollFloat>
 						
 						<p className="text-gray-500 text-[15px] sm:text-[16.5px] font-normal leading-relaxed max-w-2xl mx-auto mt-4 mb-8">
