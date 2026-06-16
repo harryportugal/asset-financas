@@ -60,7 +60,7 @@ function MobileHero({ startHeroIntro, headerLogoRef, navLinks, onScrollToSection
     >
       {/* Imagem de fundo absoluta com sobreposição */}
       <img
-        src="hero mobile.webp"
+        src="hero-mobile-opt.webp"
         alt="Background Hero Mobile"
         className="absolute pointer-events-none select-none z-0 mobile-hero-img"
       />
@@ -720,7 +720,7 @@ function App() {
     let isMounted = true;
     const isMob = window.innerWidth < 1024;
     const imagesToPreload = [
-      isMob ? "hero mobile.webp" : "herozinha.webp",
+      isMob ? "hero-mobile-opt.webp" : "herozinha.webp",
       "logo%20asset.png",
       "avatar-1.webp",
       "avatar-2.webp",

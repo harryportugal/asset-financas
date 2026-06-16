@@ -73,7 +73,7 @@ export function DashboardShowcase() {
 						<div className="bg-gray-50/30 p-2 sm:p-4 flex items-center justify-center relative group">
 							<div className="relative w-full overflow-hidden rounded-lg border border-gray-100 shadow-sm bg-white aspect-[16/10] sm:aspect-[16/9.5]">
 								<img 
-									src="dash2.webp" 
+									src="dash2-opt.webp" 
 									alt="Desktop Dashboard" 
 									className="w-full h-full object-cover object-left-top select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-[1.015]"
 								/>
