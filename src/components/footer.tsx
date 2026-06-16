@@ -193,7 +193,7 @@ export function Footer() {
 										href="https://apps.apple.com/br/app/asset-finance/id6761480957" 
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 active:scale-98 transition-all duration-200 rounded-xl px-4 py-2.5 text-white"
+										className="flex items-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 active:scale-98 transition-all duration-200 rounded-xl px-3 py-2.5 text-white"
 									>
 										<svg className="w-5.5 h-5.5 fill-current text-white shrink-0" viewBox="0 0 24 24">
 											<path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.51 12.09 1.007 1.452 2.207 3.085 3.783 3.024 1.52-.06 2.09-.983 3.93-.983 1.83 0 2.36.983 3.953.953 1.62-.027 2.673-1.479 3.666-2.923 1.152-1.678 1.623-3.303 1.652-3.393-.036-.015-3.172-1.2-3.204-4.79-.025-2.998 2.463-4.437 2.583-4.512-1.41-2.065-3.585-2.29-4.348-2.336-1.99-.163-3.5 1.012-4.154 1.012zM15.47 3.197c.84-1.02 1.408-2.44 1.253-3.197-.7.03-2.164.47-2.986 1.432-.69.79-1.294 2.23-1.127 3.196.79.06 2.15-.36 2.86-1.43z"/>
@@ -207,7 +207,7 @@ export function Footer() {
 										href="https://play.google.com/store/apps/details?id=finance.onz.asset" 
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 active:scale-98 transition-all duration-200 rounded-xl px-4 py-2.5 text-white"
+										className="flex items-center gap-3 bg-black/20 hover:bg-black/30 border border-white/10 active:scale-98 transition-all duration-200 rounded-xl px-3 py-2.5 text-white"
 									>
 										<svg className="w-5.5 h-5.5 fill-current text-white shrink-0" viewBox="0 0 16 16">
 											<path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/>
