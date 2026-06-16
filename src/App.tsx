@@ -134,11 +134,11 @@ interface MobileHeroProps {
           initial={{ y: 20, opacity: 0 }}
           animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2rem] xs:text-[2.4rem] font-light leading-[1.15] tracking-[-0.03em] text-white mb-4"
+          className="text-[2.2rem] xs:text-[2.6rem] font-normal leading-[1.08] tracking-[-0.04em] text-white mb-5"
         >
           Transforme seu <br />
           <span className="font-bold">ecossistema</span> em um <br />
-          <span className="font-bold">centro de serviços<br />financeiros</span>
+          <span className="text-white/60 font-light">centro de serviços<br />financeiros</span>
         </motion.h1>
 
         {/* Description */}
@@ -182,120 +182,122 @@ interface MobileHeroProps {
         <div className="carousel-scene w-full h-[210px] flex items-center justify-center">
           <div className="carousel-a3d" style={{ '--n': 8 } as React.CSSProperties}>
             
-            {/* Card 1: PCI-DSS / Segurança */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 0 } as React.CSSProperties}>
-              <div className="h-5 w-full bg-zinc-950 rounded-lg flex items-center justify-between px-1.5">
-                <span className="text-[5.5px] text-white font-medium">BaaS API</span>
+            {/* Card 1: BaaS / Segurança */}
+            <div className="carousel-card bg-gradient-to-b from-[#e6f0ff] to-white p-3 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 0 } as React.CSSProperties}>
+              <div className="h-6 w-full bg-zinc-950 rounded-[10px] flex items-center justify-between px-2">
+                <span className="text-[6px] text-white font-semibold uppercase tracking-wider">BaaS API</span>
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
               </div>
-              <div className="h-6 w-full flex items-end">
+              <div className="h-8 w-full flex items-end">
                 <svg className="w-full h-full text-blue-600" viewBox="0 0 100 40" fill="none">
-                  <path d="M0 35 Q 25 15, 50 25 T 100 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M0 35 Q 25 15, 50 25 T 100 5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                 </svg>
               </div>
               <div>
-                <span className="text-[7px] text-zinc-400 block font-medium">PCI-DSS</span>
-                <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Segurança</span>
+                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">PCI-DSS</span>
+                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">Segurança Ativa</span>
               </div>
             </div>
 
-            {/* Card 2: Pix Automático */}
-            <div className="carousel-card bg-gradient-to-b from-[#0a48b3] to-[#002b8a] p-2.5 flex flex-col justify-between text-white border border-white/10 shadow-md" style={{ '--i': 1 } as React.CSSProperties}>
-              <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mt-1">
-                <span className="text-white text-sm font-bold leading-none">+</span>
+            {/* Card 2: Meta Mensal */}
+            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 1 } as React.CSSProperties}>
+              <div className="flex flex-wrap gap-1">
+                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">Pix</span>
+                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">TED</span>
+                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">BaaS</span>
+              </div>
+              <div>
+                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Transações</span>
+                <span className="text-[14px] font-bold text-zinc-900 block leading-tight mt-0.5">520k+</span>
+                <span className="text-[8px] text-emerald-600 font-bold mt-0.5 block">↑ 12.4% este mês</span>
+              </div>
+              <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-600 rounded-full w-[78%]" />
+              </div>
+            </div>
+
+            {/* Card 3: Pix Automático */}
+            <div className="carousel-card bg-gradient-to-b from-[#217dff] to-[#0047df] p-3.5 flex flex-col justify-between text-white border border-white/10 shadow-lg" style={{ '--i': 2 } as React.CSSProperties}>
+              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mx-auto mt-1 shadow-sm">
+                <span className="text-[#0047df] text-base font-bold leading-none">+</span>
               </div>
               <div className="text-center mb-1">
-                <span className="text-[10px] font-bold block leading-tight">Pix Automático</span>
-                <span className="text-[7.5px] text-white/80 block mt-0.5 leading-normal">Cobranças recorrentes</span>
-              </div>
-            </div>
-
-            {/* Card 3: Meta Mensal */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 2 } as React.CSSProperties}>
-              <div>
-                <span className="text-[6.5px] font-bold text-zinc-400 uppercase tracking-wider block">Meta Mensal</span>
-                <span className="text-[10.5px] font-bold text-zinc-800 block mt-0.5">R$ 49.3k / 100k</span>
-                <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden mt-1">
-                  <div className="h-full bg-blue-600 rounded-full w-[49%]" />
-                </div>
-              </div>
-              <div className="flex justify-between items-center text-[9px] mt-1 border-t border-zinc-50 pt-1">
-                <span className="text-zinc-500 font-medium">Crescimento</span>
-                <span className="text-[#002b8a] font-bold">+49%</span>
+                <span className="text-[11px] font-bold block leading-tight">Pix Automático</span>
+                <span className="text-[8px] text-white/70 block mt-1 leading-normal">Cobranças recorrentes</span>
               </div>
             </div>
 
             {/* Card 4: Pix Engine */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 3 } as React.CSSProperties}>
+            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 3 } as React.CSSProperties}>
               <div className="flex items-center gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[7px] font-bold text-zinc-400 uppercase tracking-wider">Pix Engine</span>
+                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider">Pix Engine</span>
               </div>
-              <div className="flex flex-col gap-1 my-1">
-                <div className="flex justify-between items-center text-[8px]">
+              <div className="flex flex-col gap-1.5 my-1">
+                <div className="flex justify-between items-center text-[9px]">
                   <span className="text-zinc-400">Recebido</span>
-                  <span className="text-zinc-800 font-bold">+R$1.2k</span>
+                  <span className="text-zinc-900 font-bold">+R$1.200</span>
                 </div>
-                <div className="flex justify-between items-center text-[8px]">
+                <div className="flex justify-between items-center text-[9px]">
                   <span className="text-zinc-400">Pago</span>
-                  <span className="text-zinc-800 font-bold">-R$350</span>
+                  <span className="text-zinc-900 font-bold">-R$350</span>
                 </div>
               </div>
-              <span className="text-[7.5px] text-zinc-400 text-center block font-medium">Tarifa Zero</span>
+              <span className="text-[8px] text-zinc-500 text-center block font-semibold border-t border-zinc-50 pt-1">Tarifa Zero</span>
             </div>
 
             {/* Card 5: Aprovações */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 4 } as React.CSSProperties}>
-              <div className="flex -space-x-1">
-                <div className="w-5 h-5 rounded-full bg-blue-600 border border-white flex items-center justify-center text-[6px] font-bold text-white shadow-sm">L</div>
-                <div className="w-5 h-5 rounded-full bg-zinc-800 border border-white flex items-center justify-center text-[6px] font-bold text-white shadow-sm">M</div>
+            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 4 } as React.CSSProperties}>
+              <div className="flex -space-x-1.5">
+                <div className="w-6 h-6 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white shadow-sm">L</div>
+                <div className="w-6 h-6 rounded-full bg-zinc-800 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white shadow-sm">M</div>
               </div>
               <div>
-                <span className="text-[7px] text-zinc-400 block font-medium">Fluxos</span>
-                <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Aprovações</span>
+                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">Fluxos</span>
+                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">Aprovações</span>
               </div>
-              <span className="text-[7px] text-emerald-600 font-bold bg-emerald-50 px-1 py-0.5 rounded-sm block w-fit">Sucesso OK</span>
+              <span className="text-[8px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md block w-fit">Sucesso OK</span>
             </div>
 
             {/* Card 6: Expertise */}
-            <div className="carousel-card bg-zinc-950 p-2.5 flex flex-col justify-between text-white border border-white/5 shadow-md" style={{ '--i': 5 } as React.CSSProperties}>
+            <div className="carousel-card bg-zinc-950 p-3.5 flex flex-col justify-between text-white border border-white/5 shadow-md" style={{ '--i': 5 } as React.CSSProperties}>
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                <span className="text-[8px] text-zinc-400 font-semibold uppercase tracking-wider">Expertise</span>
+                <span className="w-2 h-2 rounded-full bg-blue-600" />
+                <span className="text-[8px] text-zinc-400 font-bold uppercase tracking-wider">Expertise</span>
               </div>
-              <p className="text-[9px] text-zinc-300 leading-normal font-medium">
-                Cobrar, pagar ou automatizar via Pix.
+              <p className="text-[10px] text-zinc-300 leading-relaxed font-semibold">
+                Cobrar, pagar ou automatizar: tudo via Pix.
               </p>
-              <span className="text-[7.5px] text-zinc-500">Asset Engine</span>
+              <span className="text-[8px] text-zinc-500 block">Asset Engine</span>
             </div>
 
             {/* Card 7: Performance */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 6 } as React.CSSProperties}>
+            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 6 } as React.CSSProperties}>
               <div>
-                <span className="text-[6.5px] font-bold text-zinc-400 uppercase tracking-wider block">Estabilidade</span>
+                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Estabilidade</span>
                 <div className="flex items-baseline gap-0.5 mt-0.5">
-                  <span className="text-[13px] font-bold text-zinc-800">99.9%</span>
+                  <span className="text-[14px] font-bold text-zinc-900">99.9%</span>
                 </div>
-                <span className="text-[7px] text-zinc-400 block mt-0.5">API Uptime</span>
+                <span className="text-[8px] text-zinc-400 block mt-0.5">API Uptime</span>
               </div>
-              <div className="h-4 w-full text-blue-600 shrink-0">
+              <div className="h-6 w-full text-blue-600 shrink-0">
                 <svg className="w-full h-full" viewBox="0 0 100 30" fill="none">
-                  <path d="M0 25 Q 25 10, 50 20 T 100 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M0 25 Q 25 10, 50 20 T 100 5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                 </svg>
               </div>
             </div>
 
             {/* Card 8: BaaS Integrado */}
-            <div className="carousel-card bg-white p-2.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 7 } as React.CSSProperties}>
+            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 7 } as React.CSSProperties}>
               <div className="flex flex-wrap gap-1">
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">TED</span>
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">BaaS</span>
+                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">TED</span>
+                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">BaaS</span>
               </div>
               <div>
-                <span className="text-[7px] text-zinc-400 block font-medium">Infraestrutura</span>
-                <span className="text-[9px] text-zinc-900 font-bold block leading-tight">BaaS Integrado</span>
+                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">Infraestrutura</span>
+                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">BaaS Integrado</span>
               </div>
-              <div className="h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
                 <div className="h-full bg-blue-600 rounded-full w-[90%]" />
               </div>
             </div>
