@@ -60,7 +60,7 @@ function MobileHero({ startHeroIntro, headerLogoRef, navLinks, onScrollToSection
     >
       {/* Imagem de fundo absoluta com sobreposição */}
       <img
-        src="hero mobile.png"
+        src="hero mobile.webp"
         alt="Background Hero Mobile"
         className="absolute pointer-events-none select-none z-0 mobile-hero-img"
       />
@@ -720,7 +720,7 @@ function App() {
     let isMounted = true;
     const isMob = window.innerWidth < 1024;
     const imagesToPreload = [
-      isMob ? "hero mobile.png" : "herozinha.png",
+      isMob ? "hero mobile.webp" : "herozinha.webp",
       "logo%20asset.png",
       "avatar-1.webp",
       "avatar-2.webp",
@@ -900,12 +900,13 @@ function App() {
     lenisRef.current = lenis;
 
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     const handleScroll = (e: any) => {
       if (isMobileRef.current) {
@@ -925,6 +926,7 @@ function App() {
     lenis.on('scroll', ScrollTrigger.update);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
@@ -953,7 +955,7 @@ function App() {
 
         // Direct DOM update: Bypassing React rendering entirely for smooth 60/120fps scrolling
         if (heroImageRef.current && window.innerWidth >= 1024) {
-          heroImageRef.current.src = "herozinha.png";
+          heroImageRef.current.src = "herozinha.webp";
         }
 
         // Direct DOM update: CSS custom property for morphing nav
@@ -1002,7 +1004,7 @@ function App() {
             {/* Fullscreen background image / 3D frame */}
             <motion.img
               ref={heroImageRef}
-              src="herozinha.png"
+              src="herozinha.webp"
               alt="3D Animation / Hero Background"
               initial={{ scale: 1.08 }}
               animate={startHeroIntro ? { scale: 1 } : {}}

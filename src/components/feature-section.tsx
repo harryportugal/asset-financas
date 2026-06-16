@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
-import { CobeGlobe } from "./cobe-globe";
+const CobeGlobe = React.lazy(() => import("./cobe-globe").then(m => ({ default: m.CobeGlobe })));
 import { Globe, RefreshCw, QrCode, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -340,8 +340,10 @@ function PresenceVisual() {
 				</div>
 			</div>
 			<div className="relative flex items-center justify-center overflow-hidden min-h-[220px] sm:min-h-0">
-				<div className="absolute w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px]">
-					<CobeGlobe className="w-full h-full" />
+				<div className="absolute w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px] flex items-center justify-center">
+					<React.Suspense fallback={<div className="w-full h-full rounded-full bg-zinc-50 border border-zinc-100/50 animate-pulse" />}>
+						<CobeGlobe className="w-full h-full" />
+					</React.Suspense>
 				</div>
 			</div>
 		</div>
