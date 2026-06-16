@@ -44,10 +44,10 @@ interface MobileHeroProps {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="w-full min-h-[100vh] px-2.5 pt-2.5 pb-0 flex flex-col justify-center items-center" style={{ backgroundColor: '#ffffff' }}>
+    <div className="w-full h-[100svh] px-2.5 pt-2.5 pb-0 flex flex-col items-center" style={{ backgroundColor: '#ffffff' }}>
       {/* Smartphone Screen Container */}
       <div 
-        className="relative w-full max-w-[420px] h-[calc(100dvh-2rem)] flex flex-col justify-between pt-1 pb-0 overflow-hidden font-sans text-white rounded-[32px] border border-zinc-100"
+        className="relative w-full max-w-[420px] h-[calc(100svh-0.625rem)] flex flex-col justify-between pt-1 pb-0 overflow-hidden font-sans text-white rounded-[32px] border border-zinc-100"
         style={{
           backgroundImage: `url("/background%20hero.png")`,
           backgroundSize: 'cover',
