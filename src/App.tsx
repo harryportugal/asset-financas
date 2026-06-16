@@ -83,47 +83,76 @@ interface MobileHeroProps {
           </div>
         </header>
 
-        {/* Fullscreen Mobile Menu Overlay */}
+        {/* Compact Popup Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col justify-between p-6 pt-28 text-zinc-900 rounded-[32px]"
-            >
-              <div className="flex flex-col gap-6 text-center mt-6">
-                {navLinks.map((link) => (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+            <>
+              {/* Backdrop to close on outside click */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 z-40"
+                onClick={() => setIsMenuOpen(false)}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92, y: -8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: -8 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: 'top right' }}
+                className="absolute top-[72px] right-4 z-50 bg-white rounded-[22px] shadow-[0_8px_40px_rgba(0,0,0,0.18)] p-4 w-[220px] flex flex-col gap-3"
+              >
+                {/* Header row */}
+                <div className="flex items-center justify-between pb-2 border-b border-zinc-100">
+                  <img
+                    src="/logo%20asset.png"
+                    alt="Asset Logo"
+                    className="w-8 h-8 object-contain select-none"
+                    style={{ filter: 'brightness(0)' }}
+                  />
+                  <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-2xl font-semibold text-zinc-800 hover:text-black transition-colors py-2 active:scale-98 transition-transform"
+                    className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 hover:bg-zinc-200 transition-colors text-[13px] font-bold leading-none"
+                    aria-label="Fechar menu"
                   >
-                    {link}
-                  </a>
-                ))}
-                <div className="h-px bg-zinc-200/60 my-2" />
-                <a
-                  href="#conta"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-xl font-semibold text-zinc-700 hover:text-black transition-colors"
-                >
-                  Acesse sua conta
-                </a>
-              </div>
+                    ✕
+                  </button>
+                </div>
 
-              <div className="flex flex-col gap-3 mb-6">
+                {/* Nav links */}
+                <div className="flex flex-col gap-0.5">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link}
+                      href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-[14px] font-semibold text-zinc-800 py-2 px-3 rounded-xl hover:bg-zinc-50 transition-colors active:scale-[0.98] block"
+                    >
+                      {link}
+                    </a>
+                  ))}
+                  <div className="h-px bg-zinc-100 my-1" />
+                  <a
+                    href="#conta"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-[13px] font-semibold text-zinc-500 py-2 px-3 rounded-xl hover:bg-zinc-50 transition-colors block"
+                  >
+                    Acesse sua conta
+                  </a>
+                </div>
+
+                {/* CTA */}
                 <a
                   href="#contato"
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-full text-center py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-900 transition-all active:scale-[0.98]"
+                  className="w-full text-center py-3 bg-black text-white font-bold text-[12px] tracking-wider uppercase rounded-full hover:bg-zinc-900 transition-all active:scale-[0.98]"
                 >
                   Entre em contato
                 </a>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
 
@@ -1308,31 +1337,42 @@ function App() {
           <div className="absolute inset-0 flex flex-col items-center justify-center z-[10000] pointer-events-none">
             <div className="flex flex-col items-center justify-center gap-8">
               
-              {/* Outer container for Flying Morph - Static rect position, no transforms during loading */}
+              {/* Outer container for Flying Morph (desktop) or Blur Fade (mobile) */}
               <motion.div
                 ref={preloaderLogoRef}
-                initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+                initial={{ x: 0, y: 0, scale: 1, opacity: 1, filter: 'blur(0px)' }}
                 animate={
-                  preloaderState === 'flying' 
-                    ? { 
-                        x: logoTransform.x, 
-                        y: logoTransform.y, 
-                        scale: logoTransform.scale,
-                        opacity: [1, 1, 0],
-                      }
-                    : { 
+                  preloaderState === 'flying'
+                    ? isMobile
+                      ? {
+                          opacity: 0,
+                          scale: 0.8,
+                          filter: 'blur(24px)',
+                        }
+                      : {
+                          x: logoTransform.x,
+                          y: logoTransform.y,
+                          scale: logoTransform.scale,
+                          opacity: [1, 1, 0],
+                        }
+                    : {
                         x: 0,
                         y: 0,
                         scale: 1,
                         opacity: 1,
+                        filter: 'blur(0px)',
                       }
                 }
-                transition={{
-                  x: { duration: 1.2, ease: [0.76, 0, 0.24, 1] }, // easeInOutQuart
-                  y: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
-                  scale: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
-                  opacity: { duration: 1.2, times: [0, 0.916, 1], ease: 'linear' } // fades out in the last 100ms
-                }}
+                transition={
+                  preloaderState === 'flying' && isMobile
+                    ? { duration: 0.55, ease: [0.16, 1, 0.3, 1] }
+                    : {
+                        x: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
+                        y: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
+                        scale: { duration: 1.2, ease: [0.76, 0, 0.24, 1] },
+                        opacity: { duration: 1.2, times: [0, 0.916, 1], ease: 'linear' },
+                      }
+                }
                 className="relative flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48"
               >
                 {/* Inner container for Fluid Float Loop - Returns to center during flight */}
@@ -1340,13 +1380,13 @@ function App() {
                   initial={{ y: 0, scale: 1, rotate: 0 }}
                   animate={
                     preloaderState === 'flying'
-                      ? { 
+                      ? {
                           y: 0,
                           scale: 1,
                           rotate: 0,
                           transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
                         }
-                      : { 
+                      : {
                           y: [0, -7, 0, 7, 0],
                           scale: [1, 1.03, 1, 0.97, 1],
                           rotate: [0, -2.5, 0, 2.5, 0],
@@ -1359,9 +1399,9 @@ function App() {
                   }
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  <img 
-                    src="logo%20asset.png" 
-                    alt="Asset Logo" 
+                  <img
+                    src="logo%20asset.png"
+                    alt="Asset Logo"
                     className="w-full h-full object-contain select-none pointer-events-none"
                     style={{ filter: 'brightness(0)' }}
                   />
