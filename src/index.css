@@ -166,10 +166,10 @@ textarea {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -40px;
+  bottom: -12vh;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center bottom;
   /* Máscara gradiente para suavizar a transição com a seção de baixo e remover a linha de contorno */
   mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
@@ -180,7 +180,7 @@ textarea {
 @media (max-width: 380px), (max-height: 720px) {
   .mobile-hero-img {
     object-fit: cover;
-    bottom: -125px;
+    bottom: -18vh;
   }
   
   .mobile-hero-header {
