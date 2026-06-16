@@ -166,7 +166,7 @@ textarea {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -12vh;
+  bottom: -22vh;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -180,7 +180,7 @@ textarea {
 @media (max-width: 380px), (max-height: 720px) {
   .mobile-hero-img {
     object-fit: cover;
-    bottom: -18vh;
+    bottom: -22vh;
   }
   
   .mobile-hero-header {
