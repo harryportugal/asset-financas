@@ -689,12 +689,12 @@ function App() {
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
-              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6 scale-75 xs:scale-90 sm:scale-100 origin-center">
                 {/* Black Card */}
                 <motion.div
                   animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
                   transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  className="absolute left-[10%] top-[18%] w-[240px] h-[170px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                  className="absolute left-[-15px] sm:left-[10%] top-[18%] w-[240px] h-[170px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
                 >
                   <div className="flex justify-between items-start">
                     <span className="text-[11px] text-zinc-400 font-medium">Performance</span>
@@ -723,7 +723,7 @@ function App() {
                 <motion.div
                   animate={{ y: [0, 6, 0], rotate: [0, 1.5, 0] }}
                   transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                  className="absolute right-[10%] top-[4%] w-[285px] h-[250px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                  className="absolute right-[-20px] sm:right-[10%] top-[4%] w-[285px] h-[250px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
                 >
                   <div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Meta Mensal</span>
@@ -805,12 +805,12 @@ function App() {
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
-              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6 scale-75 xs:scale-90 sm:scale-100 origin-center">
                 {/* Black Card */}
                 <motion.div
                   animate={{ y: [0, -8, 0], rotate: [-6, -4.5, -6] }}
                   transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
-                  className="absolute left-[10%] top-[18%] w-[250px] h-[175px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                  className="absolute left-[-15px] sm:left-[10%] top-[18%] w-[250px] h-[175px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
                 >
                   <div className="flex items-center gap-3">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
@@ -826,7 +826,7 @@ function App() {
                 <motion.div
                   animate={{ y: [0, 6, 0], rotate: [6, 4.5, 6] }}
                   transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-                  className="absolute right-[10%] top-[6%] w-[265px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                  className="absolute right-[-20px] sm:right-[10%] top-[6%] w-[265px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
                 >
                   <div>
                     <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">Inteligência</span>
@@ -871,12 +871,12 @@ function App() {
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
-              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6 scale-75 xs:scale-90 sm:scale-100 origin-center">
                 {/* Black Card */}
                 <motion.div
                   animate={{ y: [0, 6, 0], rotate: [12, 10.5, 12] }}
                   transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-                  className="absolute right-[10%] top-[4%] w-[230px] h-[165px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                  className="absolute right-[-15px] sm:right-[10%] top-[4%] w-[230px] h-[165px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
                 >
                   <div className="flex -space-x-2">
                     {[
@@ -906,7 +906,7 @@ function App() {
                 <motion.div
                   animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
                   transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-                  className="absolute left-[10%] top-[10%] w-[285px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20 -rotate-3"
+                  className="absolute left-[-20px] sm:left-[10%] top-[10%] w-[285px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20 -rotate-3"
                 >
                   <div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Performance</span>
@@ -981,7 +981,7 @@ function App() {
               className="bg-white rounded-[28px] pt-12 pb-10 px-8 sm:px-12 flex flex-col items-center justify-start transition-shadow duration-300"
             >
               {/* Graphic Mockup */}
-              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6">
+              <div className="relative w-full h-[295px] flex items-center justify-center overflow-visible select-none mb-6 scale-75 xs:scale-90 sm:scale-100 origin-center">
                 {/* Concentric Circles Radar */}
                 <motion.div 
                   animate={{ scale: [1, 1.02, 1], opacity: [0.8, 1, 0.8] }}
