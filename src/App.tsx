@@ -161,14 +161,14 @@ interface MobileHeroProps {
           >
             <a
               href="#solucoes"
-              className="h-12 px-6 inline-flex items-center justify-center bg-[#002b8a]/30 hover:bg-[#002b8a]/45 border border-white/15 text-white text-[13px] font-bold tracking-wider uppercase rounded-full transition-all duration-200 active:scale-[0.98] shadow-sm backdrop-blur-md"
+              className="h-12 px-5 inline-flex items-center justify-center whitespace-nowrap shrink-0 bg-[#002b8a]/30 hover:bg-[#002b8a]/45 border border-white/15 text-white text-[13px] font-bold tracking-wider uppercase rounded-full transition-all duration-200 active:scale-[0.98] shadow-sm backdrop-blur-md"
             >
               Ver Soluções
             </a>
 
             <a
               href="#consultor"
-              className="h-12 pl-6 pr-2 inline-flex items-center gap-3 bg-white text-[#002b8a] rounded-full font-bold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md hover:bg-zinc-50 active:scale-[0.98]"
+              className="h-12 pl-5 pr-2 inline-flex items-center gap-2 whitespace-nowrap shrink-0 bg-white text-[#002b8a] rounded-full font-bold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md hover:bg-zinc-50 active:scale-[0.98]"
             >
               Começar
               <div className="w-8 h-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center shrink-0 shadow-sm">
@@ -179,7 +179,7 @@ interface MobileHeroProps {
         </div>
 
         {/* 3D Rotating Carousel at the base */}
-        <div className="w-full overflow-visible h-[220px] relative mt-8 select-none flex items-center justify-center -translate-y-24">
+        <div className="w-full overflow-visible h-[220px] relative mt-8 select-none flex items-center justify-center -translate-y-10">
           <div className="carousel-scene w-full h-[210px] flex items-center justify-center">
             <div className="carousel-a3d" style={{ '--n': 8 } as React.CSSProperties}>
               
