@@ -983,8 +983,9 @@ function App() {
   
   return (
     <>
-      <div 
-        ref={heroContainerRef}
+      <main>
+        <div 
+          ref={heroContainerRef}
         id="inicio"
         className={`relative w-full bg-white ${isMobile ? 'z-[25] overflow-visible' : ''}`}
       >
@@ -1283,8 +1284,8 @@ function App() {
         </div>
       </section>
 
-      {/* ─── CTA & Footer Section ─── */}
       <Footer />
+      </main>
 
       {/* ─── Loading Screen (Grid Reveal) ─── */}
       {preloaderState !== 'done' && (
