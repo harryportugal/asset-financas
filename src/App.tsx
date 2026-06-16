@@ -889,7 +889,7 @@ function App() {
   useEffect(() => {
     if (loadingProgress === 100 && preloaderState === 'loading') {
       const elapsed = Date.now() - preloaderStartTimeRef.current;
-      const minDuration = 3000; // Enforce minimum 3 seconds loading duration
+      const minDuration = 1500; // Enforce minimum 1.5 seconds loading duration
       const delay = Math.max(0, minDuration - elapsed);
 
       const timer = setTimeout(() => {
