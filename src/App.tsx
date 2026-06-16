@@ -152,7 +152,9 @@ function MobileHero({ startHeroIntro, headerLogoRef, navLinks, onScrollToSection
                 })}
                 <div className="h-px bg-zinc-100 my-1" />
                 <a
-                  href="#conta"
+                  href="https://finance.assetpagamentos.com.br/login?redirect=%2F"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
                   className="text-[13px] font-semibold text-zinc-500 py-2 px-3 rounded-xl hover:bg-zinc-50 transition-colors block"
                 >
@@ -1080,7 +1082,9 @@ function App() {
 
                     {/* Acesse sua conta */}
                     <a
-                      href="#conta"
+                      href="https://finance.assetpagamentos.com.br/login?redirect=%2F"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="hidden lg:inline-block text-[14px] font-semibold text-black hover:text-black/70 transition-colors duration-200 whitespace-nowrap"
                     >
                       Acesse sua conta
