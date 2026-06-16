@@ -9,6 +9,7 @@ import { Footer } from './components/footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DashboardShowcase } from './components/dashboard-showcase';
 import { DigitalAccountFeatures } from './components/digital-account-features';
+import { ArrowUpRight } from 'lucide-react';
 
 
 
@@ -43,30 +44,40 @@ interface MobileHeroProps {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="relative min-h-[100vh] w-full flex flex-col justify-between pt-6 pb-12 overflow-hidden bg-white font-sans text-zinc-900">
+    <div 
+      className="relative min-h-[100vh] w-full flex flex-col justify-between pt-6 pb-0 overflow-hidden font-sans text-white"
+      style={{
+        backgroundImage: `url("/background%20hero.png")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       {/* Mobile Header */}
-      <header className="relative z-50 flex items-center justify-between w-full px-6">
-        {/* Logo Icon Only */}
-        <div className="flex items-center">
+      <header className="relative z-50 flex items-center justify-between w-full px-6 h-20">
+        {/* Logo Icon + Text */}
+        <div className="flex items-center gap-2">
           <img 
             ref={headerLogoRef}
-            src="logo%20asset.png" 
+            src="/logo%20asset.png" 
             alt="Asset Logo" 
-            className="w-16 h-16 object-contain select-none pointer-events-none"
-            style={{ filter: 'brightness(0)' }} 
+            className="w-10 h-10 object-contain select-none pointer-events-none"
+            style={{ filter: 'brightness(0) invert(1)' }}
           />
+          <span className="text-white text-xl font-bold tracking-tight font-sans">Asset</span>
         </div>
 
         {/* Right side menu */}
         <div className="flex items-center">
-          {/* Custom 2-bar menu button */}
+          {/* Custom 3-bar menu button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="flex flex-col justify-center items-end gap-1.5 w-8 h-8 cursor-pointer z-50 animate-none"
+            className="flex flex-col justify-center items-center gap-1.5 w-11 h-11 rounded-[14px] bg-white text-zinc-900 cursor-pointer z-50 shadow-sm active:scale-95 transition-all"
             aria-label="Menu"
           >
-            <div className={`h-[2px] bg-zinc-900 transition-all duration-300 ${isMenuOpen ? 'w-6 rotate-45 translate-y-[4px]' : 'w-6'}`} />
-            <div className={`h-[2px] bg-zinc-900 transition-all duration-300 ${isMenuOpen ? 'w-6 -rotate-45 -translate-y-[4px]' : 'w-4'}`} />
+            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 rotate-45 translate-y-[5.5px]' : 'w-5'}`} />
+            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 w-0' : 'w-5'}`} />
+            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 -rotate-45 -translate-y-[5.5px]' : 'w-5'}`} />
           </button>
         </div>
       </header>
@@ -116,31 +127,18 @@ interface MobileHeroProps {
       </AnimatePresence>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-start justify-center text-left mt-8 px-6 max-w-md">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center mt-6 px-6 max-w-md mx-auto">
         
-        {/* Announcement Badge */}
-        <motion.a
-          href="#solucoes"
-          initial={{ y: 15, opacity: 0 }}
-          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-1.5 bg-zinc-50 border border-zinc-200/80 rounded-full px-4 py-2 text-[12px] text-zinc-650 font-medium hover:bg-zinc-100 hover:text-zinc-900 transition-all mb-6 shadow-xs"
-        >
-          <span>Lançamento: Pix Automático e Recorrente</span>
-          <span className="text-zinc-400">→</span>
-        </motion.a>
-
         {/* Headline */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2.8rem] xs:text-[3.4rem] font-extralight leading-[1.05] tracking-[-0.035em] text-zinc-900 mb-6"
+          className="text-[2rem] xs:text-[2.4rem] font-light leading-[1.15] tracking-[-0.03em] text-white mb-4"
         >
-          <span className="font-bold">Transforme</span> seu<br />
-          <span className="font-bold">ecossistema</span> em<br />
-          um centro de<br />
-          <span className="font-bold">serviços<br />financeiros</span>
+          Transforme seu <br />
+          <span className="font-bold">ecossistema</span> em um <br />
+          <span className="font-bold">centro de serviços<br />financeiros</span>
         </motion.h1>
 
         {/* Description */}
@@ -148,28 +146,112 @@ interface MobileHeroProps {
           initial={{ y: 20, opacity: 0 }}
           animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[16px] xs:text-[17px] leading-[1.35] tracking-tight text-zinc-500 max-w-[340px] mb-8"
+          className="text-[14px] xs:text-[15px] leading-relaxed tracking-tight text-white/80 max-w-[340px] mb-8 font-light"
         >
-          <span className="font-semibold text-zinc-900 block mb-2">
-            Fidelize clientes e crie novas receitas com Banking As A Service.
-          </span>
-          <span className="font-extralight text-zinc-500">
-            Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
-          </span>
+          Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
         </motion.p>
 
-        {/* CTA Button */}
+        {/* CTA Buttons - Side by Side */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-center gap-3 w-full"
         >
           <a
-            href="#consultor"
-            className="inline-block bg-zinc-900 hover:bg-black text-white text-[15px] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 active:scale-[0.98] shadow-sm hover:shadow-md"
+            href="#solucoes"
+            className="h-12 px-6 inline-flex items-center justify-center bg-[#002b8a]/30 hover:bg-[#002b8a]/45 border border-white/15 text-white text-[13px] font-bold tracking-wider uppercase rounded-full transition-all duration-200 active:scale-[0.98] shadow-sm backdrop-blur-md"
           >
-            Falar com consultor
+            Ver Soluções
           </a>
+
+          <a
+            href="#consultor"
+            className="h-12 pl-6 pr-2 inline-flex items-center gap-3 bg-white text-[#002b8a] rounded-full font-bold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md hover:bg-zinc-50 active:scale-[0.98]"
+          >
+            Começar
+            <div className="w-8 h-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <ArrowUpRight className="size-4 stroke-[2.5]" />
+            </div>
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Floating Mockup Cards at the base */}
+      <div className="w-full flex items-end justify-center gap-2.5 px-4 overflow-visible h-[155px] relative mt-10 select-none pointer-events-none">
+        
+        {/* Card 1: Left */}
+        <motion.div
+          animate={{ y: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
+          className="w-[95px] h-[120px] bg-white/95 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg p-2.5 flex flex-col justify-between shrink-0 rotate-[-6deg] translate-y-7"
+        >
+          <div className="h-5 w-full bg-zinc-950 rounded-lg flex items-center justify-between px-1.5">
+            <span className="text-[5.5px] text-white font-medium">BaaS API</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+          </div>
+          <div className="h-6 w-full flex items-end">
+            <svg className="w-full h-full text-blue-600" viewBox="0 0 100 40" fill="none">
+              <path d="M0 35 Q 25 15, 50 25 T 100 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+          </div>
+          <div>
+            <span className="text-[7px] text-zinc-400 block font-medium">PCI-DSS</span>
+            <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Segurança</span>
+          </div>
+        </motion.div>
+
+        {/* Card 2: Center Left */}
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+          className="w-[120px] h-[130px] bg-white rounded-2xl border border-zinc-100 shadow-xl p-3 flex flex-col justify-between shrink-0 rotate-[-2deg] translate-y-3 z-10"
+        >
+          <div className="flex flex-wrap gap-1">
+            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">Pix</span>
+            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">TED</span>
+            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">BaaS</span>
+          </div>
+          <div>
+            <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Transações</span>
+            <span className="text-[13px] font-bold text-zinc-900 block leading-tight mt-0.5">520k+</span>
+            <span className="text-[8px] text-emerald-600 font-semibold mt-0.5 block">↑ 12.4% este mês</span>
+          </div>
+          <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
+            <div className="h-full bg-blue-600 rounded-full w-[78%]" />
+          </div>
+        </motion.div>
+
+        {/* Card 3: Center Right */}
+        <motion.div
+          animate={{ y: [0, -7, 0] }}
+          transition={{ repeat: Infinity, duration: 5.2, ease: "easeInOut" }}
+          className="w-[120px] h-[130px] bg-gradient-to-b from-blue-500 to-blue-700 rounded-2xl shadow-xl p-3 flex flex-col justify-between shrink-0 rotate-[3deg] translate-y-3 z-10 text-white border border-white/10"
+        >
+          <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center mx-auto mt-1 shadow-sm">
+            <span className="text-blue-600 text-sm font-bold leading-none">+</span>
+          </div>
+          <div className="text-center mb-1">
+            <span className="text-[10px] font-bold block leading-tight">Pix Automático</span>
+            <span className="text-[7.5px] text-white/80 block mt-0.5 leading-normal">Cobranças recorrentes</span>
+          </div>
+        </motion.div>
+
+        {/* Card 4: Right */}
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 4.6, ease: "easeInOut" }}
+          className="w-[95px] h-[120px] bg-white/95 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg p-2.5 flex flex-col justify-between shrink-0 rotate-[8deg] translate-y-7"
+        >
+          <div className="flex -space-x-1.5">
+            <div className="w-5 h-5 rounded-full bg-blue-600 border border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">L</div>
+            <div className="w-5 h-5 rounded-full bg-zinc-800 border border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">M</div>
+          </div>
+          <div>
+            <span className="text-[7px] text-zinc-400 block font-medium">Fluxos</span>
+            <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Aprovações</span>
+          </div>
+          <span className="text-[7.5px] text-emerald-600 font-bold bg-emerald-50 px-1 py-0.5 rounded-sm block w-fit">Sucesso OK</span>
         </motion.div>
       </div>
     </div>
@@ -227,7 +309,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                className="absolute left-[-15px] sm:left-[10%] top-[18%] w-[240px] h-[170px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                className="absolute left-0 xs:left-[5%] sm:left-[10%] top-[18%] w-[200px] xs:w-[240px] h-[170px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
               >
                 <div className="flex justify-between items-start">
                   <span className="text-[11px] text-zinc-400 font-medium">Performance</span>
@@ -256,7 +338,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, 6, 0], rotate: [0, 1.5, 0] }}
                 transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                className="absolute right-[-20px] sm:right-[10%] top-[4%] w-[285px] h-[250px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                className="absolute right-0 xs:right-[5%] sm:right-[10%] top-[4%] w-[230px] xs:w-[285px] h-[250px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
               >
                 <div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Meta Mensal</span>
@@ -343,7 +425,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, -8, 0], rotate: [-6, -4.5, -6] }}
                 transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
-                className="absolute left-[-15px] sm:left-[10%] top-[18%] w-[250px] h-[175px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                className="absolute left-0 xs:left-[5%] sm:left-[10%] top-[18%] w-[210px] xs:w-[250px] h-[175px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
               >
                 <div className="flex items-center gap-3">
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
@@ -359,7 +441,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, 6, 0], rotate: [6, 4.5, 6] }}
                 transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-                className="absolute right-[-20px] sm:right-[10%] top-[6%] w-[265px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
+                className="absolute right-0 xs:right-[5%] sm:right-[10%] top-[6%] w-[220px] xs:w-[265px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20"
               >
                 <div>
                   <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider block">Inteligência</span>
@@ -409,7 +491,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, 6, 0], rotate: [12, 10.5, 12] }}
                 transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-                className="absolute right-[-15px] sm:right-[10%] top-[4%] w-[230px] h-[165px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
+                className="absolute right-0 xs:right-[5%] sm:right-[10%] top-[4%] w-[190px] xs:w-[230px] h-[165px] bg-zinc-950 rounded-2xl shadow-xl p-5 flex flex-col justify-between z-10 border border-white/5"
               >
                 <div className="flex -space-x-2">
                   {[
@@ -439,7 +521,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div
                 animate={{ y: [0, -6, 0], rotate: [-3, -4.5, -3] }}
                 transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-                className="absolute left-[-20px] sm:left-[10%] top-[10%] w-[285px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20 -rotate-3"
+                className="absolute left-0 xs:left-[5%] sm:left-[10%] top-[10%] w-[230px] xs:w-[285px] h-[245px] bg-white rounded-2xl border border-zinc-100 shadow-2xl p-5 flex flex-col justify-between z-20 -rotate-3"
               >
                 <div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Performance</span>
@@ -521,9 +603,9 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
-                <div className="w-[330px] h-[330px] rounded-full border border-zinc-100 flex items-center justify-center">
-                  <div className="w-[240px] h-[240px] rounded-full border border-zinc-100/80 flex items-center justify-center">
-                    <div className="w-[150px] h-[150px] rounded-full border border-zinc-100/50 flex items-center justify-center" />
+                <div className="w-[260px] h-[260px] xs:w-[330px] xs:h-[330px] rounded-full border border-zinc-100 flex items-center justify-center">
+                  <div className="w-[190px] h-[190px] xs:w-[240px] xs:h-[240px] rounded-full border border-zinc-100/80 flex items-center justify-center">
+                    <div className="w-[120px] h-[120px] xs:w-[150px] xs:h-[150px] rounded-full border border-zinc-100/50 flex items-center justify-center" />
                   </div>
                 </div>
               </motion.div>
@@ -560,7 +642,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute top-[14%] left-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                className="absolute top-[14%] left-0 xs:left-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-90 xs:scale-110"
               >
                 <span className="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8.5px] text-white">L</span>
                 <span className="text-[11.5px] font-bold text-zinc-800">Livia C. <span className="text-blue-600 font-bold ml-1">+R$25k</span></span>
@@ -569,7 +651,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div 
                 animate={{ y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-[12%] right-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                className="absolute top-[12%] right-0 xs:right-[2%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-90 xs:scale-110"
               >
                 <span className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8.5px] text-white">M</span>
                 <span className="text-[11.5px] font-bold text-zinc-800">Mariana C. <span className="text-blue-600 font-bold ml-1">+R$10k</span></span>
@@ -578,7 +660,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
               <motion.div 
                 animate={{ y: [0, -12, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[14%] left-[30%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-110"
+                className="absolute bottom-[14%] left-[15%] xs:left-[30%] bg-white shadow-lg border border-zinc-100 rounded-full px-3.5 py-2 flex items-center gap-1.5 z-20 scale-90 xs:scale-110"
               >
                 <span className="w-5 h-5 rounded-full bg-zinc-600 flex items-center justify-center text-[8.5px] text-white">A</span>
                 <span className="text-[11.5px] font-bold text-zinc-800">Ana S. <span className="text-blue-600 font-bold ml-1">+R$15k</span></span>
