@@ -53,7 +53,7 @@ export function DigitalAccountFeatures() {
 							containerClassName="text-center mb-4"
 							textClassName="text-[1.8rem] sm:text-[2.5rem] lg:text-[2.8rem] font-normal text-gray-900 tracking-tight leading-[1.15]"
 						>
-							Tudo que você precisa de <br className="hidden sm:inline" /> <span className="font-bold">uma conta digital.</span>
+							Tudo que você precisa de<br className="hidden sm:inline" /> <span className="font-bold">uma conta digital.</span>
 						</ScrollFloat>
 						
 						<p className="text-gray-500 text-[15px] sm:text-[16.5px] font-normal leading-relaxed max-w-2xl mx-auto mt-4 mb-8">
@@ -61,12 +61,15 @@ export function DigitalAccountFeatures() {
 						</p>
 
 						{/* Mockup Button "FALE COM UM ESPECIALISTA" */}
+						{/* Mockup Button "FALE COM UM ESPECIALISTA" */}
 						<a
-							href="#contato"
+							href="https://api.whatsapp.com/send/?phone=556181229813&text&type=phone_number&app_absent=0"
+							target="_blank"
+							rel="noopener noreferrer"
 							className="group inline-flex items-center gap-3.5 bg-black hover:bg-black/90 text-white rounded-full pl-6 pr-2.5 py-2.5 font-semibold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md"
 						>
 							Falar com um especialista
-							<div className="w-8 h-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+							<div className="w-8 h-8 rounded-full bg-[#080c16] text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
 								<ArrowUpRight className="size-4 stroke-[2.5]" />
 							</div>
 						</a>
@@ -91,7 +94,7 @@ export function DigitalAccountFeatures() {
 							<div className="flex-1 flex flex-col justify-between items-start">
 								<div>
 									{/* CreditCard Icon Badge */}
-									<div className="w-11 h-11 rounded-2xl bg-blue-50 text-[#002b8a] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+									<div className="w-11 h-11 rounded-2xl bg-[#080c16]/5 text-[#080c16] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
 										<CreditCard className="size-5 stroke-[2]" />
 									</div>
 									
@@ -133,7 +136,7 @@ export function DigitalAccountFeatures() {
 												whileHover={{ scale: 1.02, backgroundColor: "#f9f9fb" }}
 												className="flex items-center gap-2 sm:gap-3 bg-gray-50/50 rounded-xl sm:rounded-2xl p-2 sm:p-3 border border-gray-100/70 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
 											>
-												<div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#002b8a] shrink-0">
+												<div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#080c16]/5 flex items-center justify-center text-[#080c16] shrink-0">
 													<item.icon className="size-3.5 sm:size-4 stroke-[2.2]" />
 												</div>
 												<span className="text-[11px] sm:text-[13px] font-semibold text-gray-800 tracking-tight leading-tight">
@@ -158,7 +161,7 @@ export function DigitalAccountFeatures() {
 						>
 							<div>
 								{/* Trending Up Icon Badge */}
-								<div className="w-11 h-11 rounded-2xl bg-blue-50 text-[#002b8a] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+								<div className="w-11 h-11 rounded-2xl bg-[#080c16]/5 text-[#080c16] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
 									<TrendingUp className="size-5 stroke-[2]" />
 								</div>
 								
@@ -183,7 +186,7 @@ export function DigitalAccountFeatures() {
 						>
 							<div>
 								{/* Key Icon Badge */}
-								<div className="w-11 h-11 rounded-2xl bg-blue-50 text-[#002b8a] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+								<div className="w-11 h-11 rounded-2xl bg-[#080c16]/5 text-[#080c16] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
 									<Key className="size-5 stroke-[2]" />
 								</div>
 								
@@ -208,7 +211,7 @@ export function DigitalAccountFeatures() {
 						>
 							<div>
 								{/* Cash-in Icon Badge */}
-								<div className="w-11 h-11 rounded-2xl bg-blue-50 text-[#002b8a] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+								<div className="w-11 h-11 rounded-2xl bg-[#080c16]/5 text-[#080c16] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
 									<ArrowDownLeft className="size-5 stroke-[2.5]" />
 								</div>
 								
@@ -233,7 +236,7 @@ export function DigitalAccountFeatures() {
 						>
 							<div>
 								{/* Cash-out Icon Badge */}
-								<div className="w-11 h-11 rounded-2xl bg-blue-50 text-[#002b8a] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+								<div className="w-11 h-11 rounded-2xl bg-[#080c16]/5 text-[#080c16] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
 									<ArrowUpRightIcon className="size-5 stroke-[2.5]" />
 								</div>
 								

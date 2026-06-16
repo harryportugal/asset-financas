@@ -5,15 +5,15 @@ import path from 'path';
 const publicDir = 'c:/Users/portu/OneDrive/Documentos/asset finanças/public';
 
 const avatars = [
-  'avatar 1.jpeg',
-  'avatar 2.jpeg',
-  'avatar 3.jpeg',
-  'avatar 4.jpeg'
+  'avatar-1.png',
+  'avatar-2.png',
+  'avatar-3.png',
+  'avatar-4.png'
 ];
 
 async function optimizeAvatar(fileName) {
   const inputPath = path.join(publicDir, fileName);
-  const baseName = fileName.replace(' ', '-').split('.')[0].toLowerCase(); // e.g. avatar-1
+  const baseName = fileName.split('.')[0]; // e.g. avatar-1
   const outputPath = path.join(publicDir, `${baseName}.webp`);
 
   if (!fs.existsSync(inputPath)) {
@@ -37,6 +37,10 @@ async function optimizeAvatar(fileName) {
 
   console.log(`Optimized avatar: ${fileName} -> ${baseName}.webp`);
   console.log(`  Size: ${(originalSize / 1024).toFixed(1)} KB -> ${(optimizedSize / 1024).toFixed(1)} KB (-${reduction}%)`);
+
+  // Delete original PNG to avoid bloated repo
+  fs.unlinkSync(inputPath);
+  console.log(`  Deleted original file: ${fileName}`);
 }
 
 async function run() {

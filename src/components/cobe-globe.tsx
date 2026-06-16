@@ -35,7 +35,7 @@ export function CobeGlobe({ className }: { className?: string }) {
 				mapSamples: 6000,
 				mapBrightness: 6,
 				baseColor: [0.95, 0.95, 0.95],
-				markerColor: [0.0, 0.17, 0.54], // Asset's primary navy blue #002b8a -> [0.0, 0.17, 0.54]
+				markerColor: [0.031, 0.047, 0.086], // Asset's primary navy blue #080c16 -> [0.031, 0.047, 0.086]
 				glowColor: [1, 1, 1],
 				markers: [
 					{ location: [-23.5505, -46.6333], size: 0.08 }, // São Paulo, Brazil

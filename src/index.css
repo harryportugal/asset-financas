@@ -161,3 +161,76 @@ textarea {
   }
 }
 
+/* Mobile Hero Background Responsive Optimization */
+.mobile-hero-img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -40px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Máscara gradiente para suavizar a transição com a seção de baixo e remover a linha de contorno */
+  mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+
+/* Telas menores no mobile: mudamos para cover (crop) e empurramos a imagem mais para baixo */
+@media (max-width: 380px), (max-height: 720px) {
+  .mobile-hero-img {
+    object-fit: cover;
+    bottom: -125px;
+  }
+  
+  .mobile-hero-header {
+    height: 3.25rem !important; /* de 80px para 52px */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .mobile-hero-content {
+    margin-top: 2rem !important; /* desce ainda mais o conteúdo para melhor respiro */
+  }
+  
+  .mobile-hero-avatar-wrapper {
+    margin-bottom: 0.75rem !important; /* reduz espaçamento sob os avatares */
+  }
+  
+  .mobile-hero-avatar {
+    width: 2rem !important; /* de 40px para 32px */
+    height: 2rem !important;
+  }
+  
+  .mobile-hero-avatar-badge {
+    width: 2rem !important; /* de 40px para 32px */
+    height: 2rem !important;
+    font-size: 10px !important;
+  }
+  
+  .mobile-hero-title {
+    font-size: 1.7rem !important; /* reduz a headline */
+    line-height: 1.15 !important;
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .mobile-hero-desc {
+    font-size: 12.5px !important; /* reduz um pouco mais a descrição */
+    line-height: 1.4 !important;
+    margin-bottom: 1.0rem !important;
+    max-width: 280px !important;
+  }
+  
+  .mobile-hero-btn {
+    height: 2.5rem !important; /* de 48px para 40px */
+    padding-left: 1.1rem !important;
+    padding-right: 0.35rem !important;
+    font-size: 11.5px !important; /* de 13px para 11.5px */
+  }
+  
+  .mobile-hero-btn div {
+    width: 1.65rem !important; /* de 32px para 26px */
+    height: 1.65rem !important;
+  }
+}
+

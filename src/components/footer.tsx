@@ -78,9 +78,9 @@ const childVariants = {
 
 
 
-export function Footer() {
+export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: string) => void }) {
 	return (
-		<div className="relative z-20 w-full bg-white pt-4 -mt-px select-none overflow-hidden">
+		<div id="contato" className="relative z-20 w-full bg-white pt-4 -mt-px select-none overflow-hidden">
 			<div className="max-w-[1480px] mx-auto flex flex-col gap-6 w-full px-8">
 				{/* ─── CTA Card ─── */}
 				<motion.div 
@@ -88,7 +88,7 @@ export function Footer() {
 					whileInView="visible"
 					viewport={{ once: true, margin: "-100px" }}
 					variants={cardParentVariants}
-					className="relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c40c0] via-[#0d55e0] to-[#1475ff] px-8 py-16 sm:px-12 sm:py-20 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+					className="relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#080c16] via-[#0d1424] to-[#131d34] px-8 py-16 sm:px-12 sm:py-20 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-8"
 				>
 					{/* Background Image */}
 					<img 
@@ -104,24 +104,24 @@ export function Footer() {
 					<div className="relative flex-1 z-10 max-w-2xl">
 						{/* Social Proof Badges */}
 						<div className="flex items-center gap-2.5 mb-6 select-none">
-							<div className="flex -space-x-1.5">
+							<div className="flex -space-x-1.5 shrink-0">
 								<img
-									className="size-7 rounded-full border-2 border-[#002b8a] object-cover"
+									className="size-7 rounded-full border-2 border-[#080c16] object-cover"
 									src="/avatar-1.webp"
 									alt="Cliente 1"
 								/>
 								<img
-									className="size-7 rounded-full border-2 border-[#002b8a] object-cover"
+									className="size-7 rounded-full border-2 border-[#080c16] object-cover"
 									src="/avatar-2.webp"
 									alt="Cliente 2"
 								/>
 								<img
-									className="size-7 rounded-full border-2 border-[#002b8a] object-cover"
+									className="size-7 rounded-full border-2 border-[#080c16] object-cover"
 									src="/avatar-3.webp"
 									alt="Cliente 3"
 								/>
 								<img
-									className="size-7 rounded-full border-2 border-[#002b8a] object-cover"
+									className="size-7 rounded-full border-2 border-[#080c16] object-cover"
 									src="/avatar-4.webp"
 									alt="Cliente 4"
 								/>
@@ -133,7 +133,7 @@ export function Footer() {
 
 						{/* Headline */}
 						<h2 className="text-[1.8rem] sm:text-[2.6rem] lg:text-[3.2rem] font-normal text-white tracking-tight leading-[1.1] mb-5">
-							Pronto para <span className="font-bold">escalar</span> a sua <span className="font-bold">operação financeira</span>?
+							Pronto para <span className="font-bold">escalar</span> a sua <span className="font-bold">operação financeira?</span>
 						</h2>
 
 						{/* Subtext */}
@@ -145,11 +145,13 @@ export function Footer() {
 					{/* Right CTA Button */}
 					<div className="relative z-10 shrink-0">
 						<a
-							href="#contato"
-							className="inline-flex items-center gap-3 bg-white text-[#002b8a] hover:bg-gray-50 active:scale-98 transition-all duration-200 rounded-full py-3.5 pl-6 pr-4 font-bold text-[14px] tracking-wider uppercase shadow-sm group"
+							href="https://api.whatsapp.com/send/?phone=556181229813&text&type=phone_number&app_absent=0"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex items-center gap-3 bg-white text-[#080c16] hover:bg-gray-50 active:scale-98 transition-all duration-200 rounded-full py-3.5 pl-6 pr-4 font-bold text-[14px] tracking-wider uppercase shadow-sm group"
 						>
 							Começar Agora
-							<div className="size-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center transition-transform duration-200 group-hover:rotate-45">
+							<div className="size-8 rounded-full bg-[#080c16] text-white flex items-center justify-center transition-transform duration-200 group-hover:rotate-45">
 								<ArrowUpRight className="size-4 stroke-[2.5]" />
 							</div>
 						</a>
@@ -166,7 +168,7 @@ export function Footer() {
 						whileInView="visible"
 						viewport={{ once: true, margin: "-100px" }}
 						variants={cardParentVariants}
-						className="relative w-full lg:w-[32%] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#0c40c0] via-[#0d55e0] to-[#1475ff] px-8 py-10 md:p-12 shadow-lg flex flex-col justify-between min-h-[460px] text-white"
+						className="relative w-full lg:w-[32%] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#080c16] via-[#0d1424] to-[#131d34] px-8 py-10 md:p-12 shadow-lg flex flex-col justify-between min-h-[460px] text-white"
 					>
 						{/* Subtle mesh/glow pattern */}
 						<div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent_60%)] pointer-events-none" />
@@ -232,7 +234,7 @@ export function Footer() {
 					>
 						{/* Floating tilted 3D App Icon */}
 						<div className="absolute -top-12 right-6 lg:right-12 z-30 flex flex-col items-center select-none">
-							<div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#0c40c0] to-[#1475ff] shadow-[0_20px_40px_rgba(12,64,192,0.3)] flex items-center justify-center transform rotate-[10deg] border-[3px] border-white transition-all duration-300 hover:rotate-[6deg] hover:-translate-y-1 hover:shadow-[0_25px_50px_rgba(12,64,192,0.4)] pointer-events-auto">
+							<div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#080c16] to-[#131d34] shadow-md flex items-center justify-center transform rotate-[10deg] border-[3px] border-white transition-all duration-300 hover:rotate-[6deg] hover:-translate-y-1 hover:shadow-lg pointer-events-auto">
 								<img 
 									src="/logo%20asset.png" 
 									alt="Asset Icon" 
@@ -248,36 +250,20 @@ export function Footer() {
 								<h4 className="text-[12px] uppercase tracking-wider text-gray-400 font-bold select-none">Navegação</h4>
 								<div className="flex flex-col gap-2.5">
 									{[
-										{ label: "Como Funciona", href: "#infraestrutura" },
-										{ label: "Funcionalidades", href: "#solucoes" },
-										{ label: "Soluções", href: "#pagamentos" },
-										{ label: "Depoimentos", href: "#recursos" },
-										{ label: "FAQ", href: "#faq" }
+										{ label: "Início", targetId: "inicio" },
+										{ label: "Painel", targetId: "painel" },
+										{ label: "Serviços", targetId: "servicos" },
+										{ label: "Diferenciais", targetId: "diferenciais" },
+										{ label: "Depoimentos", targetId: "depoimentos" },
+										{ label: "FAQ", targetId: "faq" }
 									].map((link) => (
 										<a 
 											key={link.label}
-											href={link.href}
-											className="text-[14px] font-semibold text-gray-800 hover:text-black transition-colors duration-200"
-										>
-											{link.label}
-										</a>
-									))}
-								</div>
-							</motion.div>
-
-							{/* Company Column */}
-							<motion.div variants={childParentVariants} className="flex flex-col gap-4">
-								<h4 className="text-[12px] uppercase tracking-wider text-gray-400 font-bold select-none">Institucional</h4>
-								<div className="flex flex-col gap-2.5">
-									{[
-										{ label: "Blog", href: "#blog" },
-										{ label: "Sobre Nós", href: "#sobre" },
-										{ label: "Termos e Condições", href: "#termos" },
-										{ label: "Política de Privacidade", href: "#privacidade" }
-									].map((link) => (
-										<a 
-											key={link.label}
-											href={link.href}
+											href={`#${link.targetId}`}
+											onClick={(e) => {
+												e.preventDefault();
+												onScrollToSection?.(link.targetId);
+											}}
 											className="text-[14px] font-semibold text-gray-800 hover:text-black transition-colors duration-200"
 										>
 											{link.label}
@@ -334,7 +320,7 @@ export function Footer() {
 			</div>
 			{/* Espaço no final com a marca "asset" gigante, sem divisão, no mesmo fundo */}
 			<div className="relative w-full flex items-end justify-center select-none pointer-events-none overflow-hidden h-[18vw] mt-12">
-				<span className="text-[38vw] font-extrabold tracking-tight text-black/[0.12] leading-none select-none translate-y-[35%] font-sans">
+				<span className="text-[38vw] font-extrabold tracking-tight text-black/[0.12] leading-none select-none -translate-x-[3%] translate-y-[35%] md:translate-x-0 font-sans">
 					Asset
 				</span>
 			</div>

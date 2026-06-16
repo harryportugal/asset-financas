@@ -103,9 +103,9 @@ function FeatureDescription({
 function SetupVisual() {
 	return (
 		<div className="flex flex-col items-center justify-center h-full min-h-[260px]">
-			<div className="relative mx-auto flex size-28 items-center justify-center rounded-full border-4 border-dashed border-[#002b8a]/20 bg-white shadow-sm outline outline-gray-200/40 outline-offset-4">
-				<div className="absolute inset-0 z-10 scale-120 bg-radial from-[#002b8a]/5 via-transparent to-transparent blur-xl" />
-				<CustomTimerIcon className="size-12 fill-[#002b8a]" />
+			<div className="relative mx-auto flex size-28 items-center justify-center rounded-full border-4 border-dashed border-[#080c16]/20 bg-white shadow-sm outline outline-gray-200/40 outline-offset-4">
+				<div className="absolute inset-0 z-10 scale-120 bg-radial from-[#080c16]/5 via-transparent to-transparent blur-xl" />
+				<CustomTimerIcon className="size-12 fill-[#080c16]" />
 			</div>
 
 			<div className="relative mt-6 space-y-2 text-center">
@@ -122,8 +122,8 @@ function UserBasedSecurity() {
 	return (
 		<div className="flex flex-col items-center justify-center h-full min-h-[260px]">
 			<div className="relative mx-auto flex size-28 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-4">
-				<CustomLockIcon className="size-20 text-[#002b8a]" />
-				<div className="absolute inset-0 scale-120 bg-radial from-[#002b8a]/5 via-transparent to-transparent blur-xl" />
+				<CustomLockIcon className="size-20 text-[#080c16]" />
+				<div className="absolute inset-0 scale-120 bg-radial from-[#080c16]/5 via-transparent to-transparent blur-xl" />
 			</div>
 
 			<div className="relative mt-6 space-y-2 text-center">
@@ -140,12 +140,12 @@ function PixRecurrentVisual() {
 	return (
 		<div className="flex flex-col items-center justify-center h-full min-h-[260px]">
 			<div className="relative mx-auto flex size-28 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-4">
-				<div className="absolute inset-0 z-10 scale-120 bg-radial from-[#002b8a]/5 via-transparent to-transparent blur-xl" />
+				<div className="absolute inset-0 z-10 scale-120 bg-radial from-[#080c16]/5 via-transparent to-transparent blur-xl" />
 				<motion.div
 					animate={{ rotate: 360 }}
 					transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
 				>
-					<RefreshCw className="size-10 text-[#002b8a]" />
+					<RefreshCw className="size-10 text-[#080c16]" />
 				</motion.div>
 			</div>
 
@@ -218,7 +218,7 @@ function CheckoutVisual() {
 		<div className="grid h-full sm:grid-cols-2 min-h-[260px]">
 			<div className="relative z-10 flex flex-col justify-center space-y-5 py-8 ps-8 pe-4">
 				<div className="flex size-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-2">
-					<QrCode className="size-5 text-[#002b8a]" />
+					<QrCode className="size-5 text-[#080c16]" />
 				</div>
 				<div className="space-y-2">
 					<FeatureTitle className="text-base">
@@ -231,12 +231,12 @@ function CheckoutVisual() {
 			</div>
 			
 			<div className="relative flex items-center justify-center p-6 sm:p-4 overflow-hidden">
-				<div className="relative w-full max-w-[200px] h-[190px] rounded-2xl border border-gray-200 bg-white shadow-lg p-4 flex flex-col justify-between overflow-hidden">
+				<div className="relative w-full max-w-[200px] h-auto rounded-2xl border border-gray-200 bg-white shadow-lg p-4 flex flex-col justify-between">
 					<div className="flex justify-between items-center text-[10px] text-gray-400 font-semibold border-b border-gray-100 pb-2">
 						<span>CHECKOUT PIX</span>
 						<div className="flex items-center gap-1">
-							<span className={cn("w-1.5 h-1.5 rounded-full bg-[#002b8a]", status === 'waiting' && 'animate-pulse')} />
-							<span className="text-[#002b8a] font-bold">
+							<span className={cn("w-1.5 h-1.5 rounded-full bg-[#080c16]", status === 'waiting' && 'animate-pulse')} />
+							<span className="text-[#080c16] font-bold">
 								{status === 'waiting' ? 'Aguardando' : 'Confirmado'}
 							</span>
 						</div>
@@ -288,7 +288,7 @@ function CheckoutVisual() {
 
 										{/* Center Logo Badge */}
 										<rect x={8} y={8} width={5} height={5} fill="white" rx={1.2} />
-										<rect x={8.5} y={8.5} width={4} height={4} fill="#002b8a" rx={0.8} />
+										<rect x={8.5} y={8.5} width={4} height={4} fill="#080c16" rx={0.8} />
 										{/* Mini logo line tick */}
 										<path d="M10 11.5l1-2" stroke="white" strokeWidth="1" strokeLinecap="round" />
 									</svg>
@@ -306,7 +306,7 @@ function CheckoutVisual() {
 									animate={{ scale: 1 }}
 									transition={{ type: "spring", stiffness: 200, damping: 10 }}
 								>
-									<CheckCircle2 className="size-12 text-[#002b8a]" />
+									<CheckCircle2 className="size-12 text-[#080c16]" />
 								</motion.div>
 								<span className="text-[12px] font-bold text-gray-800 mt-2 block">R$ 150,00 Recebido!</span>
 							</motion.div>
@@ -328,7 +328,7 @@ function PresenceVisual() {
 		<div className="grid h-full sm:grid-cols-2 min-h-[260px]">
 			<div className="relative z-10 flex flex-col justify-center space-y-5 py-8 ps-8 pe-4">
 				<div className="flex size-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm outline outline-gray-200/40 outline-offset-2">
-					<Globe className="size-5 text-[#002b8a]" />
+					<Globe className="size-5 text-[#080c16]" />
 				</div>
 				<div className="space-y-2">
 					<FeatureTitle className="text-base">

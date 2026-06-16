@@ -26,7 +26,7 @@ export function DashboardShowcase() {
 							containerClassName="text-center mb-4"
 							textClassName="text-[1.8rem] sm:text-[2.5rem] lg:text-[2.8rem] font-normal text-gray-900 tracking-tight leading-[1.15]"
 						>
-							Uma experiência <span className="font-bold">completa</span> de <br className="hidden sm:inline" /> <span className="font-bold">gestão financeira</span>
+							Uma experiência <span className="font-bold">completa</span> de<br className="hidden sm:inline" /> <span className="font-bold">gestão financeira</span>
 						</ScrollFloat>
 						<p className="text-gray-500 text-[15px] sm:text-[16.5px] font-normal leading-relaxed max-w-2xl mx-auto mt-4">
 							Acesse relatórios avançados, concilie recebíveis e gerencie seu fluxo de caixa de ponta a ponta com uma interface desktop ágil, intuitiva e extremamente segura.
@@ -82,7 +82,7 @@ export function DashboardShowcase() {
 					</motion.div>
 
 					{/* Glow backdrop effect */}
-					<div className="absolute inset-0 bg-radial from-[#002b8a]/3 via-transparent to-transparent blur-3xl z-0 pointer-events-none scale-110" />
+					<div className="absolute inset-0 bg-radial from-[#080c16]/3 via-transparent to-transparent blur-3xl z-0 pointer-events-none scale-110" />
 				</div>
 			</div>
 		</section>

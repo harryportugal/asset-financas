@@ -99,7 +99,7 @@ export function FAQ() {
 								<h3
 									className={cn(
 										"text-[14.5px] sm:text-[15.5px] font-bold text-gray-900 tracking-tight transition-colors duration-200",
-										isOpen && "text-[#002b8a]"
+										isOpen && "text-[#080c16]"
 									)}
 								>
 									{item.question}

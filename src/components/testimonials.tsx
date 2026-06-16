@@ -211,7 +211,7 @@ export function Testimonials() {
 
 					{/* Main Title */}
 					<h2 className="text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-normal text-gray-900 tracking-tight leading-[1.15] mb-4">
-						O que <span className="font-bold">dizem</span> sobre <span className="font-bold">nós</span>?
+						O que <span className="font-bold">dizem</span> sobre <span className="font-bold">nós?</span>
 					</h2>
 					
 					{/* Description */}

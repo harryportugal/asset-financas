@@ -150,8 +150,8 @@ function MockupAnalytics() {
 		<BrowserFrame>
 			{/* Left Sidebar */}
 			<div className="w-10 bg-white border border-gray-200/50 rounded-lg flex flex-col items-center gap-3 py-3 shrink-0">
-				<div className="w-5 h-5 rounded-full bg-[#002b8a]/10 flex items-center justify-center">
-					<BarChart3 className="size-3 text-[#002b8a]" />
+				<div className="w-5 h-5 rounded-full bg-[#080c16]/10 flex items-center justify-center">
+					<BarChart3 className="size-3 text-[#080c16]" />
 				</div>
 				<div className="w-4 h-1.5 rounded-sm bg-gray-100" />
 				<div className="w-4 h-1.5 rounded-sm bg-gray-100" />
@@ -164,15 +164,15 @@ function MockupAnalytics() {
 						<span className="text-[7px] text-gray-400 font-bold uppercase tracking-wider block">Receita</span>
 						<span className="text-[11px] font-bold text-gray-800">R$ 45.230,00</span>
 					</div>
-					<span className="text-[7px] font-bold text-[#002b8a] bg-blue-50 px-1 py-0.5 rounded-sm">+12%</span>
+					<span className="text-[7px] font-bold text-[#080c16] bg-[#080c16]/5 px-1 py-0.5 rounded-sm">+12%</span>
 				</div>
 				
 				{/* Chart SVG */}
-				<svg className="w-full h-16 text-[#002b8a]" viewBox="0 0 100 40" fill="none">
+				<svg className="w-full h-16 text-[#080c16]" viewBox="0 0 100 40" fill="none">
 					<defs>
 						<linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-							<stop offset="0%" stopColor="#002b8a" stopOpacity="0.2" />
-							<stop offset="100%" stopColor="#002b8a" stopOpacity="0.0" />
+							<stop offset="0%" stopColor="#080c16" stopOpacity="0.2" />
+							<stop offset="100%" stopColor="#080c16" stopOpacity="0.0" />
 						</linearGradient>
 					</defs>
 					<path 
@@ -209,8 +209,8 @@ function MockupTransactions() {
 					].map((item, idx) => (
 						<div key={idx} className="flex justify-between items-center text-[8px] bg-gray-50/50 p-1.5 rounded-md border border-gray-100">
 							<div className="flex items-center gap-1.5">
-								<div className="w-4 h-4 rounded-full bg-[#002b8a]/10 flex items-center justify-center shrink-0">
-									<Wallet className="size-2 text-[#002b8a]" />
+								<div className="w-4 h-4 rounded-full bg-[#080c16]/10 flex items-center justify-center shrink-0">
+									<Wallet className="size-2 text-[#080c16]" />
 								</div>
 								<div className="flex flex-col">
 									<span className="font-bold text-gray-800 leading-tight">{item.desc}</span>
@@ -232,8 +232,8 @@ function MockupSecurity() {
 		<BrowserFrame>
 			{/* Left navigation bar */}
 			<div className="w-10 bg-white border border-gray-200/50 rounded-lg flex flex-col items-center gap-3 py-3 shrink-0">
-				<div className="w-5 h-5 rounded-full bg-[#002b8a]/10 flex items-center justify-center">
-					<Users className="size-3 text-[#002b8a]" />
+				<div className="w-5 h-5 rounded-full bg-[#080c16]/10 flex items-center justify-center">
+					<Users className="size-3 text-[#080c16]" />
 				</div>
 				<div className="w-4 h-1.5 rounded-sm bg-gray-100" />
 			</div>
