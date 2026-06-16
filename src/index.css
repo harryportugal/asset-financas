@@ -234,3 +234,7 @@ textarea {
   }
 }
 
+.footer-watermark::after {
+  content: "Asset";
+}
+

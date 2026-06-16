@@ -89,6 +89,7 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 					viewport={{ once: true, margin: "-100px" }}
 					variants={cardParentVariants}
 					className="relative w-full rounded-[32px] overflow-hidden bg-gradient-to-br from-[#080c16] via-[#0d1424] to-[#131d34] px-8 py-16 sm:px-12 sm:py-20 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+					style={{ backgroundColor: '#080c16' }}
 				>
 					{/* Background Image */}
 					<img 
@@ -169,6 +170,7 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 						viewport={{ once: true, margin: "-100px" }}
 						variants={cardParentVariants}
 						className="relative w-full lg:w-[32%] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#080c16] via-[#0d1424] to-[#131d34] px-8 py-10 md:p-12 shadow-lg flex flex-col justify-between min-h-[460px] text-white"
+						style={{ backgroundColor: '#080c16' }}
 					>
 						{/* Subtle mesh/glow pattern */}
 						<div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.25),transparent_60%)] pointer-events-none" />
@@ -320,9 +322,10 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 			</div>
 			{/* Espaço no final com a marca "asset" gigante, sem divisão, no mesmo fundo */}
 			<div className="relative w-full flex items-end justify-center select-none pointer-events-none overflow-hidden h-[18vw] mt-12">
-				<span className="text-[38vw] font-extrabold tracking-tight text-black/[0.12] leading-none select-none -translate-x-[3%] translate-y-[35%] md:translate-x-0 font-sans">
-					Asset
-				</span>
+				<div 
+					className="footer-watermark text-[38vw] font-extrabold tracking-tight text-black/[0.12] leading-none select-none -translate-x-[3%] translate-y-[35%] md:translate-x-0 font-sans"
+					aria-hidden="true"
+				/>
 			</div>
 		</div>
 	);
