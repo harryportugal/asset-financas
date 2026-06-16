@@ -22,6 +22,11 @@ html {
 
 /* Global anti-aliasing and rendering optimization for text and interactive controls */
 html,
+body {
+  background-color: #ffffff;
+}
+
+html,
 body,
 button,
 a,

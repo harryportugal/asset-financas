@@ -25,7 +25,7 @@ export function DigitalAccountFeatures() {
 		{ name: "Saldos e Extratos", icon: Wallet },
 		{ name: "Fluxo de Aprovação", icon: GitPullRequest },
 		{ name: "Conta Escrow", icon: ShieldCheck },
-		{ name: "Cobrança em lote", icon: FileStack },
+		{ name: "Cobrança em\u00A0lote", icon: FileStack },
 		{ name: "Gestão de usuários", icon: Users },
 	];
 
@@ -106,7 +106,7 @@ export function DigitalAccountFeatures() {
 
 							{/* Right Side: Grid of 8 items */}
 							<div className="flex-1 flex items-center">
-								<div className="grid grid-cols-2 gap-3.5 w-full">
+								<div className="grid grid-cols-2 gap-2 sm:gap-3.5 w-full">
 									{digitalAccountItems.map((item, idx) => {
 										const itemVariants = {
 											hidden: { opacity: 0, y: 15, scale: 0.96, filter: "blur(2px)" },
@@ -131,12 +131,12 @@ export function DigitalAccountFeatures() {
 												viewport={{ once: true, margin: "-80px" }}
 												variants={itemVariants}
 												whileHover={{ scale: 1.02, backgroundColor: "#f9f9fb" }}
-												className="flex items-center gap-3 bg-gray-50/50 rounded-2xl p-3 border border-gray-100/70 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
+												className="flex items-center gap-2 sm:gap-3 bg-gray-50/50 rounded-xl sm:rounded-2xl p-2 sm:p-3 border border-gray-100/70 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
 											>
-												<div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#002b8a] shrink-0">
-													<item.icon className="size-4 stroke-[2.2]" />
+												<div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#002b8a] shrink-0">
+													<item.icon className="size-3.5 sm:size-4 stroke-[2.2]" />
 												</div>
-												<span className="text-[13px] font-semibold text-gray-800 tracking-tight leading-tight">
+												<span className="text-[11px] sm:text-[13px] font-semibold text-gray-800 tracking-tight leading-tight">
 													{item.name}
 												</span>
 											</motion.div>

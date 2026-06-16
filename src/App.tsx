@@ -44,264 +44,289 @@ interface MobileHeroProps {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div 
-      className="relative min-h-[100vh] w-full flex flex-col justify-between pt-6 pb-0 overflow-hidden font-sans text-white"
-      style={{
-        backgroundImage: `url("/background%20hero.png")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      {/* Mobile Header */}
-      <header className="relative z-50 flex items-center justify-between w-full px-6 h-20">
-        {/* Logo Icon + Text */}
-        <div className="flex items-center gap-2">
-          <img 
-            ref={headerLogoRef}
-            src="/logo%20asset.png" 
-            alt="Asset Logo" 
-            className="w-10 h-10 object-contain select-none pointer-events-none"
-            style={{ filter: 'brightness(0) invert(1)' }}
-          />
-          <span className="text-white text-xl font-bold tracking-tight font-sans">Asset</span>
-        </div>
+    <div className="w-full min-h-[100vh] px-2.5 pt-2.5 pb-0 flex flex-col justify-center items-center" style={{ backgroundColor: '#ffffff' }}>
+      {/* Smartphone Screen Container */}
+      <div 
+        className="relative w-full max-w-[420px] h-[calc(100dvh-2rem)] flex flex-col justify-between pt-1 pb-0 overflow-hidden font-sans text-white rounded-[32px] border border-zinc-100"
+        style={{
+          backgroundImage: `url("/background%20hero.png")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Mobile Header */}
+        <header className="relative z-50 flex items-center justify-between w-full px-4 h-16">
+          {/* Logo Icon (Increased Size, Text Removed) */}
+          <div className="flex items-center">
+            <img 
+              ref={headerLogoRef}
+              src="/logo%20asset.png" 
+              alt="Asset Logo" 
+              className="w-22 h-22 object-contain select-none pointer-events-none"
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
+          </div>
 
-        {/* Right side menu */}
-        <div className="flex items-center">
-          {/* Custom 3-bar menu button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="flex flex-col justify-center items-center gap-1.5 w-11 h-11 rounded-[14px] bg-white text-zinc-900 cursor-pointer z-50 shadow-sm active:scale-95 transition-all"
-            aria-label="Menu"
-          >
-            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 rotate-45 translate-y-[5.5px]' : 'w-5'}`} />
-            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 w-0' : 'w-5'}`} />
-            <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 -rotate-45 -translate-y-[5.5px]' : 'w-5'}`} />
-          </button>
-        </div>
-      </header>
+          {/* Right side menu */}
+          <div className="flex items-center">
+            {/* Custom 3-bar menu button */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              className="flex flex-col justify-center items-center gap-1.5 w-11 h-11 rounded-[14px] bg-white text-zinc-900 cursor-pointer z-50 shadow-sm active:scale-95 transition-all"
+              aria-label="Menu"
+            >
+              <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 rotate-45 translate-y-[5.5px]' : 'w-5'}`} />
+              <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 w-0' : 'w-5'}`} />
+              <div className={`h-[2px] bg-zinc-900 rounded-full transition-all duration-300 ${isMenuOpen ? 'w-5 -rotate-45 -translate-y-[5.5px]' : 'w-5'}`} />
+            </button>
+          </div>
+        </header>
 
-      {/* Fullscreen Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col justify-between p-6 pt-28 text-zinc-900"
-          >
-            <div className="flex flex-col gap-6 text-center mt-6">
-              {navLinks.map((link) => (
+        {/* Fullscreen Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col justify-between p-6 pt-28 text-zinc-900 rounded-[32px]"
+            >
+              <div className="flex flex-col gap-6 text-center mt-6">
+                {navLinks.map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-2xl font-semibold text-zinc-800 hover:text-black transition-colors py-2 active:scale-98 transition-transform"
+                  >
+                    {link}
+                  </a>
+                ))}
+                <div className="h-px bg-zinc-200/60 my-2" />
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                  href="#conta"
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-2xl font-semibold text-zinc-800 hover:text-black transition-colors py-2 active:scale-98 transition-transform"
+                  className="text-xl font-semibold text-zinc-700 hover:text-black transition-colors"
                 >
-                  {link}
+                  Acesse sua conta
                 </a>
-              ))}
-              <div className="h-px bg-zinc-200/60 my-2" />
-              <a
-                href="#conta"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-xl font-semibold text-zinc-700 hover:text-black transition-colors"
-              >
-                Acesse sua conta
-              </a>
-            </div>
+              </div>
 
-            <div className="flex flex-col gap-3 mb-6">
-              <a
-                href="#contato"
-                onClick={() => setIsMenuOpen(false)}
-                className="w-full text-center py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-900 transition-all active:scale-[0.98]"
-              >
-                Entre em contato
-              </a>
-            </div>
+              <div className="flex flex-col gap-3 mb-6">
+                <a
+                  href="#contato"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full text-center py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-900 transition-all active:scale-[0.98]"
+                >
+                  Entre em contato
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center mt-6 px-6 max-w-md mx-auto">
+          
+          {/* Headline */}
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[2.2rem] xs:text-[2.6rem] font-normal leading-[1.08] tracking-[-0.04em] text-white mb-5"
+          >
+            Transforme seu <br />
+            ecossistema em um <br />
+            <span className="text-white/60 font-light">centro de serviços<br />financeiros</span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[14px] xs:text-[15px] leading-relaxed tracking-tight text-white max-w-[340px] mb-8 font-light"
+          >
+            Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
+          </motion.p>
+
+          {/* CTA Buttons - Side by Side */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center justify-center gap-3 w-full"
+          >
+            <a
+              href="#solucoes"
+              className="h-12 px-6 inline-flex items-center justify-center bg-[#002b8a]/30 hover:bg-[#002b8a]/45 border border-white/15 text-white text-[13px] font-bold tracking-wider uppercase rounded-full transition-all duration-200 active:scale-[0.98] shadow-sm backdrop-blur-md"
+            >
+              Ver Soluções
+            </a>
+
+            <a
+              href="#consultor"
+              className="h-12 pl-6 pr-2 inline-flex items-center gap-3 bg-white text-[#002b8a] rounded-full font-bold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md hover:bg-zinc-50 active:scale-[0.98]"
+            >
+              Começar
+              <div className="w-8 h-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center shrink-0 shadow-sm">
+                <ArrowUpRight className="size-4 stroke-[2.5]" />
+              </div>
+            </a>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center mt-6 px-6 max-w-md mx-auto">
-        
-        {/* Headline */}
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[2.2rem] xs:text-[2.6rem] font-normal leading-[1.08] tracking-[-0.04em] text-white mb-5"
-        >
-          Transforme seu <br />
-          <span className="font-bold">ecossistema</span> em um <br />
-          <span className="text-white/60 font-light">centro de serviços<br />financeiros</span>
-        </motion.h1>
-
-        {/* Description */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[14px] xs:text-[15px] leading-relaxed tracking-tight text-white/80 max-w-[340px] mb-8 font-light"
-        >
-          Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
-        </motion.p>
-
-        {/* CTA Buttons - Side by Side */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-3 w-full"
-        >
-          <a
-            href="#solucoes"
-            className="h-12 px-6 inline-flex items-center justify-center bg-[#002b8a]/30 hover:bg-[#002b8a]/45 border border-white/15 text-white text-[13px] font-bold tracking-wider uppercase rounded-full transition-all duration-200 active:scale-[0.98] shadow-sm backdrop-blur-md"
-          >
-            Ver Soluções
-          </a>
-
-          <a
-            href="#consultor"
-            className="h-12 pl-6 pr-2 inline-flex items-center gap-3 bg-white text-[#002b8a] rounded-full font-bold text-[13px] tracking-wider uppercase transition-all duration-200 cursor-pointer shadow-md hover:bg-zinc-50 active:scale-[0.98]"
-          >
-            Começar
-            <div className="w-8 h-8 rounded-full bg-[#002b8a] text-white flex items-center justify-center shrink-0 shadow-sm">
-              <ArrowUpRight className="size-4 stroke-[2.5]" />
-            </div>
-          </a>
-        </motion.div>
-      </div>
-
-      {/* 3D Rotating Carousel at the base */}
-      <div className="w-full overflow-visible h-[220px] relative mt-8 select-none flex items-center justify-center -translate-y-24">
-        <div className="carousel-scene w-full h-[210px] flex items-center justify-center">
-          <div className="carousel-a3d" style={{ '--n': 8 } as React.CSSProperties}>
-            
-            {/* Card 1: BaaS / Segurança */}
-            <div className="carousel-card bg-gradient-to-b from-[#e6f0ff] to-white p-3 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 0 } as React.CSSProperties}>
-              <div className="h-6 w-full bg-zinc-950 rounded-[10px] flex items-center justify-between px-2">
-                <span className="text-[6px] text-white font-semibold uppercase tracking-wider">BaaS API</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-              </div>
-              <div className="h-8 w-full flex items-end">
-                <svg className="w-full h-full text-blue-600" viewBox="0 0 100 40" fill="none">
-                  <path d="M0 35 Q 25 15, 50 25 T 100 5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-              </div>
-              <div>
-                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">PCI-DSS</span>
-                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">Segurança Ativa</span>
-              </div>
-            </div>
-
-            {/* Card 2: Meta Mensal */}
-            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 1 } as React.CSSProperties}>
-              <div className="flex flex-wrap gap-1">
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">Pix</span>
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">TED</span>
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">BaaS</span>
-              </div>
-              <div>
-                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Transações</span>
-                <span className="text-[14px] font-bold text-zinc-900 block leading-tight mt-0.5">520k+</span>
-                <span className="text-[8px] text-emerald-600 font-bold mt-0.5 block">↑ 12.4% este mês</span>
-              </div>
-              <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-600 rounded-full w-[78%]" />
-              </div>
-            </div>
-
-            {/* Card 3: Pix Automático */}
-            <div className="carousel-card bg-gradient-to-b from-[#217dff] to-[#0047df] p-3.5 flex flex-col justify-between text-white border border-white/10 shadow-lg" style={{ '--i': 2 } as React.CSSProperties}>
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mx-auto mt-1 shadow-sm">
-                <span className="text-[#0047df] text-base font-bold leading-none">+</span>
-              </div>
-              <div className="text-center mb-1">
-                <span className="text-[11px] font-bold block leading-tight">Pix Automático</span>
-                <span className="text-[8px] text-white/70 block mt-1 leading-normal">Cobranças recorrentes</span>
-              </div>
-            </div>
-
-            {/* Card 4: Pix Engine */}
-            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 3 } as React.CSSProperties}>
-              <div className="flex items-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider">Pix Engine</span>
-              </div>
-              <div className="flex flex-col gap-1.5 my-1">
-                <div className="flex justify-between items-center text-[9px]">
-                  <span className="text-zinc-400">Recebido</span>
-                  <span className="text-zinc-900 font-bold">+R$1.200</span>
+        {/* 3D Rotating Carousel at the base */}
+        <div className="w-full overflow-visible h-[220px] relative mt-8 select-none flex items-center justify-center -translate-y-24">
+          <div className="carousel-scene w-full h-[210px] flex items-center justify-center">
+            <div className="carousel-a3d" style={{ '--n': 8 } as React.CSSProperties}>
+              
+              {/* Card 1: API Uptime / Reliability */}
+              <div className="carousel-card bg-zinc-950 p-3.5 flex flex-col justify-between text-white border border-white/10 shadow-lg" style={{ '--i': 0 } as React.CSSProperties}>
+                <div className="flex items-center justify-between">
+                  <span className="text-[7.5px] text-zinc-400 font-bold uppercase tracking-wider">API Gateway</span>
+                  <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="text-[7px] text-blue-400 font-bold uppercase">Online</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center text-[9px]">
-                  <span className="text-zinc-400">Pago</span>
-                  <span className="text-zinc-900 font-bold">-R$350</span>
+                <div className="my-2">
+                  <span className="text-[20px] font-bold tracking-tight block">99.99%</span>
+                  <span className="text-[8px] text-zinc-400 block mt-0.5">Uptime garantido por SLA</span>
+                </div>
+                <div className="flex gap-1 h-3 items-end">
+                  {[20, 24, 18, 30, 28, 22, 35, 40, 38, 42, 45].map((val, idx) => (
+                    <div key={idx} className="flex-1 bg-blue-400/20 rounded-t-xs" style={{ height: `${val}%` }} />
+                  ))}
                 </div>
               </div>
-              <span className="text-[8px] text-zinc-500 text-center block font-semibold border-t border-zinc-50 pt-1">Tarifa Zero</span>
-            </div>
 
-            {/* Card 5: Aprovações */}
-            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 4 } as React.CSSProperties}>
-              <div className="flex -space-x-1.5">
-                <div className="w-6 h-6 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white shadow-sm">L</div>
-                <div className="w-6 h-6 rounded-full bg-zinc-800 border-2 border-white flex items-center justify-center text-[8px] font-bold text-white shadow-sm">M</div>
-              </div>
-              <div>
-                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">Fluxos</span>
-                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">Aprovações</span>
-              </div>
-              <span className="text-[8px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md block w-fit">Sucesso OK</span>
-            </div>
-
-            {/* Card 6: Expertise */}
-            <div className="carousel-card bg-zinc-950 p-3.5 flex flex-col justify-between text-white border border-white/5 shadow-md" style={{ '--i': 5 } as React.CSSProperties}>
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-blue-600" />
-                <span className="text-[8px] text-zinc-400 font-bold uppercase tracking-wider">Expertise</span>
-              </div>
-              <p className="text-[10px] text-zinc-300 leading-relaxed font-semibold">
-                Cobrar, pagar ou automatizar: tudo via Pix.
-              </p>
-              <span className="text-[8px] text-zinc-500 block">Asset Engine</span>
-            </div>
-
-            {/* Card 7: Performance */}
-            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 6 } as React.CSSProperties}>
-              <div>
-                <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Estabilidade</span>
-                <div className="flex items-baseline gap-0.5 mt-0.5">
-                  <span className="text-[14px] font-bold text-zinc-900">99.9%</span>
+              {/* Card 2: Revenue Flow */}
+              <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 1 } as React.CSSProperties}>
+                <div className="flex justify-between items-start">
+                  <span className="text-[8px] text-zinc-400 font-bold uppercase tracking-wider">Volume Pix</span>
+                  <span className="text-[8px] text-blue-500 font-bold bg-blue-50 px-1.5 py-0.5 rounded-md">+24%</span>
                 </div>
-                <span className="text-[8px] text-zinc-400 block mt-0.5">API Uptime</span>
+                <div>
+                  <span className="text-[17px] font-bold text-zinc-900 block tracking-tight">R$ 1.48M</span>
+                  <span className="text-[7.5px] text-zinc-500 block leading-tight mt-0.5">Liquidação instantânea</span>
+                </div>
+                <div className="h-6 w-full text-blue-400">
+                  <svg className="w-full h-full" viewBox="0 0 100 30" fill="none">
+                    <defs>
+                      <linearGradient id="card2Grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M0 25 C 20 22, 40 28, 60 12 C 80 5, 90 2, 100 2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                    <path d="M0 25 C 20 22, 40 28, 60 12 C 80 5, 90 2, 100 2 L 100 30 L 0 30 Z" fill="url(#card2Grad)" />
+                  </svg>
+                </div>
               </div>
-              <div className="h-6 w-full text-blue-600 shrink-0">
-                <svg className="w-full h-full" viewBox="0 0 100 30" fill="none">
-                  <path d="M0 25 Q 25 10, 50 20 T 100 5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-              </div>
-            </div>
 
-            {/* Card 8: BaaS Integrado */}
-            <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 7 } as React.CSSProperties}>
-              <div className="flex flex-wrap gap-1">
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">TED</span>
-                <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-md font-semibold">BaaS</span>
+              {/* Card 3: Pix Automático (Recorrente) */}
+              <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 2 } as React.CSSProperties}>
+                <div className="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center shadow-inner">
+                  <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="text-[12px] font-bold block leading-tight tracking-tight text-zinc-900">Pix Recorrente</span>
+                  <span className="text-[8px] text-zinc-500 block mt-1 leading-normal">Faturas automatizadas sem atrito</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[9px] font-bold bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">Recorrência</span>
+                  <span className="text-[8px] text-zinc-400">Ativo</span>
+                </div>
               </div>
-              <div>
-                <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">Infraestrutura</span>
-                <span className="text-[11px] text-zinc-900 font-bold block leading-tight mt-0.5">BaaS Integrado</span>
-              </div>
-              <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-600 rounded-full w-[90%]" />
-              </div>
-            </div>
 
+              {/* Card 4: Cartão Virtual Corporativo */}
+              <div className="carousel-card bg-gradient-to-b from-[#18181b] to-black p-3.5 flex flex-col justify-between text-white border border-white/10 shadow-lg" style={{ '--i': 3 } as React.CSSProperties}>
+                <div className="flex justify-between items-center">
+                  <span className="text-[7px] text-zinc-500 font-bold uppercase tracking-wider">Asset Card</span>
+                  {/* Metal Chip Mockup */}
+                  <div className="w-5 h-4 bg-blue-500/10 rounded border border-blue-400/20 flex flex-wrap p-0.5">
+                    <div className="w-[30%] h-[40%] bg-blue-400/20 m-px rounded-3xs" />
+                    <div className="w-[30%] h-[40%] bg-blue-400/20 m-px rounded-3xs" />
+                  </div>
+                </div>
+                <div className="my-1.5 text-center">
+                  <span className="text-[12px] font-mono tracking-widest text-zinc-300">•••• 8821</span>
+                </div>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <span className="text-[6px] text-zinc-500 block uppercase">Portador</span>
+                    <span className="text-[8px] font-bold text-zinc-300 uppercase block tracking-tight">Livia C. Silva</span>
+                  </div>
+                  <span className="text-[8px] text-blue-400 font-bold uppercase tracking-wider">Visa Platinum</span>
+                </div>
+              </div>
+
+              {/* Card 5: Safe Escrow / Garantia */}
+              <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 4 } as React.CSSProperties}>
+                <div className="flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                  </svg>
+                  <span className="text-[7.5px] text-zinc-400 font-bold uppercase tracking-wider">Custódia</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-zinc-400 block font-semibold leading-none">Conta Escrow</span>
+                  <span className="text-[15px] font-bold text-zinc-900 block mt-0.5 tracking-tight">R$ 420.000</span>
+                </div>
+                <span className="text-[7.5px] text-blue-500 bg-blue-50 px-2 py-0.5 rounded-md block w-fit">Homologado</span>
+              </div>
+
+              {/* Card 6: Approval Flow */}
+              <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 5 } as React.CSSProperties}>
+                <div className="flex -space-x-1.5">
+                  <div className="w-5 h-5 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">L</div>
+                  <div className="w-5 h-5 rounded-full bg-zinc-800 border-2 border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">M</div>
+                  <div className="w-5 h-5 rounded-full bg-zinc-300 border-2 border-white flex items-center justify-center text-[7px] font-bold text-zinc-700 shadow-sm">+1</div>
+                </div>
+                <div>
+                  <span className="text-[7.5px] text-zinc-400 block font-bold uppercase tracking-wider">Alçadas de Risco</span>
+                  <span className="text-[12px] text-zinc-900 font-bold block leading-tight mt-0.5 tracking-tight">Aprovações</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="text-[8px] text-blue-500 font-bold">Aguardando Diretor</span>
+                </div>
+              </div>
+
+              {/* Card 7: Zero Fees */}
+              <div className="carousel-card bg-white p-3.5 flex flex-col justify-between text-zinc-900 border border-zinc-100 shadow-md" style={{ '--i': 6 } as React.CSSProperties}>
+                <div className="flex justify-between items-center">
+                  <span className="text-[7.5px] text-zinc-400 font-bold uppercase tracking-wider">Custos Fixos</span>
+                  <span className="w-4 h-4 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center text-[9px] font-bold">%</span>
+                </div>
+                <div>
+                  <span className="text-[18px] font-bold text-zinc-900 block tracking-tight">R$ 0,00</span>
+                  <span className="text-[7.5px] text-zinc-500 block leading-tight mt-0.5">Sem taxa de setup</span>
+                </div>
+                <span className="text-[8px] text-zinc-500 text-center block font-semibold border-t border-zinc-100 pt-1.5">Zero Mensalidades</span>
+              </div>
+
+              {/* Card 8: BaaS Recorrente / API */}
+              <div className="carousel-card bg-zinc-950 p-3.5 flex flex-col justify-between text-white border border-white/10 shadow-lg" style={{ '--i': 7 } as React.CSSProperties}>
+                <div className="flex justify-between items-start">
+                  <span className="text-[7.5px] text-zinc-500 font-bold uppercase tracking-wider">API Integration</span>
+                  <div className="bg-blue-500/10 text-blue-400 text-[6.5px] px-1.5 py-0.5 rounded font-mono font-bold">v2.0</div>
+                </div>
+                <p className="text-[10px] text-zinc-300 leading-snug font-semibold mt-1">
+                  Integrado via SDK em apenas algumas linhas de código.
+                </p>
+                <div className="flex items-center justify-between text-[7px] text-zinc-500 border-t border-white/5 pt-1.5">
+                  <span>Webhooks</span>
+                  <span className="text-blue-400 font-bold">100% OK</span>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -324,7 +349,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           style={{ willChange: "transform, opacity, filter" }}
-          className="mb-24 text-center"
+          className="mb-24 text-center mt-10 sm:mt-0"
         >
           <ScrollFloat
             animationDuration={1}
