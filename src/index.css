@@ -108,3 +108,52 @@ textarea {
   background-color: #ffffff;
   transform-origin: top;
 }
+
+/* ====== 3D Carousel Styles ====== */
+.carousel-scene, .carousel-a3d {
+  display: grid;
+}
+
+.carousel-scene {
+  overflow: hidden;
+  perspective: 35em;
+  width: 100%;
+  height: 100%;
+  mask: linear-gradient(90deg, #0000, red 20% 80%, #0000);
+  -webkit-mask: linear-gradient(90deg, #0000, red 20% 80%, #0000);
+}
+
+.carousel-a3d {
+  place-self: center;
+  transform-style: preserve-3d;
+  animation: ry 32s linear infinite;
+}
+
+@keyframes ry {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.carousel-card {
+  --w: 6.2em;
+  --ba: 360deg / var(--n);
+  grid-area: 1 / 1;
+  width: var(--w);
+  aspect-ratio: 7 / 10;
+  object-fit: cover;
+  border-radius: 1.2em;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform:
+    rotateY(calc(var(--i) * var(--ba)))
+    translateZ(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-a3d {
+    animation-duration: 128s;
+  }
+}
+

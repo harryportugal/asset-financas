@@ -177,82 +177,34 @@ interface MobileHeroProps {
         </motion.div>
       </div>
 
-      {/* Floating Mockup Cards at the base */}
-      <div className="w-full flex items-end justify-center gap-2.5 px-4 overflow-visible h-[155px] relative mt-10 select-none pointer-events-none">
-        
-        {/* Card 1: Left */}
-        <motion.div
-          animate={{ y: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
-          className="w-[95px] h-[120px] bg-white/95 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg p-2.5 flex flex-col justify-between shrink-0 rotate-[-6deg] translate-y-7"
-        >
-          <div className="h-5 w-full bg-zinc-950 rounded-lg flex items-center justify-between px-1.5">
-            <span className="text-[5.5px] text-white font-medium">BaaS API</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+      {/* 3D Rotating Carousel at the base */}
+      <div className="w-full overflow-visible h-[160px] relative mt-10 select-none flex items-center justify-center">
+        <div className="carousel-scene w-full h-[150px] flex items-center justify-center">
+          <div className="carousel-a3d" style={{ '--n': 12 } as React.CSSProperties}>
+            {[
+              '1540968221243-29f5d70540bf',
+              '1596135187959-562c650d98bc',
+              '1628944682084-831f35256163',
+              '1590013330451-3946e83e0392',
+              '1590421959604-741d0eec0a2e',
+              '1572613000712-eadc57acbecd',
+              '1570097192570-4b49a6736f9f',
+              '1620789550663-2b10e0080354',
+              '1617775623669-20bff4ffaa5c',
+              '1548600916-dc8492f8e845',
+              '1573824969595-a76d4365a2e6',
+              '1633936929709-59991b5fdd72'
+            ].map((code, index) => (
+              <img
+                key={code}
+                className="carousel-card"
+                src={`https://images.unsplash.com/photo-${code}?w=280`}
+                style={{ '--i': index } as React.CSSProperties}
+                alt={`jellyfish ${index}`}
+              />
+            ))}
           </div>
-          <div className="h-6 w-full flex items-end">
-            <svg className="w-full h-full text-blue-600" viewBox="0 0 100 40" fill="none">
-              <path d="M0 35 Q 25 15, 50 25 T 100 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div>
-            <span className="text-[7px] text-zinc-400 block font-medium">PCI-DSS</span>
-            <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Segurança</span>
-          </div>
-        </motion.div>
-
-        {/* Card 2: Center Left */}
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-          className="w-[120px] h-[130px] bg-white rounded-2xl border border-zinc-100 shadow-xl p-3 flex flex-col justify-between shrink-0 rotate-[-2deg] translate-y-3 z-10"
-        >
-          <div className="flex flex-wrap gap-1">
-            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">Pix</span>
-            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">TED</span>
-            <span className="text-[6.5px] bg-zinc-50 border border-zinc-100 text-zinc-600 px-1 py-0.5 rounded-sm font-medium">BaaS</span>
-          </div>
-          <div>
-            <span className="text-[7.5px] font-bold text-zinc-400 uppercase tracking-wider block">Transações</span>
-            <span className="text-[13px] font-bold text-zinc-900 block leading-tight mt-0.5">520k+</span>
-            <span className="text-[8px] text-emerald-600 font-semibold mt-0.5 block">↑ 12.4% este mês</span>
-          </div>
-          <div className="h-1.5 w-full bg-zinc-100 rounded-full overflow-hidden">
-            <div className="h-full bg-blue-600 rounded-full w-[78%]" />
-          </div>
-        </motion.div>
-
-        {/* Card 3: Center Right */}
-        <motion.div
-          animate={{ y: [0, -7, 0] }}
-          transition={{ repeat: Infinity, duration: 5.2, ease: "easeInOut" }}
-          className="w-[120px] h-[130px] bg-gradient-to-b from-blue-500 to-blue-700 rounded-2xl shadow-xl p-3 flex flex-col justify-between shrink-0 rotate-[3deg] translate-y-3 z-10 text-white border border-white/10"
-        >
-          <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center mx-auto mt-1 shadow-sm">
-            <span className="text-blue-600 text-sm font-bold leading-none">+</span>
-          </div>
-          <div className="text-center mb-1">
-            <span className="text-[10px] font-bold block leading-tight">Pix Automático</span>
-            <span className="text-[7.5px] text-white/80 block mt-0.5 leading-normal">Cobranças recorrentes</span>
-          </div>
-        </motion.div>
-
-        {/* Card 4: Right */}
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 4.6, ease: "easeInOut" }}
-          className="w-[95px] h-[120px] bg-white/95 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg p-2.5 flex flex-col justify-between shrink-0 rotate-[8deg] translate-y-7"
-        >
-          <div className="flex -space-x-1.5">
-            <div className="w-5 h-5 rounded-full bg-blue-600 border border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">L</div>
-            <div className="w-5 h-5 rounded-full bg-zinc-800 border border-white flex items-center justify-center text-[7px] font-bold text-white shadow-sm">M</div>
-          </div>
-          <div>
-            <span className="text-[7px] text-zinc-400 block font-medium">Fluxos</span>
-            <span className="text-[9px] text-zinc-900 font-bold block leading-tight">Aprovações</span>
-          </div>
-          <span className="text-[7.5px] text-emerald-600 font-bold bg-emerald-50 px-1 py-0.5 rounded-sm block w-fit">Sucesso OK</span>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
