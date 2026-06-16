@@ -836,10 +836,13 @@ function App() {
   // Detect large screens (monitors >= 1800px wide) and mobile screens (< 1024px)
   const [isLargeScreen, setIsLargeScreen] = useState(() => window.innerWidth >= 1800);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
+  const windowHeightRef = useRef(window.innerHeight);
+
   useEffect(() => {
     const onResize = () => {
       setIsLargeScreen(window.innerWidth >= 1800);
       setIsMobile(window.innerWidth < 1024);
+      windowHeightRef.current = window.innerHeight;
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
@@ -915,7 +918,7 @@ function App() {
       }
 
       const currentScrollY = e.scroll;
-      const viewHeight = window.innerHeight;
+      const viewHeight = windowHeightRef.current;
 
       // Calcula o progresso de 0 a 1 do scroll do Hero
       const progress = Math.min(1, Math.max(0, currentScrollY / viewHeight));
@@ -954,7 +957,7 @@ function App() {
         lastFrame = newFrame;
 
         // Direct DOM update: Bypassing React rendering entirely for smooth 60/120fps scrolling
-        if (heroImageRef.current && window.innerWidth >= 1024) {
+        if (heroImageRef.current && !isMobileRef.current) {
           heroImageRef.current.src = "herozinha.webp";
         }
 
