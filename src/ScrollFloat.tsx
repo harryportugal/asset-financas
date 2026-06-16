@@ -24,24 +24,46 @@ interface ScrollFloatProps {
   animateTrigger?: boolean;
 }
 
+// Helper to split a string into words and chars to prevent mid-word wrapping
+function splitTextIntoWordsAndChars(text: string, keyPrefix: string): ReactNode[] {
+  const result: ReactNode[] = [];
+  const parts = text.split(/(\s+)/);
+  
+  parts.forEach((part, index) => {
+    const key = `${keyPrefix}-w-${index}`;
+    if (part.trim() === '') {
+      // It's a space or multiple spaces
+      part.split('').forEach((spaceChar, spaceIdx) => {
+        result.push(
+          <span className="char space" key={`${key}-space-${spaceIdx}`}>
+            {spaceChar}
+          </span>
+        );
+      });
+    } else {
+      // It's a word! Wrap it in a span.word to prevent internal wrapping
+      const chars = part.split('').map((char, charIdx) => {
+        return (
+          <span className="char" key={`${key}-char-${charIdx}`}>
+            {char}
+          </span>
+        );
+      });
+      result.push(
+        <span className="word" key={key} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+          {chars}
+        </span>
+      );
+    }
+  });
+  
+  return result;
+}
+
 // Helper to recursively walk a ReactNode and wrap individual characters in a span.char with unique keys
 function splitReactNode(node: ReactNode, keyPrefix: string = 'sf'): ReactNode {
   if (typeof node === 'string') {
-    return node.split('').map((char, index) => {
-      const key = `${keyPrefix}-ch-${index}`;
-      if (char === ' ') {
-        return (
-          <span className="char space" key={key}>
-            {' '}
-          </span>
-        );
-      }
-      return (
-        <span className="char" key={key}>
-          {char}
-        </span>
-      );
-    });
+    return splitTextIntoWordsAndChars(node, keyPrefix);
   }
   if (typeof node === 'number') {
     return splitReactNode(String(node), keyPrefix);

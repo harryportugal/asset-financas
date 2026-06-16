@@ -3,7 +3,7 @@ import { ArrowRight, Wallet, Users, BarChart3 } from "lucide-react";
 
 export function DashboardSection() {
 	return (
-		<section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
+		<section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16">
 			<div className="max-w-[1440px] mx-auto w-full">
 				
 				{/* Section Header */}
@@ -16,7 +16,7 @@ export function DashboardSection() {
 						style={{ willChange: "transform, opacity, filter" }}
 						className="max-w-2xl"
 					>
-						<h2 className="text-[2.2rem] sm:text-[2.5rem] font-normal text-gray-900 tracking-tight leading-[1.15] mb-4">
+						<h2 className="text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-normal text-gray-900 tracking-tight leading-[1.15] mb-4">
 							Gestão completa em um só <span className="font-bold">Dashboard</span>
 						</h2>
 						<p className="text-gray-500 text-[14px] sm:text-[15.5px] font-normal leading-relaxed">

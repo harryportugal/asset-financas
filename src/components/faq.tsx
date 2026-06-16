@@ -46,7 +46,7 @@ export function FAQ() {
 				style={{ willChange: "transform, opacity, filter" }}
 				className="flex flex-col justify-start md:sticky md:top-24 h-fit"
 			>
-				<h2 className="text-[2.0rem] sm:text-[2.3rem] font-bold text-gray-900 tracking-tight leading-tight">
+				<h2 className="text-[1.8rem] sm:text-[2.0rem] lg:text-[2.3rem] font-bold text-gray-900 tracking-tight leading-tight">
 					Perguntas Frequentes
 				</h2>
 				

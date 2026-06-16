@@ -6,18 +6,30 @@ import { FeatureSection } from './components/feature-section';
 import { FAQ } from './components/faq';
 import { Testimonials } from './components/testimonials';
 import { Footer } from './components/footer';
-import { motion } from 'framer-motion';
-import { DashboardSection } from './components/dashboard-section';
+import { motion, AnimatePresence } from 'framer-motion';
+import { DashboardShowcase } from './components/dashboard-showcase';
+import { DigitalAccountFeatures } from './components/digital-account-features';
+
 
 
 // Logo component loading the custom PNG from public directory, styled in pure black, sized significantly larger
-const Logo = ({ logoRef, opacity }: { logoRef?: React.RefObject<HTMLImageElement | null>, opacity?: number }) => (
+const Logo = ({ 
+  logoRef, 
+  opacity, 
+  className, 
+  style 
+}: { 
+  logoRef?: React.RefObject<HTMLImageElement | null>; 
+  opacity?: number; 
+  className?: string; 
+  style?: React.CSSProperties; 
+}) => (
   <img 
     ref={logoRef}
     src="logo%20asset.png" 
     alt="Asset Finanças Logo" 
-    className="w-10 h-10 sm:w-12 sm:h-12 object-contain select-none pointer-events-none"
-    style={{ filter: 'brightness(0)', opacity: opacity ?? 1, transition: 'opacity 0.2s ease-out' }}
+    className={className ?? "w-10 h-10 sm:w-12 sm:h-12 object-contain select-none pointer-events-none"}
+    style={{ filter: 'brightness(0)', opacity: opacity ?? 1, transition: 'opacity 0.2s ease-out', ...style }}
   />
 );
 
@@ -35,6 +47,185 @@ const bentoCardVariants = {
     }
   })
 };
+
+interface MobileHeroProps {
+  startHeroIntro: boolean;
+  headerLogoRef: React.RefObject<HTMLImageElement | null>;
+  navLinks: string[];
+}
+function MobileHero({ startHeroIntro, headerLogoRef, navLinks }: MobileHeroProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <div className="relative h-full w-full flex flex-col justify-between pt-6 pb-0 overflow-hidden bg-white font-sans text-zinc-900 border-b border-zinc-100">
+      {/* Mobile Header */}
+      <header className="relative z-50 flex items-center justify-between w-full px-6">
+        {/* Logo Icon Only */}
+        <div className="flex items-center">
+          <img 
+            ref={headerLogoRef}
+            src="logo%20asset.png" 
+            alt="Asset Logo" 
+            className="w-16 h-16 object-contain select-none pointer-events-none"
+            style={{ filter: 'brightness(0)' }} 
+          />
+        </div>
+
+        {/* Right side menu */}
+        <div className="flex items-center">
+          {/* Custom 2-bar menu button */}
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className="flex flex-col justify-center items-end gap-1.5 w-8 h-8 cursor-pointer z-50 animate-none"
+            aria-label="Menu"
+          >
+            <div className={`h-[2px] bg-zinc-900 transition-all duration-300 ${isMenuOpen ? 'w-6 rotate-45 translate-y-[4px]' : 'w-6'}`} />
+            <div className={`h-[2px] bg-zinc-900 transition-all duration-300 ${isMenuOpen ? 'w-6 -rotate-45 -translate-y-[4px]' : 'w-4'}`} />
+          </button>
+        </div>
+      </header>
+
+      {/* Fullscreen Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col justify-between p-6 pt-28 text-zinc-900"
+          >
+            <div className="flex flex-col gap-6 text-center mt-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-2xl font-semibold text-zinc-800 hover:text-black transition-colors py-2 active:scale-98 transition-transform"
+                >
+                  {link}
+                </a>
+              ))}
+              <div className="h-px bg-zinc-200/60 my-2" />
+              <a
+                href="#conta"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-xl font-semibold text-zinc-700 hover:text-black transition-colors"
+              >
+                Acesse sua conta
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-3 mb-6">
+              <a
+                href="#contato"
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full text-center py-4 bg-black text-white font-semibold rounded-full hover:bg-zinc-900 transition-all active:scale-[0.98]"
+              >
+                Entre em contato
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex-1 flex flex-col items-start justify-center text-left mt-8 px-6 max-w-md">
+        
+        {/* Announcement Badge */}
+        <motion.a
+          href="#solucoes"
+          initial={{ y: 15, opacity: 0 }}
+          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center gap-1.5 bg-zinc-50 border border-zinc-200/80 rounded-full px-4 py-2 text-[12px] text-zinc-650 font-medium hover:bg-zinc-100 hover:text-zinc-900 transition-all mb-6 shadow-xs"
+        >
+          <span>Lançamento: Pix Automático e Recorrente</span>
+          <span className="text-zinc-400">→</span>
+        </motion.a>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ y: 20, opacity: 0 }}
+          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[2.8rem] xs:text-[3.4rem] font-extralight leading-[1.05] tracking-[-0.035em] text-zinc-900 mb-6"
+        >
+          <span className="font-bold">Transforme</span> seu<br />
+          <span className="font-bold">ecossistema</span> em<br />
+          um centro de<br />
+          <span className="font-bold">serviços<br />financeiros</span>
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[16px] xs:text-[17px] leading-[1.35] tracking-tight text-zinc-500 max-w-[340px] mb-8"
+        >
+          <span className="font-semibold text-zinc-900 block mb-2">
+            Fidelize clientes e crie novas receitas com Banking As A Service.
+          </span>
+          <span className="font-extralight text-zinc-500">
+            Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
+          </span>
+        </motion.p>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <a
+            href="#consultor"
+            className="inline-block bg-zinc-900 hover:bg-black text-white text-[15px] font-semibold px-7 py-3.5 rounded-full transition-all duration-300 active:scale-[0.98] shadow-sm hover:shadow-md"
+          >
+            Falar com consultor
+          </a>
+        </motion.div>
+      </div>
+
+      {/* Dashboard Preview Mockup at the base */}
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={startHeroIntro ? { 
+          y: 0, 
+          opacity: 1,
+          transition: { duration: 1.0, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
+        } : {}}
+        className="w-full mt-10 select-none overflow-hidden relative flex flex-col rounded-t-2xl border-t border-x border-zinc-200/60 shadow-[0_-8px_32px_rgba(0,0,0,0.04)] bg-white max-w-sm mx-auto shrink-0"
+      >
+        {/* Browser Top Bar */}
+        <div className="bg-zinc-50 border-b border-zinc-200/50 px-4 py-2 flex items-center justify-between select-none">
+          {/* Window dots */}
+          <div className="flex gap-1 w-12">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+          </div>
+          
+          {/* Search Bar URL */}
+          <div className="bg-white border border-zinc-200/40 rounded px-2.5 py-0.5 flex items-center justify-center gap-1 shadow-xs">
+            <span className="text-[9px] text-zinc-400 font-medium">app.assetfinancas.com.br</span>
+          </div>
+
+          <div className="w-12" />
+        </div>
+
+        {/* Dashboard image content */}
+        <div className="bg-white p-1.5 h-[140px] overflow-hidden">
+          <img 
+            src="dash2.png" 
+            alt="Dashboard Preview" 
+            className="w-full h-auto object-cover object-left-top rounded-md shadow-xs"
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 function App() {
   const navLinks = ['Início', 'Infraestrutura', 'Soluções', 'Pagamentos', 'Recursos'];
@@ -65,8 +256,9 @@ function App() {
   // Background frame preloader with progress tracking
   useEffect(() => {
     let isMounted = true;
+    const isMob = window.innerWidth < 1024;
     const imagesToPreload = [
-      "hero.webp",
+      isMob ? "hero mobile.jpg" : "hero.webp",
       "logo%20asset.png",
       "avatar-1.webp",
       "avatar-2.webp",
@@ -78,9 +270,11 @@ function App() {
       "cards%20bento/card-d-baas.webp",
     ];
 
-    // Add all 122 animation frames (starting from frame 2 because frame 1 is hero.webp)
-    for (let i = 2; i <= totalFrames; i++) {
-      imagesToPreload.push(`frames/frame_${String(i).padStart(4, '0')}.webp`);
+    if (!isMob) {
+      // Add all 60 animation frames (starting from frame 2 because frame 1 is hero.webp)
+      for (let i = 2; i <= totalFrames; i++) {
+        imagesToPreload.push(`frames/frame_${String(i).padStart(4, '0')}.webp`);
+      }
     }
 
     let loadedCount = 0;
@@ -174,11 +368,14 @@ function App() {
     }
   }, [loadingProgress, preloaderState]);
 
-
-  // Detect large screens (monitors >= 1800px wide) to nudge content up
+  // Detect large screens (monitors >= 1800px wide) and mobile screens (< 1024px)
   const [isLargeScreen, setIsLargeScreen] = useState(() => window.innerWidth >= 1800);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
   useEffect(() => {
-    const onResize = () => setIsLargeScreen(window.innerWidth >= 1800);
+    const onResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1800);
+      setIsMobile(window.innerWidth < 1024);
+    };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -260,7 +457,7 @@ function App() {
         lastFrame = newFrame;
 
         // Direct DOM update: Bypassing React rendering entirely for smooth 60/120fps scrolling
-        if (heroImageRef.current) {
+        if (heroImageRef.current && window.innerWidth >= 1024) {
           heroImageRef.current.src = newFrame === 1 ? "hero.webp" : `frames/frame_${String(newFrame).padStart(4, '0')}.webp`;
         }
 
@@ -290,228 +487,219 @@ function App() {
   
   return (
     <>
-      {/* Mobile Block Screen */}
-      <div className="mobile-block-screen">
-        <div className="mobile-block-content px-6">
-          <img 
-            src="logo%20asset.png" 
-            alt="Asset Logo" 
-            className="w-16 h-16 object-contain mb-8 opacity-90 select-none pointer-events-none"
-            style={{ filter: 'brightness(0)' }}
-          />
-          <h1 className="text-[20px] sm:text-[22px] font-bold text-black tracking-tight mb-3">
-            Preparando a Experiência Mobile
-          </h1>
-          <p className="text-[13px] text-black/60 leading-relaxed max-w-[300px]">
-            O ecossistema financeiro da Asset está passando por otimizações para oferecer a melhor experiência em dispositivos móveis. Acesse a plataforma através de um computador.
-          </p>
-        </div>
-      </div>
-
-      {/* ─── 3D Scroll Hero ─── */}
-      <div className="relative min-h-[180vh] bg-white">
-      {/* Sticky wrapper that remains fixed in viewport while user scrolls */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
-        
-        {/* Fullscreen background image / 3D frame */}
-        <motion.img
-          ref={heroImageRef}
-          src="hero.webp"
-          alt="3D Animation / Hero Background"
-          initial={{ scale: 1.08 }}
-          animate={startHeroIntro ? { scale: 1 } : {}}
-          transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
-        />
-
-        {/* Foreground content wrapper */}
-        <div className="relative z-10 flex flex-col h-full w-full justify-between">
-          
-          {/* Navbar wrapper: stable positioning layout to prevent backdrop-filter glitches and maintain logo target static alignment */}
-          <div 
-            className="w-full flex items-center justify-center pt-6 px-8 z-20 pointer-events-auto"
-          >
-            {/* Centered, pill-style, morphs smoothly into a single pill on scroll */}
-            <nav 
-              ref={navRef}
-              style={{
-                '--nav-progress': '0',
-                backdropFilter: 'blur(24px) saturate(160%)',
-                WebkitBackdropFilter: 'blur(24px) saturate(160%)'
-              } as React.CSSProperties}
-              className="morphing-nav flex items-center justify-center rounded-full"
-            >
-              {/* Left circular logo container: static Y coordinates for perfect flying morph landing, fades in */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={startHeroIntro ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-                className="morphing-nav-child flex items-center justify-center rounded-full w-14 h-14 shrink-0"
-              >
-                {/* Inner logo wrapper that cross-fades exactly when the flying logo lands */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={startHeroIntro ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.1, delay: 1.1, ease: 'linear' }}
-                  className="w-full h-full flex items-center justify-center"
-                >
-                  <Logo logoRef={headerLogoRef} opacity={1} />
-                </motion.div>
-              </motion.div>
-
-              {/* Right pill container: links + actions, slides down independently */}
-              <motion.div
-                initial={{ y: -25, opacity: 0 }}
-                animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="morphing-nav-child morphing-nav-links flex items-center rounded-full"
-              >
-                {navLinks.map((link) => (
-                  <a
-                    key={link}
-                    href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
-                    className="text-[14px] font-semibold text-black hover:text-black/70 transition-colors duration-200 whitespace-nowrap"
-                  >
-                    {link}
-                  </a>
-                ))}
-
-                {/* Separator */}
-                <div className="w-px h-4 bg-black/15 shrink-0" />
-
-                {/* Acesse sua conta */}
-                <a
-                  href="#conta"
-                  className="text-[14px] font-semibold text-black hover:text-black/70 transition-colors duration-200 whitespace-nowrap"
-                >
-                  Acesse sua conta
-                </a>
-
-                {/* Entre em contato CTA button */}
-                <a
-                  href="#contato"
-                  className="text-[14px] font-semibold text-white bg-black rounded-full px-4 py-2 hover:bg-black/80 transition-colors duration-200 whitespace-nowrap shrink-0"
-                >
-                  Entre em contato
-                </a>
-              </motion.div>
-            </nav>
+      <div className={isMobile ? "relative w-full bg-white" : "relative min-h-[180vh] bg-white"}>
+        {isMobile ? (
+          <div className="sticky top-0 h-[75vh] w-full overflow-hidden flex flex-col justify-between bg-white z-0">
+            <MobileHero 
+              startHeroIntro={startHeroIntro} 
+              headerLogoRef={headerLogoRef} 
+              navLinks={navLinks} 
+            />
           </div>
+        ) : (
+          /* Sticky wrapper that remains fixed in viewport while user scrolls */
+          <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
+            
+            {/* Fullscreen background image / 3D frame */}
+            <motion.img
+              ref={heroImageRef}
+              src="hero.webp"
+              alt="3D Animation / Hero Background"
+              initial={{ scale: 1.08 }}
+              animate={startHeroIntro ? { scale: 1 } : {}}
+              transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
+            />
 
-          {/* Hero content: bottom-left aligned */}
-          <div 
-            ref={heroContentRef}
-            className="flex-1 flex items-end pr-28 transition-all duration-75"
-            style={{
-              paddingBottom: isLargeScreen ? '260px' : '190px',
-              paddingLeft: isLargeScreen ? '340px' : '256px',
-              opacity: 1,
-              filter: 'blur(0px)',
-              transform: 'translate3d(0, 0px, 0)',
-            }}
-          >
-            <div 
-              style={{ maxWidth: isLargeScreen ? '420px' : '384px' }}
-            >
+            {/* Foreground content wrapper */}
+            <div className="relative z-10 flex flex-col h-full w-full justify-between">
               
-              {/* Social Proof (Active Users badge) */}
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 1.0, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-center gap-3 mb-4 select-none"
+              {/* Navbar wrapper: stable positioning layout to prevent backdrop-filter glitches and maintain logo target static alignment */}
+              <div 
+                className="w-full flex items-center justify-center pt-6 px-8 z-20 pointer-events-auto"
               >
-                <div className="flex -space-x-2">
-                  <img
-                    className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="avatar-1.webp"
-                    alt="Usuário 1"
-                  />
-                  <img
-                    className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="avatar-2.webp"
-                    alt="Usuário 2"
-                  />
-                  <img
-                    className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="avatar-3.webp"
-                    alt="Usuário 3"
-                  />
-                  <img
-                    className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
-                    src="avatar-4.webp"
-                    alt="Usuário 4"
-                  />
-                  <div className="w-9 h-9 rounded-full border-2 border-blue-500 bg-white flex items-center justify-center text-[11px] font-bold text-gray-900">
-                    32k
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* 2. Headline <h1> */}
-              <ScrollFloat
-                as="h1"
-                scrollTriggered={false}
-                animateTrigger={startHeroIntro}
-                animationDuration={0.8}
-                stagger={0.012}
-                delay={0.2}
-                style={{ fontSize: isLargeScreen ? '2.2rem' : '1.95rem' }}
-                containerClassName="leading-[1.15] font-normal text-white tracking-tight mb-3"
-              >
-                <span className="font-bold">Transforme</span> seu<br />
-                <span className="font-bold">ecossistema</span> em um<br />
-                centro de <span className="font-bold">serviços<br />financeiros</span>
-              </ScrollFloat>
-
-              {/* 3. Subtext <p> */}
-              <ScrollFloat
-                as="p"
-                scrollTriggered={false}
-                animateTrigger={startHeroIntro}
-                animationDuration={0.8}
-                stagger={0.003}
-                delay={0.4}
-                style={{ fontSize: isLargeScreen ? '16px' : '14.5px' }}
-                containerClassName="text-white font-normal mb-3"
-              >
-                Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
-              </ScrollFloat>
-
-              {/* 4. CTA anchor */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 1.0, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <a
-                  href="#consultor"
-                  className="inline-flex items-center gap-2 font-medium text-white border border-white/80 rounded-full px-5 py-2.5 hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-200 group"
+                {/* Centered, pill-style, morphs smoothly into a single pill on scroll */}
+                <nav 
+                  ref={navRef}
                   style={{
-                    fontSize: isLargeScreen ? '15px' : '13.5px',
-                    boxShadow: '0 0 1px rgba(255, 255, 255, 0.8)',
-                    transform: 'translate3d(0,0,0)',
-                    WebkitFontSmoothing: 'antialiased',
-                    backgroundClip: 'padding-box'
-                  }}
+                    '--nav-progress': '0',
+                    backdropFilter: 'blur(24px) saturate(160%)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(160%)'
+                  } as React.CSSProperties}
+                  className="morphing-nav flex items-center justify-center rounded-full"
                 >
-                  Falar com um consultor especialista
-                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-                    →
-                  </span>
-                </a>
-              </motion.div>
+                  {/* Left circular logo container: static Y coordinates for perfect flying morph landing, fades in */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={startHeroIntro ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+                    className="morphing-nav-child flex items-center justify-center rounded-full w-14 h-14 shrink-0"
+                  >
+                    {/* Inner logo wrapper that cross-fades exactly when the flying logo lands */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={startHeroIntro ? { opacity: 1 } : {}}
+                      transition={{ duration: 0.1, delay: 1.1, ease: 'linear' }}
+                      className="w-full h-full flex items-center justify-center"
+                    >
+                      <Logo logoRef={headerLogoRef} opacity={1} />
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Right pill container: links + actions, slides down independently */}
+                  <motion.div
+                    initial={{ y: -25, opacity: 0 }}
+                    animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className="morphing-nav-child morphing-nav-links flex items-center rounded-full"
+                  >
+                    {navLinks.map((link) => (
+                      <a
+                        key={link}
+                        href={`#${link.toLowerCase().replace(/\s+/g, '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                        className="hidden lg:inline-block text-[14px] font-semibold text-black hover:text-black/70 transition-colors duration-200 whitespace-nowrap"
+                      >
+                        {link}
+                      </a>
+                    ))}
+
+                    {/* Separator */}
+                    <div className="hidden lg:block w-px h-4 bg-black/15 shrink-0" />
+
+                    {/* Acesse sua conta */}
+                    <a
+                      href="#conta"
+                      className="hidden lg:inline-block text-[14px] font-semibold text-black hover:text-black/70 transition-colors duration-200 whitespace-nowrap"
+                    >
+                      Acesse sua conta
+                    </a>
+
+                    {/* Entre em contato CTA button */}
+                    <a
+                      href="#contato"
+                      className="text-[14px] font-semibold text-white bg-black rounded-full px-4 py-2 hover:bg-black/80 transition-colors duration-200 whitespace-nowrap shrink-0"
+                    >
+                      Entre em contato
+                    </a>
+                  </motion.div>
+                </nav>
+              </div>
+
+              {/* Hero content: bottom-left aligned */}
+              <div 
+                ref={heroContentRef}
+                className="flex-1 flex items-end pr-6 lg:pr-28 transition-all duration-75"
+                style={{
+                  paddingBottom: isLargeScreen ? '260px' : '190px',
+                  paddingLeft: isLargeScreen ? '340px' : '256px',
+                  opacity: 1,
+                  filter: 'blur(0px)',
+                  transform: 'translate3d(0, 0px, 0)',
+                }}
+              >
+                <div 
+                  style={{ maxWidth: isLargeScreen ? '420px' : '384px' }}
+                >
+                  
+                  {/* Social Proof (Active Users badge) */}
+                  <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 1.0, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex items-center gap-3 mb-4 select-none"
+                  >
+                    <div className="flex -space-x-2">
+                      <img
+                        className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
+                        src="avatar-1.webp"
+                        alt="Usuário 1"
+                      />
+                      <img
+                        className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
+                        src="avatar-2.webp"
+                        alt="Usuário 2"
+                      />
+                      <img
+                        className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
+                        src="avatar-3.webp"
+                        alt="Usuário 3"
+                      />
+                      <img
+                        className="w-9 h-9 rounded-full border-2 border-blue-500 object-cover"
+                        src="avatar-4.webp"
+                        alt="Usuário 4"
+                      />
+                      <div className="w-9 h-9 rounded-full border-2 border-blue-500 bg-white flex items-center justify-center text-[11px] font-bold text-gray-900">
+                        32k
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* 2. Headline <h1> */}
+                  <ScrollFloat
+                    as="h1"
+                    scrollTriggered={false}
+                    animateTrigger={startHeroIntro}
+                    animationDuration={0.8}
+                    stagger={0.012}
+                    delay={0.2}
+                    style={{ fontSize: isLargeScreen ? '2.2rem' : '1.95rem' }}
+                    containerClassName="leading-[1.15] font-normal text-white tracking-tight mb-3"
+                  >
+                    <span className="font-bold">Transforme</span> seu<br />
+                    <span className="font-bold">ecossistema</span> em um<br />
+                    centro de <span className="font-bold">serviços<br />financeiros</span>
+                  </ScrollFloat>
+
+                  {/* 3. Subtext <p> */}
+                  <ScrollFloat
+                    as="p"
+                    scrollTriggered={false}
+                    animateTrigger={startHeroIntro}
+                    animationDuration={0.8}
+                    stagger={0.003}
+                    delay={0.4}
+                    style={{ fontSize: isLargeScreen ? '16px' : '14.5px' }}
+                    containerClassName="text-white font-normal mb-3"
+                  >
+                    Fidelize clientes e crie novas receitas com Banking As A Service. Tecnologia e segurança bancária integradas de forma simples ao seu negócio.
+                  </ScrollFloat>
+
+                  {/* 4. CTA anchor */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={startHeroIntro ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 1.0, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <a
+                      href="#consultor"
+                      className="inline-flex items-center gap-2 font-medium text-white border border-white/80 rounded-full px-5 py-2.5 hover:bg-white hover:text-gray-900 hover:border-white transition-all duration-200 group"
+                      style={{
+                        fontSize: isLargeScreen ? '15px' : '13.5px',
+                        boxShadow: '0 0 1px rgba(255, 255, 255, 0.8)',
+                        transform: 'translate3d(0,0,0)',
+                        WebkitFontSmoothing: 'antialiased',
+                        backgroundClip: 'padding-box'
+                      }}
+                    >
+                      Falar com um consultor especialista
+                      <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                        →
+                      </span>
+                    </a>
+                  </motion.div>
+
+                </div>
+              </div>
 
             </div>
           </div>
-
-        </div>
-      </div>
+        )}
 
       {/* ─── Bento Grid Section — Stacking Overlay ─── */}
       <section 
         ref={bentoSectionRef}
-        className="relative z-20 w-full min-h-screen bg-white px-8 pt-12 pb-12 sm:pt-16 sm:pb-16 shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] border-t border-gray-200/50 mt-[80vh] flex flex-col justify-center"
+        className="relative z-20 w-full min-h-screen bg-white px-8 pt-12 pb-12 sm:pt-16 sm:pb-16 shadow-[0_-16px_48px_rgba(0,0,0,0.08)] rounded-t-[40px] mt-[calc(75vh-40px)] lg:mt-[80vh] flex flex-col justify-center"
       >
         <div className="max-w-6xl mx-auto w-full">
 
@@ -530,21 +718,27 @@ function App() {
               scrollStart="top bottom"
               scrollEnd="bottom center-=15%"
               stagger={0.015}
-              style={{ fontSize: isLargeScreen ? '2.4rem' : '2.0rem' }}
+              style={{ fontSize: isLargeScreen ? '2.4rem' : isMobile ? '1.65rem' : '2.0rem' }}
               containerClassName="leading-[1.15] font-normal text-gray-900 tracking-tight"
             >
-              Uma <span className="font-bold">infraestrutura</span> completa de<br />
+              Uma <span className="font-bold">infraestrutura</span> completa de<br className="hidden lg:inline" />
               <span className="font-bold">serviços financeiros</span> para o seu <span className="font-bold">negócio</span>
             </ScrollFloat>
           </motion.div>
 
           {/* Grid container — explicit CSS grid to guarantee row-span works */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gridTemplateRows: '300px 300px',
-            gap: '14px',
-          }}>
+          <div style={
+            isMobile ? {
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '14px',
+            } : {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(12, 1fr)',
+              gridTemplateRows: '300px 300px',
+              gap: '14px',
+            }
+          }>
 
             {/* ── Card A: top-left (4 cols, row 1) — Soluções ── */}
             <motion.div
@@ -554,8 +748,9 @@ function App() {
               viewport={{ once: true, margin: "-100px" }}
               variants={bentoCardVariants}
               style={{ 
-                gridColumn: '1 / span 4', 
-                gridRow: '1',
+                gridColumn: isMobile ? undefined : '1 / span 4', 
+                gridRow: isMobile ? undefined : '1',
+                height: isMobile ? '300px' : undefined,
                 willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl p-7 flex flex-col overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
@@ -603,8 +798,9 @@ function App() {
               viewport={{ once: true, margin: "-100px" }}
               variants={bentoCardVariants}
               style={{ 
-                gridColumn: '5 / span 4', 
-                gridRow: '1',
+                gridColumn: isMobile ? undefined : '5 / span 4', 
+                gridRow: isMobile ? undefined : '1',
+                height: isMobile ? '300px' : undefined,
                 willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl p-7 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
@@ -636,8 +832,9 @@ function App() {
               viewport={{ once: true, margin: "-100px" }}
               variants={bentoCardVariants}
               style={{ 
-                gridColumn: '9 / span 4', 
-                gridRow: '1 / span 2',
+                gridColumn: isMobile ? undefined : '9 / span 4', 
+                gridRow: isMobile ? undefined : '1 / span 2',
+                height: isMobile ? '400px' : undefined,
                 willChange: 'transform, scale, opacity, filter',
               }}
               className="rounded-3xl pt-20 px-8 pb-8 flex flex-col justify-between overflow-hidden border border-gray-200/40 relative bg-[#f6f6f4]"
@@ -678,33 +875,62 @@ function App() {
               viewport={{ once: true, margin: "-100px" }}
               variants={bentoCardVariants}
               style={{
-                gridColumn: '1 / span 8',
-                gridRow: '2',
-                backgroundImage: 'url("cards bento/card-d-baas.webp")',
+                gridColumn: isMobile ? undefined : '1 / span 8',
+                gridRow: isMobile ? undefined : '2',
+                minHeight: isMobile ? '350px' : undefined,
+                backgroundImage: isMobile ? 'none' : 'url("cards bento/card-d-baas.webp")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 willChange: 'transform, scale, opacity, filter',
               }}
-              className="rounded-3xl p-9 flex flex-col justify-between overflow-hidden relative"
+              className={`rounded-3xl p-9 flex flex-col justify-between overflow-hidden relative ${isMobile ? 'bg-[#f6f6f4] border border-gray-200/40' : ''}`}
             >
-
+ 
               <div className="relative z-10">
-                <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-white leading-tight mb-2 max-w-md">
+                <h2 className={`text-[1.45rem] sm:text-[1.6rem] font-bold leading-tight mb-2 max-w-md ${isMobile ? 'text-gray-900' : 'text-white'}`}>
                   Infraestrutura Financeira<br />
                   <span className="italic font-light">para Empresas em Escala</span>
                 </h2>
-                <p className="text-[13.5px] text-white max-w-sm leading-relaxed">
+                <p className={`text-[13.5px] max-w-sm leading-relaxed ${isMobile ? 'text-gray-600 font-normal' : 'text-white'}`}>
                   Sua plataforma financeira completa.<br />
                   Fidelize clientes e crie novas receitas<br />
                   com infraestrutura bancária integrada.
                 </p>
               </div>
-
+ 
+              {isMobile && (
+                <div className="w-full mt-4 p-4 rounded-2xl bg-white border border-gray-200/50 flex items-center justify-between shadow-xs z-10">
+                  <div className="flex flex-col">
+                    <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Transações em Escala</span>
+                    <span className="text-[14px] font-bold text-zinc-900 mt-0.5">R$ 2.4M/mês</span>
+                  </div>
+                  {/* Mini-chart Sparkline */}
+                  <svg className="w-20 h-8 text-blue-600" viewBox="0 0 100 30" fill="none">
+                    <path 
+                      d="M0 25 C 15 20, 30 25, 45 12 C 60 2, 75 18, 90 5 L 100 8" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                    />
+                  </svg>
+                </div>
+              )}
+ 
               <div className="relative z-10 flex items-center gap-3 mt-6">
-                <a href="#produtos" className="inline-flex items-center px-5 py-2.5 bg-white text-gray-900 text-[13px] font-semibold rounded-full hover:bg-white/90 transition-colors duration-200">
+                <a 
+                  href="#produtos" 
+                  className={`inline-flex items-center px-5 py-2.5 text-[13px] font-semibold rounded-full transition-colors duration-200 ${
+                    isMobile ? 'bg-zinc-900 text-white hover:bg-black' : 'bg-white text-gray-900 hover:bg-white/90'
+                  }`}
+                >
                   Ver produtos
                 </a>
-                <a href="#contato" className="inline-flex items-center px-5 py-2.5 bg-white/15 text-white text-[13px] font-semibold rounded-full border border-white/30 hover:bg-white/25 transition-colors duration-200">
+                <a 
+                  href="#contato" 
+                  className={`inline-flex items-center px-5 py-2.5 text-[13px] font-semibold rounded-full border transition-colors duration-200 ${
+                    isMobile ? 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50' : 'border-white/30 text-white bg-white/15 hover:bg-white/25'
+                  }`}
+                >
                   Falar com especialista
                 </a>
               </div>
@@ -715,10 +941,10 @@ function App() {
       </section>
 
       {/* ─── Dashboard Showcase Section ─── */}
-      <DashboardSection />
+      <DashboardShowcase />
 
       {/* ─── Banking & Pix Features Section ─── */}
-      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
+      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16">
         <div className="max-w-[1440px] mx-auto w-full">
           {/* Section Header */}
           <motion.div
@@ -735,10 +961,10 @@ function App() {
               scrollStart="top bottom"
               scrollEnd="bottom center-=15%"
               stagger={0.015}
-              style={{ fontSize: isLargeScreen ? '4.0rem' : '3.3rem' }}
+              style={{ fontSize: isLargeScreen ? '4.0rem' : isMobile ? '1.9rem' : '3.3rem' }}
               containerClassName="leading-[1.15] font-normal text-gray-900 tracking-tight"
             >
-              Conectando <span className="font-bold">tecnologia inteligente</span><br />à sua <span className="font-bold">operação financeira</span>
+              Conectando <span className="font-bold">tecnologia inteligente</span><br className="hidden lg:inline" />à sua <span className="font-bold">operação financeira</span>
             </ScrollFloat>
             <p className="text-[19px] text-gray-900/60 max-w-3xl mx-auto mt-6 leading-relaxed font-normal">
               Simplificamos o dia a dia do seu negócio com ferramentas integradas de Banking, automação de Pix, cobranças eficientes e fluxos de aprovação seguros.
@@ -1133,8 +1359,11 @@ function App() {
         </div>
       </section>
 
+      {/* ─── Digital Account Features Section ─── */}
+      <DigitalAccountFeatures />
+
       {/* ─── Why Choose Us Section ─── */}
-      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16 border-t border-gray-200/50 -mt-px">
+      <section className="relative z-20 w-full bg-white px-8 py-12 sm:py-16">
         <div className="max-w-[1440px] mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 25, filter: "blur(4px)" }}
@@ -1153,7 +1382,7 @@ function App() {
               stagger={0.015}
               style={{ display: 'block' }}
               containerClassName="text-center"
-              textClassName="text-[2.2rem] sm:text-[2.5rem] font-normal text-gray-900 tracking-tight"
+              textClassName="text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-normal text-gray-900 tracking-tight"
             >
               Por que <span className="font-bold">escolher</span> a <span className="font-bold">Asset</span>?
             </ScrollFloat>
@@ -1164,13 +1393,13 @@ function App() {
       </section>
 
       {/* ─── Testimonials Section ─── */}
-      <div className="relative z-20 w-full border-t border-gray-200/50 -mt-px">
+      <div className="relative z-20 w-full">
         <Testimonials />
       </div>
 
       {/* ─── FAQ Section ─── */}
       <section className="relative z-20 w-full bg-white px-8 pb-12 sm:pb-16 -mt-px">
-        <div className="max-w-6xl mx-auto border-t border-gray-200/50 pt-12 sm:pt-16">
+        <div className="max-w-6xl mx-auto pt-12 sm:pt-16">
           <FAQ />
         </div>
       </section>

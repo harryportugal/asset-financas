@@ -94,7 +94,7 @@ export function Footer() {
 					<img 
 						src="/celular cta.webp" 
 						alt="CTA Background" 
-						className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+						className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
 					/>
 					
 					{/* Subtle abstract glow/mesh pattern for premium look */}
@@ -132,7 +132,7 @@ export function Footer() {
 						</div>
 
 						{/* Headline */}
-						<h2 className="text-[2.2rem] sm:text-[3.2rem] font-normal text-white tracking-tight leading-[1.1] mb-5">
+						<h2 className="text-[1.8rem] sm:text-[2.6rem] lg:text-[3.2rem] font-normal text-white tracking-tight leading-[1.1] mb-5">
 							Pronto para <span className="font-bold">escalar</span> a sua <span className="font-bold">operação financeira</span>?
 						</h2>
 
