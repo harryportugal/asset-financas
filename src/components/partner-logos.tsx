@@ -97,12 +97,12 @@ function InfiniteSlider({
 // ── Real partner logos (processed: bg removed, gray colored) ──
 const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa00282",    src: "/logos-carrossel/img-20260616-wa00282.png" },
-  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png", className: "h-24 sm:h-32" },
+  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png" },
   { name: "img-20260616-wa0036",     src: "/logos-carrossel/img-20260616-wa0036.png" },
   { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png" },
-  { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png", className: "h-20 sm:h-26" },
+  { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png" },
   { name: "img-20260616-wa0040",     src: "/logos-carrossel/img-20260616-wa0040.png" },
-  { name: "img-20260616-wa0041",     src: "/logos-carrossel/img-20260616-wa0041.png", className: "h-12 sm:h-16" },
+  { name: "img-20260616-wa0041",     src: "/logos-carrossel/img-20260616-wa0041.png" },
   { name: "img-20260616-wa0042",     src: "/logos-carrossel/img-20260616-wa0042.png" },
   { name: "logo-completa-4---copia", src: "/logos-carrossel/logo-completa-4---copia.png", className: "h-8 sm:h-10" },
 ];
@@ -140,7 +140,7 @@ export function PartnerLogos() {
               <img
                 src={item.src}
                 alt={item.name}
-                className={`${item.className ?? "h-16 sm:h-20"} w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300`}
+                className={`${item.className ?? "h-10 sm:h-12"} w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300`}
                 loading="lazy"
                 draggable={false}
               />
