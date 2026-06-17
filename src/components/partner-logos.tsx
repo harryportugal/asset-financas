@@ -189,41 +189,38 @@ export function PartnerLogos() {
   return (
     <section
       id="parceiros"
-      className="relative z-20 w-full bg-[#080c16] py-16 sm:py-20 overflow-hidden"
+      className="relative z-20 w-full bg-white py-16 sm:py-20 overflow-hidden"
     >
       {/* Top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gray-100" />
       {/* Bottom divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(255,255,255,0.03),transparent)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-10 text-center">
-        <p className="text-white/40 text-[11px] uppercase tracking-[0.2em] font-semibold mb-3">
+        <p className="text-gray-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-3">
           Infraestrutura &amp; Ecossistema
         </p>
-        <h2 className="text-white text-[1.6rem] sm:text-[2rem] font-normal tracking-tight leading-tight">
+        <h2 className="text-gray-900 text-[1.6rem] sm:text-[2rem] font-normal tracking-tight leading-tight">
           Confiado por especialistas.{" "}
           <span className="font-bold">Usado pelos líderes.</span>
         </h2>
       </div>
 
       {/* Top divider line */}
-      <div className="w-full border-t border-white/[0.08] mb-8" />
+      <div className="w-full border-t border-gray-100 mb-8" />
 
       {/* Slider */}
       <div className="relative">
         {/* Left fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#080c16] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         {/* Right fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#080c16] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
         <InfiniteSlider gap={72} speed={50} speedOnHover={15} reverse={false}>
           {partnerItems.map((item) => (
             <div
               key={item.name}
-              className="flex items-center justify-center shrink-0 text-white/40 hover:text-white/80 transition-colors duration-300"
+              className="flex items-center justify-center shrink-0 text-gray-400 hover:text-gray-700 transition-colors duration-300"
               title={item.name}
             >
               {item.logo}
@@ -233,7 +230,7 @@ export function PartnerLogos() {
       </div>
 
       {/* Bottom divider line */}
-      <div className="w-full border-t border-white/[0.08] mt-8" />
+      <div className="w-full border-t border-gray-100 mt-8" />
     </section>
   );
 }
