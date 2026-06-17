@@ -12,33 +12,42 @@ type InfiniteSliderProps = {
 
 function InfiniteSlider({
   children,
-  gap = 64,
+  gap = 80,
   speed = 50,
   speedOnHover = 15,
   reverse = false,
   className,
 }: InfiniteSliderProps) {
   const [currentSpeed, setCurrentSpeed] = useState(speed);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const singleSetRef = useRef<HTMLDivElement>(null);
+  const [singleSetWidth, setSingleSetWidth] = useState(0);
   const translation = useMotionValue(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Use ResizeObserver to dynamically measure width (even when images finish loading)
   useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.scrollWidth / 2);
+    if (!singleSetRef.current) return;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        // Use borderBoxSize if available, fallback to contentRect width
+        const width = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width;
+        if (width > 0) {
+          setSingleSetWidth(width);
+        }
       }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [children]);
+    });
+    
+    resizeObserver.observe(singleSetRef.current);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (!containerWidth) return;
-    const from = reverse ? -containerWidth : 0;
-    const to = reverse ? 0 : -containerWidth;
+    if (!singleSetWidth) return;
+    
+    // The exact repeating distance is the width of one set of items plus the gap between the sets
+    const repeatingUnit = singleSetWidth + gap;
+    const from = reverse ? -repeatingUnit : 0;
+    const to = reverse ? 0 : -repeatingUnit;
     const distance = Math.abs(to - from);
     const duration = distance / currentSpeed;
 
@@ -63,19 +72,23 @@ function InfiniteSlider({
     }
 
     return () => controls?.stop();
-  }, [containerWidth, currentSpeed, reverse, isTransitioning, translation]);
+  }, [singleSetWidth, currentSpeed, reverse, isTransitioning, translation, gap]);
 
   return (
     <div className={`overflow-hidden ${className ?? ""}`}>
       <motion.div
-        ref={containerRef}
         className="flex w-max items-center"
         style={{ x: translation, gap: `${gap}px` }}
         onHoverStart={() => { setIsTransitioning(true); setCurrentSpeed(speedOnHover); }}
         onHoverEnd={() => { setIsTransitioning(true); setCurrentSpeed(speed); }}
       >
-        {children}
-        {children}
+        {/* Render two identical sets. The translation shifts left by exactly (one set + gap) */}
+        <div ref={singleSetRef} className="flex items-center shrink-0" style={{ gap: `${gap}px` }}>
+          {children}
+        </div>
+        <div className="flex items-center shrink-0" style={{ gap: `${gap}px` }}>
+          {children}
+        </div>
       </motion.div>
     </div>
   );
@@ -84,8 +97,7 @@ function InfiniteSlider({
 // ── Real partner logos (processed: bg removed, gray colored) ──
 const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa00282",    src: "/logos-carrossel/img-20260616-wa00282.png" },
-  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png", className: "h-20 sm:h-26" },
-  { name: "img-20260616-wa00321",    src: "/logos-carrossel/img-20260616-wa00321.png", className: "h-32 sm:h-44" },
+  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png", className: "h-24 sm:h-32" },
   { name: "img-20260616-wa0036",     src: "/logos-carrossel/img-20260616-wa0036.png" },
   { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png" },
   { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png", className: "h-20 sm:h-26" },
