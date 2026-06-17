@@ -85,7 +85,7 @@ function InfiniteSlider({
 const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa00282",    src: "/logos-carrossel/img-20260616-wa00282.png" },
   { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png", className: "h-20 sm:h-26" },
-  { name: "img-20260616-wa00321",    src: "/logos-carrossel/img-20260616-wa00321.png", className: "h-20 sm:h-26" },
+  { name: "img-20260616-wa00321",    src: "/logos-carrossel/img-20260616-wa00321.png", className: "h-32 sm:h-44" },
   { name: "img-20260616-wa0036",     src: "/logos-carrossel/img-20260616-wa0036.png" },
   { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png" },
   { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png", className: "h-20 sm:h-26" },
