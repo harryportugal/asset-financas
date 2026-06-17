@@ -99,7 +99,7 @@ const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa00282",    src: "/logos-carrossel/img-20260616-wa00282.png" },
   { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png" },
   { name: "img-20260616-wa0036",     src: "/logos-carrossel/img-20260616-wa0036.png" },
-  { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png" },
+  { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png", className: "h-6 sm:h-8" },
   { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png" },
   { name: "img-20260616-wa0040",     src: "/logos-carrossel/img-20260616-wa0040.png" },
   { name: "img-20260616-wa0041",     src: "/logos-carrossel/img-20260616-wa0041.png" },
