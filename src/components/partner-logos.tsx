@@ -124,7 +124,7 @@ export function PartnerLogos() {
       </div>
 
       {/* Slider */}
-      <div className="relative mt-8">
+      <div className="relative mt-16">
         {/* Left fade */}
         <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         {/* Right fade */}
