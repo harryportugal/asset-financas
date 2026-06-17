@@ -1228,6 +1228,11 @@ function App() {
           <div id="painel" className="relative z-20 w-full bg-white mt-0">
             <DashboardShowcase />
           </div>
+
+          {/* ─── Partner Logos Section ─── */}
+          <div id="parceiros" className="relative z-20 w-full">
+            <PartnerLogos />
+          </div>
         </>
       ) : (
         <>
@@ -1240,6 +1245,11 @@ function App() {
             <div id="painel" className="w-full h-full">
               <DashboardShowcase />
             </div>
+          </div>
+
+          {/* ─── Partner Logos Section ─── */}
+          <div id="parceiros" className="relative z-20 w-full">
+            <PartnerLogos />
           </div>
 
           {/* ─── Banking & Pix Features Section ─── */}
@@ -1278,11 +1288,6 @@ function App() {
           <FeatureSection />
         </div>
       </section>
-
-      {/* ─── Partner Logos Section ─── */}
-      <div id="parceiros" className="relative z-20 w-full">
-        <PartnerLogos />
-      </div>
 
       {/* ─── FAQ Section ─── */}
       <section id="faq" className="relative z-20 w-full bg-white px-8 pb-12 sm:pb-16 -mt-px">
