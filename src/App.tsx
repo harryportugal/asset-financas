@@ -1229,10 +1229,8 @@ function App() {
             <DashboardShowcase />
           </div>
 
-          {/* ─── Partner Logos Section ─── */}
-          <div id="parceiros" className="relative z-20 w-full">
-            <PartnerLogos />
-          </div>
+          {/* ─── Digital Account Features Section ─── */}
+          <DigitalAccountFeatures />
         </>
       ) : (
         <>
@@ -1247,17 +1245,13 @@ function App() {
             </div>
           </div>
 
-          {/* ─── Partner Logos Section ─── */}
-          <div id="parceiros" className="relative z-20 w-full">
-            <PartnerLogos />
-          </div>
+          {/* ─── Digital Account Features Section ─── */}
+          <DigitalAccountFeatures />
 
           {/* ─── Banking & Pix Features Section ─── */}
           <BankingPixFeatures isLargeScreen={isLargeScreen} isMobile={isMobile} />
         </>
       )}
-      {/* ─── Digital Account Features Section ─── */}
-      <DigitalAccountFeatures />
 
       {/* ─── Why Choose Us Section ─── */}
       <section id="diferenciais" className="relative z-20 w-full bg-white px-8 py-12 sm:py-16">
@@ -1288,6 +1282,11 @@ function App() {
           <FeatureSection />
         </div>
       </section>
+
+      {/* ─── Partner Logos Section ─── */}
+      <div id="parceiros" className="relative z-20 w-full">
+        <PartnerLogos />
+      </div>
 
       {/* ─── FAQ Section ─── */}
       <section id="faq" className="relative z-20 w-full bg-white px-8 pb-12 sm:pb-16 -mt-px">
