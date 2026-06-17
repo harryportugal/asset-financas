@@ -191,10 +191,6 @@ export function PartnerLogos() {
       id="parceiros"
       className="relative z-20 w-full bg-white py-16 sm:py-20 overflow-hidden"
     >
-      {/* Top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gray-100" />
-      {/* Bottom divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-10 text-center">
         <p className="text-gray-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-3">
@@ -206,8 +202,6 @@ export function PartnerLogos() {
         </h2>
       </div>
 
-      {/* Top divider line */}
-      <div className="w-full border-t border-gray-100 mb-8" />
 
       {/* Slider */}
       <div className="relative">
@@ -229,8 +223,6 @@ export function PartnerLogos() {
         </InfiniteSlider>
       </div>
 
-      {/* Bottom divider line */}
-      <div className="w-full border-t border-gray-100 mt-8" />
     </section>
   );
 }
