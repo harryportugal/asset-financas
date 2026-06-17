@@ -128,7 +128,7 @@ export function PartnerLogos() {
               <img
                 src={item.src}
                 alt={item.name}
-                className="h-10 sm:h-12 w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300"
+                className="h-16 sm:h-20 w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300"
                 loading="lazy"
                 draggable={false}
               />
