@@ -315,7 +315,7 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 						<div className="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-12 md:mt-auto">
 							{/* Copyright (Bottom-Left) */}
 							<motion.div variants={childVariants} className="text-gray-400 text-[12px] font-medium">
-								&copy; {new Date().getFullYear()} Asset. Todos os direitos reservados.
+								CNPJ: 53.085.878/0001-33 — &copy; {new Date().getFullYear()} Asset. Todos os direitos reservados.
 							</motion.div>
 
 							{/* Políticas link (Bottom-Center) */}
