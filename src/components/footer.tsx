@@ -257,7 +257,7 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 										{ label: "Painel", targetId: "painel" },
 										{ label: "Serviços", targetId: "servicos" },
 										{ label: "Diferenciais", targetId: "diferenciais" },
-										{ label: "Depoimentos", targetId: "depoimentos" },
+										{ label: "Parceiros", targetId: "parceiros" },
 										{ label: "FAQ", targetId: "faq" }
 									].map((link) => (
 										<a 

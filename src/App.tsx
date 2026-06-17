@@ -5,7 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollFloat from './ScrollFloat';
 import { FeatureSection } from './components/feature-section';
 import { FAQ } from './components/faq';
-import { Testimonials } from './components/testimonials';
+import { PartnerLogos } from './components/partner-logos';
 import { Footer } from './components/footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DashboardShowcase } from './components/dashboard-showcase';
@@ -680,7 +680,7 @@ function BankingPixFeatures({ isLargeScreen, isMobile }: BankingPixFeaturesProps
 }
 
 function App() {
-  const navLinks = ['Início', 'Painel', 'Serviços', 'Diferenciais', 'Depoimentos', 'FAQ'];
+  const navLinks = ['Início', 'Painel', 'Serviços', 'Diferenciais', 'Parceiros', 'FAQ'];
 
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -1279,9 +1279,9 @@ function App() {
         </div>
       </section>
 
-      {/* ─── Testimonials Section ─── */}
-      <div id="depoimentos" className="relative z-20 w-full">
-        <Testimonials />
+      {/* ─── Partner Logos Section ─── */}
+      <div id="parceiros" className="relative z-20 w-full">
+        <PartnerLogos />
       </div>
 
       {/* ─── FAQ Section ─── */}
