@@ -104,7 +104,7 @@ const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa0040",     src: "/logos-carrossel/img-20260616-wa0040.png" },
   { name: "img-20260616-wa0041",     src: "/logos-carrossel/img-20260616-wa0041.png" },
   { name: "img-20260616-wa0042",     src: "/logos-carrossel/img-20260616-wa0042.png" },
-  { name: "logo-completa-4---copia", src: "/logos-carrossel/logo-completa-4---copia.png", className: "h-8 sm:h-10" },
+  { name: "logo-completa-4---copia", src: "/logos-carrossel/logo-completa-4---copia.png", className: "h-6 sm:h-8" },
 ];
 
 export function PartnerLogos() {
@@ -140,7 +140,7 @@ export function PartnerLogos() {
               <img
                 src={item.src}
                 alt={item.name}
-                className={`${item.className ?? "h-10 sm:h-12"} w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300`}
+                className={`${item.className ?? "h-8 sm:h-10"} w-auto object-contain pointer-events-none opacity-50 hover:opacity-80 transition-opacity duration-300`}
                 loading="lazy"
                 draggable={false}
               />
