@@ -84,11 +84,11 @@ function InfiniteSlider({
 // ── Real partner logos (processed: bg removed, gray colored) ──
 const partnerItems: { name: string; src: string; className?: string }[] = [
   { name: "img-20260616-wa00282",    src: "/logos-carrossel/img-20260616-wa00282.png" },
-  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png" },
-  { name: "img-20260616-wa00321",    src: "/logos-carrossel/img-20260616-wa00321.png" },
+  { name: "img-20260616-wa00301",    src: "/logos-carrossel/img-20260616-wa00301.png", className: "h-20 sm:h-26" },
+  { name: "img-20260616-wa00321",    src: "/logos-carrossel/img-20260616-wa00321.png", className: "h-20 sm:h-26" },
   { name: "img-20260616-wa0036",     src: "/logos-carrossel/img-20260616-wa0036.png" },
   { name: "img-20260616-wa0037",     src: "/logos-carrossel/img-20260616-wa0037.png" },
-  { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png" },
+  { name: "img-20260616-wa0038",     src: "/logos-carrossel/img-20260616-wa0038.png", className: "h-20 sm:h-26" },
   { name: "img-20260616-wa0040",     src: "/logos-carrossel/img-20260616-wa0040.png" },
   { name: "img-20260616-wa0041",     src: "/logos-carrossel/img-20260616-wa0041.png" },
   { name: "img-20260616-wa0042",     src: "/logos-carrossel/img-20260616-wa0042.png" },
