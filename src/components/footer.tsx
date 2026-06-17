@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const socialLinks = [
 	{
@@ -271,6 +272,12 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 											{link.label}
 										</a>
 									))}
+									<Link
+										to="/politicas"
+										className="text-[14px] font-semibold text-gray-800 hover:text-black transition-colors duration-200"
+									>
+										Políticas e Termos
+									</Link>
 								</div>
 							</motion.div>
 
@@ -305,10 +312,20 @@ export function Footer({ onScrollToSection }: { onScrollToSection?: (targetId: s
 						</div>
 
 						{/* Bottom Area */}
-						<div className="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8 mt-12 md:mt-auto">
+						<div className="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 mt-12 md:mt-auto">
 							{/* Copyright (Bottom-Left) */}
 							<motion.div variants={childVariants} className="text-gray-400 text-[12px] font-medium">
 								&copy; {new Date().getFullYear()} Asset. Todos os direitos reservados.
+							</motion.div>
+
+							{/* Políticas link (Bottom-Center) */}
+							<motion.div variants={childVariants}>
+								<Link
+									to="/politicas"
+									className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-gray-500 hover:text-gray-900 transition-colors duration-200 border border-gray-200 rounded-full px-3.5 py-1.5 hover:border-gray-400"
+								>
+									Políticas e Termos
+								</Link>
 							</motion.div>
 
 							{/* Security Badge (Bottom-Right) */}
