@@ -111,9 +111,9 @@ export function PartnerLogos() {
   return (
     <section
       id="parceiros"
-      className="relative z-20 w-full bg-white pt-24 pb-16 sm:pt-28 sm:pb-20 overflow-hidden"
+      className="relative z-20 w-full bg-white pt-32 pb-16 sm:pt-40 sm:pb-20 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-14 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-20 text-center">
         <p className="text-gray-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-3">
           Empresas Parceiras
         </p>
