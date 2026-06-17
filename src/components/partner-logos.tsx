@@ -111,9 +111,9 @@ export function PartnerLogos() {
   return (
     <section
       id="parceiros"
-      className="relative z-20 w-full bg-white pt-32 pb-16 sm:pt-40 sm:pb-20 overflow-hidden"
+      className="relative z-20 w-full bg-white py-16 sm:py-20 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-20 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-10 text-center">
         <p className="text-gray-400 text-[11px] uppercase tracking-[0.2em] font-semibold mb-3">
           Empresas Parceiras
         </p>
@@ -124,7 +124,7 @@ export function PartnerLogos() {
       </div>
 
       {/* Slider */}
-      <div className="relative">
+      <div className="relative mt-8">
         {/* Left fade */}
         <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         {/* Right fade */}
